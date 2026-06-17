@@ -3,201 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل المستشفيات والمراكز الطبية</title>
-    <!-- Tailwind CSS لضمان تصميم أنيق ومتجاوب -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>دليل مستشفيات التعاونية للتأمين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
-        body { font-family: 'Cairo', sans-serif; }
+        :root {
+            --vip-color: #7c3aed;
+            --class-a-color: #ea580c;
+            --class-b-color: #2563eb;
+            --class-c-color: #64748b;
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .header .logo {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin: 0 auto 15px;
+        }
+
+        .header h1 { font-size: 2em; font-weight: 800; margin-bottom: 5px; }
+        .header p { opacity: 0.95; font-size: 1.1em; }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .legend-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+        }
+
+        .legend-vip { background: var(--vip-color); }
+        .legend-a { background: var(--class-a-color); }
+        .legend-b { background: var(--class-b-color); }
+        .legend-c { background: var(--class-c-color); }
+
+        /* Search */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-family: 'Cairo', sans-serif;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            outline: none;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover { border-color: #2563eb; color: #2563eb; }
+        .filter-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 15px;
+        }
+
+        .hospital-card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-right: 5px solid #e2e8f0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hospital-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-vip { border-right-color: var(--vip-color); background: #faf5ff; }
+        .card-a { border-right-color: var(--class-a-color); background: #fff7ed; }
+        .card-b { border-right-color: var(--class-b-color); background: #eff6ff; }
+        .card-c { border-right-color: var(--class-c-color); background: #f8fafc; }
+
+        .hospital-name {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .hospital-info {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.85em;
+            color: var(--text-muted);
+        }
+
+        .class-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.8em;
+            color: white;
+        }
+
+        .badge-vip { background: var(--vip-color); }
+        .badge-a { background: var(--class-a-color); }
+        .badge-b { background: var(--class-b-color); }
+        .badge-c { background: var(--class-c-color); }
+
+        .city-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #f1f5f9;
+            font-size: 0.8em;
+            color: var(--text-muted);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-muted);
+            font-size: 1.2em;
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 15px;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #e2e8f0;
+        }
+
+        .stat-number { font-size: 1.8em; font-weight: 800; display: block; }
+        .stat-label { color: var(--text-muted); font-size: 0.8em; }
+        .stat-vip { border-top-color: var(--vip-color); } .stat-vip .stat-number { color: var(--vip-color); }
+        .stat-a { border-top-color: var(--class-a-color); } .stat-a .stat-number { color: var(--class-a-color); }
+        .stat-b { border-top-color: var(--class-b-color); } .stat-b .stat-number { color: var(--class-b-color); }
+        .stat-c { border-top-color: var(--class-c-color); } .stat-c .stat-number { color: var(--class-c-color); }
+
+        @media (max-width: 768px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.5em; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+<body>
 
-    <!-- الهيدر -->
-    <header class="bg-blue-600 text-white shadow-lg py-6 px-4 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="text-2xl font-bold">دليل الشبكة الطبية للتأمين</h1>
-                <p class="text-sm text-blue-100 mt-1">ابحث عن المستشفيات والمجمعات الطبية المعتمدة ومستويات الكلاس</p>
-            </div>
-            <div id="stats" class="bg-blue-700 px-4 py-2 rounded-lg text-sm font-semibold">
-                جاري تحميل البيانات...
-            </div>
-        </div>
-    </header>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">ت</div>
+        <h1>🏥 دليل مستشفيات التعاونية للتأمين</h1>
+        <p>Tawuniya Insurance - Medical Network Guide</p>
+    </div>
 
-    <!-- أدوات البحث والفلترة -->
-    <main class="max-w-6xl mx-auto w-full p-4 flex-grow">
-        <div class="bg-white rounded-xl shadow-sm p-4 md:p-6 mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+    <!-- Legend -->
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot legend-vip"></div> VIP</div>
+        <div class="legend-item"><div class="legend-dot legend-a"></div> A</div>
+        <div class="legend-item"><div class="legend-dot legend-b"></div> B</div>
+        <div class="legend-item"><div class="legend-dot legend-c"></div> C</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+        <div class="stat-card stat-vip"><span class="stat-number" id="vipCount">0</span><span class="stat-label">VIP</span></div>
+        <div class="stat-card stat-a"><span class="stat-number" id="aCount">0</span><span class="stat-label">A</span></div>
+        <div class="stat-card stat-b"><span class="stat-number" id="bCount">0</span><span class="stat-label">B</span></div>
+        <div class="stat-card stat-c"><span class="stat-number" id="cCount">0</span><span class="stat-label">C</span></div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث عن مستشفى أو مدينة...">
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons" id="filterButtons">
+        <button class="filter-btn active" data-filter="all">🏥 الكل</button>
+        <button class="filter-btn" data-filter="VIP">🟣 VIP</button>
+        <button class="filter-btn" data-filter="A">🟠 A</button>
+        <button class="filter-btn" data-filter="B">🔵 B</button>
+        <button class="filter-btn" data-filter="C">⚫ C</button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid" id="cardsGrid"></div>
+</div>
+
+<script>
+    // ==================== HOSPITALS DATABASE ====================
+    const hospitals = [
+        // منطقة الرياض
+        { name: "مستشفى الدكتور سليمان الحبيب - العليا", class: "VIP", city: "الرياض" },
+        { name: "مستشفى الدكتور سليمان الحبيب - الريان", class: "VIP", city: "الرياض" },
+        { name: "مستشفى الدكتور سليمان الحبيب - التخصصي", class: "VIP", city: "الرياض" },
+        { name: "مستشفى المملكة", class: "VIP", city: "الرياض" },
+        { name: "مستشفى المركز التخصصي الطبي", class: "VIP", city: "الرياض" },
+        { name: "مستشفى الحمادي", class: "VIP", city: "الرياض" },
+        { name: "مستشفى السعودي الألماني", class: "A", city: "الرياض" },
+        { name: "مستشفى المواساة", class: "A", city: "الرياض" },
+        { name: "مستشفى دله", class: "A", city: "الرياض" },
+        { name: "مستشفى رعاية الوطني", class: "A", city: "الرياض" },
+        { name: "مستشفى الحياة الوطني", class: "A", city: "الرياض" },
+        { name: "مستشفى عيادة العبير", class: "B", city: "الرياض" },
+        { name: "مستشفى الزهراء", class: "B", city: "الرياض" },
+        { name: "مستشفى الدكتور عبدالرحمن المشاري", class: "B", city: "الرياض" },
+        { name: "مستشفى اليمامة", class: "C", city: "الرياض" },
+        
+        // المنطقة الشرقية - الخبر
+        { name: "مستشفى الدكتور سليمان الحبيب - الخبر", class: "VIP", city: "الخبر" },
+        { name: "مستشفى سعد التخصصي", class: "VIP", city: "الخبر" },
+        { name: "مستشفى الرعاية - الخبر", class: "A", city: "الخبر" },
+        { name: "مستشفى الخبر الوطني", class: "A", city: "الخبر" },
+        { name: "مستشفى محمد الدوسري", class: "B", city: "الخبر" },
+        { name: "مستشفى الهلال", class: "C", city: "الخبر" },
+        
+        // المنطقة الشرقية - الدمام
+        { name: "مستشفى المواساة - الدمام", class: "A", city: "الدمام" },
+        { name: "مستشفى المانع العام", class: "A", city: "الدمام" },
+        { name: "مستشفى الأهلي", class: "B", city: "الدمام" },
+        { name: "مجمع الدمام الطبي", class: "B", city: "الدمام" },
+        { name: "مستشفى الدمام الوطني", class: "B", city: "الدمام" },
+        
+        // المنطقة الشرقية - الظهران
+        { name: "مستشفى الظهران العام", class: "B", city: "الظهران" },
+        { name: "مستشفى الظهران الطبي", class: "B", city: "الظهران" },
+        
+        // المنطقة الشرقية - القطيف
+        { name: "مستشفى القطيف المركزي", class: "B", city: "القطيف" },
+        { name: "مستشفى القطيف الأهلي", class: "C", city: "القطيف" },
+        
+        // المنطقة الشرقية - الجبيل
+        { name: "مستشفى الهيئة الملكية", class: "A", city: "الجبيل" },
+        { name: "مستشفى الجبيل العام", class: "C", city: "الجبيل" },
+        { name: "مستشفى المانع - الجبيل", class: "B", city: "الجبيل" },
+        
+        // المنطقة الشرقية - أخرى
+        { name: "مستشفى عنك", class: "C", city: "عنك" },
+        { name: "مستشفى عين دار", class: "C", city: "عين دار" },
+        { name: "مستشفى بقيق العام", class: "C", city: "بقيق" },
+        { name: "مستشفى رأس تنورة", class: "C", city: "رأس تنورة" },
+        { name: "مستشفى النعيرية", class: "C", city: "النعيرية" },
+        
+        // المنطقة الغربية
+        { name: "مستشفى الدكتور سليمان الحبيب - جدة", class: "VIP", city: "جدة" },
+        { name: "مستشفى السعودي الألماني - جدة", class: "A", city: "جدة" },
+        { name: "مستشفى المواساة - جدة", class: "A", city: "جدة" },
+        { name: "مستشفى باقدو والدكتور عرفان", class: "B", city: "جدة" }
+    ];
+
+    // ==================== FUNCTIONS ====================
+    const cardsGrid = document.getElementById('cardsGrid');
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.getElementById('filterButtons');
+    let currentFilter = 'all';
+
+    function getCardClass(hospitalClass) {
+        switch(hospitalClass) {
+            case 'VIP': return 'card-vip';
+            case 'A': return 'card-a';
+            case 'B': return 'card-b';
+            case 'C': return 'card-c';
+            default: return '';
+        }
+    }
+
+    function getBadgeClass(hospitalClass) {
+        switch(hospitalClass) {
+            case 'VIP': return 'badge-vip';
+            case 'A': return 'badge-a';
+            case 'B': return 'badge-b';
+            case 'C': return 'badge-c';
+            default: return '';
+        }
+    }
+
+    function createCard(hospital) {
+        const card = document.createElement('div');
+        card.className = `hospital-card ${getCardClass(hospital.class)}`;
+        card.setAttribute('data-class', hospital.class);
+        card.setAttribute('data-city', hospital.city);
+        
+        card.innerHTML = `
+            <h3 class="hospital-name">🏥 ${hospital.name}</h3>
+            <div class="hospital-info">
+                <span class="class-badge ${getBadgeClass(hospital.class)}">${hospital.class}</span>
+                <span class="city-tag">📍 ${hospital.city}</span>
+            </div>
+            <div class="card-footer">
+                <span>🟢 متاح</span>
+                <span>التعاونية</span>
+            </div>
+        `;
+        
+        return card;
+    }
+
+    function renderCards() {
+        cardsGrid.innerHTML = '';
+        
+        const searchQuery = searchInput.value.toLowerCase();
+        
+        let filtered = hospitals.filter(hospital => {
+            // Class filter
+            if (currentFilter !== 'all' && hospital.class !== currentFilter) return false;
             
-            <!-- خانة البحث -->
-            <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-gray-600 mb-1">ابحث باسم المستشفى أو المركز:</label>
-                <input type="text" id="searchInput" placeholder="اكتب اسم المستشفى، نوع المنشأة..." 
-                       class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none text-base">
-            </div>
-
-            <!-- فلتر المدينة -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-600 mb-1">المدينة:</label>
-                <select id="cityFilter" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                    <option value="">الكل</option>
-                </select>
-            </div>
-
-            <!-- فلتر الكلاس -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-600 mb-1">فئة التأمين (Class):</label>
-                <select id="classFilter" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                    <option value="">الكل</option>
-                </select>
-            </div>
-
-        </div>
-
-        <!-- جدول وعرض البيانات -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-right border-collapse">
-                    <thead>
-                        <tr class="bg-gray-100 border-b border-gray-200 text-gray-600 font-bold text-sm">
-                            <th class="p-4">المنشأة الطبية</th>
-                            <th class="p-4">النوع</th>
-                            <th class="p-4">المدينة</th>
-                            <th class="p-4 text-center">الفئة (Class)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="providersTable" class="divide-y divide-gray-100 text-sm">
-                        <tr>
-                            <td colspan="4" class="p-8 text-center text-gray-500">جاري تحميل المنشآت الطبية...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- أزرار التصفح (Pagination) لضمان سرعة الصفحة -->
-            <div class="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center text-sm">
-                <button id="prevBtn" class="bg-white border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 font-medium disabled:opacity-50" disabled>السابق</button>
-                <span id="pageInfo" class="text-gray-600">صفحة 1 من 1</span>
-                <button id="nextBtn" class="bg-white border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 font-medium disabled:opacity-50" disabled>التالي</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- الفوتر -->
-    <footer class="bg-gray-800 text-gray-400 text-center py-4 text-xs mt-8">
-        جميع الحقوق محفوظة © دليلك الطبي المطور
-    </footer>
-
-    <!-- استدعاء ملف البيانات والمنطق البرمجي -->
-    <script src="data.js"></script>
-    <script>
-        let currentPage = 1;
-        const rowsPerPage = 20;
-        let filteredData = [];
-
-        // تشغيل الصفحة عند اكتمال تحميل البيانات
-        window.addEventListener('DOMContentLoaded', () => {
-            if (typeof medicalData === 'undefined') {
-                document.getElementById('providersTable').innerHTML = `<tr><td colspan="4" class="p-8 text-center text-red-500">خطأ: لم يتم العثور على ملف data.js أو أنه فارغ.</td></tr>`;
-                return;
+            // Search filter
+            if (searchQuery) {
+                const searchText = `${hospital.name} ${hospital.city} ${hospital.class}`.toLowerCase();
+                if (!searchText.includes(searchQuery)) return false;
             }
             
-            filteredData = [...medicalData];
-            initFilters();
-            renderTable();
-
-            // الاستماع لمدخلات البحث والفلاتر
-            document.getElementById('searchInput').addEventListener('input', filterData);
-            document.getElementById('cityFilter').addEventListener('change', filterData);
-            document.getElementById('classFilter').addEventListener('change', filterData);
-            
-            document.getElementById('prevBtn').addEventListener('click', () => { if(currentPage > 1) { currentPage--; renderTable(); } });
-            document.getElementById('nextBtn').addEventListener('click', () => { if(currentPage < Math.ceil(filteredData.length / rowsPerPage)) { currentPage++; renderTable(); } });
+            return true;
         });
-
-        // تعبئة خيارات الفلاتر تلقائياً
-        function initFilters() {
-            const cities = [...new Set(medicalData.map(item => item.c))].sort();
-            const classes = [...new Set(medicalData.map(item => item.cl))].sort();
-
-            const citySelect = document.getElementById('cityFilter');
-            cities.forEach(city => {
-                if(city) citySelect.options.add(new Option(city, city));
-            });
-
-            const classSelect = document.getElementById('classFilter');
-            classes.forEach(cls => {
-                if(cls) classSelect.options.add(new Option(cls, cls));
+        
+        // Update stats
+        document.getElementById('vipCount').textContent = hospitals.filter(h => h.class === 'VIP').length;
+        document.getElementById('aCount').textContent = hospitals.filter(h => h.class === 'A').length;
+        document.getElementById('bCount').textContent = hospitals.filter(h => h.class === 'B').length;
+        document.getElementById('cCount').textContent = hospitals.filter(h => h.class === 'C').length;
+        
+        if (filtered.length === 0) {
+            cardsGrid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة للبحث</div>';
+        } else {
+            filtered.forEach(hospital => {
+                cardsGrid.appendChild(createCard(hospital));
             });
         }
+    }
 
-        // فلترة البيانات بناءً على مدخلات المستخدم
-        function filterData() {
-            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cityVal = document.getElementById('cityFilter').value;
-            const classVal = document.getElementById('classFilter').value;
+    // ==================== EVENT LISTENERS ====================
+    searchInput.addEventListener('input', () => renderCards());
 
-            filteredData = medicalData.filter(item => {
-                const matchesSearch = !searchVal || 
-                                      item.p.toLowerCase().includes(searchVal) || 
-                                      item.t.toLowerCase().includes(searchVal);
-                const matchesCity = !cityVal || item.c === cityVal;
-                const matchesClass = !classVal || item.cl === classVal;
-                
-                return matchesSearch && matchesCity && matchesClass;
-            });
-
-            currentPage = 1;
-            renderTable();
+    filterButtons.addEventListener('click', function(e) {
+        if (e.target.classList.contains('filter-btn')) {
+            this.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            currentFilter = e.target.getAttribute('data-filter');
+            renderCards();
         }
+    });
 
-        // عرض الجدول بشكل منظم ومقسم لصفحات لتسريع المتصفح
-        function renderTable() {
-            const tbody = document.getElementById('providersTable');
-            const totalItems = filteredData.length;
-            
-            document.getElementById('stats').innerText = `إجمالي المنشآت: ${totalItems.toLocaleString()}`;
+    // Initial render
+    renderCards();
+</script>
 
-            if (totalItems === 0) {
-                tbody.html = `<tr><td colspan="4" class="p-8 text-center text-gray-500">لا توجد نتائج مطابقة لبحثك.</td></tr>`;
-                document.getElementById('pageInfo').innerText = "صفحة 0 من 0";
-                document.getElementById('prevBtn').disabled = true;
-                document.getElementById('nextBtn').disabled = true;
-                return;
-            }
-
-            const totalPages = Math.ceil(totalItems / rowsPerPage);
-            const start = (currentPage - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-            const pageItems = filteredData.slice(start, end);
-
-            let html = '';
-            pageItems.forEach(item => {
-                // تلوين الكلاسات لمنظر جمالي وأوضح
-                let classBadge = 'bg-gray-100 text-gray-800';
-                if(item.cl === 'VIP') classBadge = 'bg-amber-100 text-amber-800 font-bold border border-amber-300';
-                else if(['A', 'A+'].includes(item.cl)) classBadge = 'bg-green-100 text-green-800 font-semibold';
-                else if(item.cl.startsWith('B')) classBadge = 'bg-blue-100 text-blue-800';
-                else if(item.cl.startsWith('C')) classBadge = 'bg-orange-100 text-orange-800';
-
-                html += `
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="p-4 font-medium text-gray-900 max-w-xs md:max-w-md">${item.p}</td>
-                        <td class="p-4 text-gray-500">${item.t}</td>
-                        <td class="p-4 text-gray-600">${item.c}</td>
-                        <td class="p-4 text-center">
-                            <span class="px-3 py-1 rounded-full text-xs ${classBadge}">${item.cl}</span>
-                        </td>
-                    </tr>
-                `;
-            });
-
-            tbody.innerHTML = html;
-            document.getElementById('pageInfo').innerText = `صفحة ${currentPage} من ${totalPages}`;
-            document.getElementById('prevBtn').disabled = currentPage === 1;
-            document.getElementById('nextBtn').disabled = currentPage === totalPages;
-        }
-    </script>
 </body>
 </html>
