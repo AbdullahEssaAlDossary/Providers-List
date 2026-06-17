@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل مستشفيات التعاونية - Tawuniya Medical Network</title>
+    <title>دليل مستشفيات التعاونية | Tawuniya Medical Network Guide</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -35,6 +35,35 @@
 
         .container { max-width: 1400px; margin: 0 auto; }
 
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 12px;
+            gap: 6px;
+        }
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.25s;
+            color: var(--text2);
+        }
+        .lang-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
         /* Header */
         .header {
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
@@ -45,58 +74,174 @@
             color: white;
             box-shadow: 0 8px 24px rgba(30,58,138,0.2);
         }
-        .header h1 { font-size: 1.6em; font-weight: 800; }
-        .header p { opacity: 0.85; font-size: 0.9em; margin-top: 4px; }
+        .header h1 {
+            font-size: 1.6em;
+            font-weight: 800;
+        }
+        .header .sub {
+            opacity: 0.85;
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
 
         /* Stats */
         .stats {
-            display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
             margin-bottom: 20px;
         }
         .stat {
-            background: white; padding: 10px 14px; border-radius: 12px;
-            text-align: center; box-shadow: var(--shadow);
-            min-width: 60px; transition: transform 0.2s;
+            background: white;
+            padding: 10px 14px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            min-width: 60px;
+            transition: transform 0.2s;
             border-bottom: 3px solid transparent;
         }
-        .stat:hover { transform: translateY(-2px); }
-        .stat .num { font-size: 1.4em; font-weight: 800; display: block; }
-        .stat .lbl { font-size: 0.65em; color: var(--text2); }
-        .st-vip { border-bottom-color: var(--vip); } .st-vip .num { color: var(--vip); }
-        .st-a { border-bottom-color: var(--class-a); } .st-a .num { color: var(--class-a); }
-        .st-b { border-bottom-color: var(--class-b); } .st-b .num { color: var(--class-b); }
-        .st-bplus { border-bottom-color: var(--class-bplus); } .st-bplus .num { color: var(--class-bplus); }
-        .st-c { border-bottom-color: var(--class-c); } .st-c .num { color: var(--class-c); }
-        .st-c1 { border-bottom-color: var(--class-c1); } .st-c1 .num { color: var(--class-c1); }
-        .st-cr { border-bottom-color: var(--class-cr); } .st-cr .num { color: var(--class-cr); }
-        .st-total { border-bottom-color: #1e3a8a; } .st-total .num { color: #1e3a8a; }
+        .stat:hover {
+            transform: translateY(-2px);
+        }
+        .stat .num {
+            font-size: 1.4em;
+            font-weight: 800;
+            display: block;
+        }
+        .stat .lbl {
+            font-size: 0.65em;
+            color: var(--text2);
+        }
+        .st-vip {
+            border-bottom-color: var(--vip);
+        }
+        .st-vip .num {
+            color: var(--vip);
+        }
+        .st-a {
+            border-bottom-color: var(--class-a);
+        }
+        .st-a .num {
+            color: var(--class-a);
+        }
+        .st-b {
+            border-bottom-color: var(--class-b);
+        }
+        .st-b .num {
+            color: var(--class-b);
+        }
+        .st-bplus {
+            border-bottom-color: var(--class-bplus);
+        }
+        .st-bplus .num {
+            color: var(--class-bplus);
+        }
+        .st-c {
+            border-bottom-color: var(--class-c);
+        }
+        .st-c .num {
+            color: var(--class-c);
+        }
+        .st-c1 {
+            border-bottom-color: var(--class-c1);
+        }
+        .st-c1 .num {
+            color: var(--class-c1);
+        }
+        .st-cr {
+            border-bottom-color: var(--class-cr);
+        }
+        .st-cr .num {
+            color: var(--class-cr);
+        }
+        .st-total {
+            border-bottom-color: #1e3a8a;
+        }
+        .st-total .num {
+            color: #1e3a8a;
+        }
 
         /* Controls */
         .controls {
-            background: white; border-radius: var(--radius); padding: 14px 18px;
-            margin-bottom: 20px; box-shadow: var(--shadow); display: flex;
-            flex-wrap: wrap; gap: 10px; align-items: center;
+            background: white;
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
         }
         .search-wrap {
-            flex: 1; min-width: 200px; position: relative;
+            flex: 1;
+            min-width: 200px;
+            position: relative;
         }
         .search-wrap input {
-            width: 100%; padding: 10px 40px 10px 14px; border: 2px solid #e2e8f0;
-            border-radius: 50px; font-family: 'Cairo', sans-serif; font-size: 14px;
-            outline: none; transition: all 0.3s; background: #f8fafc;
+            width: 100%;
+            padding: 10px 40px 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+            background: #f8fafc;
         }
-        .search-wrap input:focus { border-color: #2563eb; background: white; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-        .search-wrap .sicon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-        .btn-group { display: flex; gap: 5px; flex-wrap: wrap; }
+        .search-wrap input:focus {
+            border-color: #2563eb;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        .search-wrap .sicon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        .btn-group {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
         .btn {
-            padding: 7px 12px; border: 2px solid #e2e8f0; background: #f8fafc;
-            border-radius: 50px; cursor: pointer; font-family: 'Cairo', sans-serif;
-            font-size: 11px; font-weight: 600; transition: all 0.25s; white-space: nowrap;
+            padding: 7px 12px;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.25s;
+            white-space: nowrap;
             color: var(--text2);
         }
-        .btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
-        .btn.active { background: #2563eb; color: white; border-color: #2563eb; }
-        .divider { width: 1px; height: 20px; background: #e2e8f0; margin: 0 4px; }
+        .btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            background: #eff6ff;
+        }
+        .btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        .divider {
+            width: 1px;
+            height: 20px;
+            background: #e2e8f0;
+            margin: 0 4px;
+        }
+        .filter-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+        }
 
         /* Grid */
         .grid {
@@ -107,88 +252,218 @@
 
         /* Card */
         .card {
-            background: white; border-radius: 14px;
-            box-shadow: var(--shadow); transition: all 0.25s;
-            display: flex; flex-direction: column;
+            background: white;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
             border: 1px solid #f1f5f9;
             border-right: 5px solid #e2e8f0;
         }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+        }
 
-        .card-vip { border-right-color: var(--vip); }
-        .card-a { border-right-color: var(--class-a); }
-        .card-b { border-right-color: var(--class-b); }
-        .card-bplus { border-right-color: var(--class-bplus); }
-        .card-c { border-right-color: var(--class-c); }
-        .card-c1 { border-right-color: var(--class-c1); }
-        .card-cr { border-right-color: var(--class-cr); }
+        .card-vip {
+            border-right-color: var(--vip);
+        }
+        .card-a {
+            border-right-color: var(--class-a);
+        }
+        .card-b {
+            border-right-color: var(--class-b);
+        }
+        .card-bplus {
+            border-right-color: var(--class-bplus);
+        }
+        .card-c {
+            border-right-color: var(--class-c);
+        }
+        .card-c1 {
+            border-right-color: var(--class-c1);
+        }
+        .card-cr {
+            border-right-color: var(--class-cr);
+        }
 
-        .card-body { padding: 16px 18px; flex: 1; }
+        .card-body {
+            padding: 16px 18px;
+            flex: 1;
+        }
         .card-header {
-            display: flex; justify-content: space-between; align-items: flex-start;
-            margin-bottom: 8px; gap: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            gap: 8px;
         }
         .card-title {
-            font-size: 0.95em; font-weight: 700; color: var(--text);
-            line-height: 1.5; flex: 1;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+            flex: 1;
         }
         .class-badge {
-            padding: 3px 10px; border-radius: 10px; font-size: 0.7em;
-            font-weight: 700; color: white; white-space: nowrap;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
         }
-        .bd-vip { background: var(--vip); }
-        .bd-a { background: var(--class-a); }
-        .bd-b { background: var(--class-b); }
-        .bd-bplus { background: var(--class-bplus); }
-        .bd-c { background: var(--class-c); }
-        .bd-c1 { background: var(--class-c1); }
-        .bd-cr { background: var(--class-cr); }
+        .bd-vip {
+            background: var(--vip);
+        }
+        .bd-a {
+            background: var(--class-a);
+        }
+        .bd-b {
+            background: var(--class-b);
+        }
+        .bd-bplus {
+            background: var(--class-bplus);
+        }
+        .bd-c {
+            background: var(--class-c);
+        }
+        .bd-c1 {
+            background: var(--class-c1);
+        }
+        .bd-cr {
+            background: var(--class-cr);
+        }
 
         .card-city {
-            display: inline-flex; align-items: center; gap: 5px;
-            font-size: 0.78em; color: var(--text2); margin-bottom: 4px;
-            background: #f8fafc; padding: 4px 10px; border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.78em;
+            color: var(--text2);
+            margin-bottom: 4px;
+            background: #f8fafc;
+            padding: 4px 10px;
+            border-radius: 8px;
         }
         .card-footer {
-            padding: 10px 18px; border-top: 1px solid #f1f5f9;
-            display: flex; gap: 8px;
+            padding: 10px 18px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            gap: 8px;
         }
         .map-btn {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            gap: 6px; padding: 10px; border-radius: 10px;
-            text-decoration: none; font-size: 0.8em; font-weight: 700;
-            transition: all 0.2s; background: #f8fafc; color: #2563eb;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.8em;
+            font-weight: 700;
+            transition: all 0.2s;
+            background: #f8fafc;
+            color: #2563eb;
             border: 1px solid #e2e8f0;
         }
-        .map-btn:hover { background: #eff6ff; border-color: #bfdbfe; }
+        .map-btn:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
 
         .no-res {
-            text-align: center; padding: 50px 20px; color: var(--text2);
-            font-size: 1.1em; grid-column: 1 / -1; background: white;
-            border-radius: var(--radius); box-shadow: var(--shadow);
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text2);
+            font-size: 1.1em;
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* RTL/LTR support */
+        [dir="ltr"] .card {
+            border-right: none;
+            border-left: 5px solid #e2e8f0;
+        }
+        [dir="ltr"] .card-vip {
+            border-left-color: var(--vip);
+            border-right: 1px solid #f1f5f9;
+        }
+        [dir="ltr"] .card-a {
+            border-left-color: var(--class-a);
+            border-right: 1px solid #f1f5f9;
+        }
+        [dir="ltr"] .card-b {
+            border-left-color: var(--class-b);
+            border-right: 1px solid #f1f5f9;
+        }
+        [dir="ltr"] .card-bplus {
+            border-left-color: var(--class-bplus);
+            border-right: 1px solid #f1f5f9;
+        }
+        [dir="ltr"] .card-c {
+            border-left-color: var(--class-c);
+            border-right: 1px solid #f1f5f9;
+        }
+        [dir="ltr"] .card-c1 {
+            border-left-color: var(--class-c1);
+            border-right: 1px solid #f1f5f9;
+        }
+        [dir="ltr"] .card-cr {
+            border-left-color: var(--class-cr);
+            border-right: 1px solid #f1f5f9;
+        }
+        [dir="ltr"] .search-wrap .sicon {
+            right: auto;
+            left: 14px;
+        }
+        [dir="ltr"] .search-wrap input {
+            padding: 10px 14px 10px 40px;
         }
 
         @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
-            .header h1 { font-size: 1.3em; }
-            .btn { padding: 6px 10px; font-size: 10px; }
-            .divider { display: none; }
-            body { padding: 10px; }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.3em;
+            }
+            .btn {
+                padding: 6px 10px;
+                font-size: 10px;
+            }
+            .divider {
+                display: none;
+            }
+            body {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ar">🇸🇦 العربية</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    </div>
+
     <!-- Header -->
     <div class="header">
-        <h1>🏥 دليل شبكة مزودي التعاونية الطبي</h1>
-        <p>Tawuniya Insurance - Medical Network Guide</p>
+        <h1 data-ar="🏥 دليل شبكة مزودي التعاونية الطبي" data-en="🏥 Tawuniya Medical Network Guide">🏥 دليل شبكة مزودي التعاونية الطبي</h1>
+        <p class="sub" data-ar="Tawuniya Insurance - جميع المدن والفئات" data-en="Tawuniya Insurance - All Cities & Classes">Tawuniya Insurance - جميع المدن والفئات</p>
     </div>
 
     <!-- Stats -->
     <div class="stats">
-        <div class="stat st-total"><span class="num" id="totalCount">0</span><span class="lbl">الكل</span></div>
+        <div class="stat st-total"><span class="num" id="totalCount">0</span><span class="lbl" data-ar="الكل" data-en="Total">الكل</span></div>
         <div class="stat st-vip"><span class="num" id="vipCount">0</span><span class="lbl">VIP</span></div>
         <div class="stat st-a"><span class="num" id="aCount">0</span><span class="lbl">A</span></div>
         <div class="stat st-b"><span class="num" id="bCount">0</span><span class="lbl">B</span></div>
@@ -201,13 +476,13 @@
     <!-- Controls -->
     <div class="controls">
         <div class="search-wrap">
-            <input type="text" id="searchInput" placeholder="🔍 ابحث عن مستشفى أو مدينة...">
+            <input type="text" id="searchInput" data-ar-placeholder="🔍 ابحث عن مستشفى أو مدينة..." data-en-placeholder="🔍 Search hospital or city...">
             <span class="sicon"><i class="fas fa-search"></i></span>
         </div>
         <div class="divider"></div>
-        <span style="font-size:11px;font-weight:700;color:#64748b;">الفئة:</span>
+        <span class="filter-label" data-ar="الفئة:" data-en="Class:">الفئة:</span>
         <div class="btn-group" id="classFilters">
-            <button class="btn active" data-filter="all">الكل</button>
+            <button class="btn active" data-filter="all" data-ar="الكل" data-en="All">الكل</button>
             <button class="btn" data-filter="VIP">VIP</button>
             <button class="btn" data-filter="A">A</button>
             <button class="btn" data-filter="B">B</button>
@@ -217,12 +492,12 @@
             <button class="btn" data-filter="C-R">C-R</button>
         </div>
         <div class="divider"></div>
-        <span style="font-size:11px;font-weight:700;color:#64748b;">المدينة:</span>
+        <span class="filter-label" data-ar="المدينة:" data-en="City:">المدينة:</span>
         <div class="btn-group" id="cityFilters">
-            <button class="btn active" data-city="all">الكل</button>
-            <button class="btn" data-city="الخبر">الخبر</button>
-            <button class="btn" data-city="الدمام">الدمام</button>
-            <button class="btn" data-city="الرياض">الرياض</button>
+            <button class="btn active" data-city="all" data-ar="الكل" data-en="All">الكل</button>
+            <button class="btn" data-city="الخبر" data-ar="الخبر" data-en="Khobar">الخبر</button>
+            <button class="btn" data-city="الدمام" data-ar="الدمام" data-en="Dammam">الدمام</button>
+            <button class="btn" data-city="الرياض" data-ar="الرياض" data-en="Riyadh">الرياض</button>
         </div>
     </div>
 
@@ -232,80 +507,82 @@
 
 <script>
     const hospitals = [
-        { class: "VIP", city: "الخبر", name: "مستشفى الدكتور سليمان الحبيب - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى الملك فهد الجامعي (وزارة التعليم) - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى المانع - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى المواساة - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى اليوسف - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى جاما - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر" },
-        { class: "VIP", city: "الخبر", name: "د. سليمان الحبيب المركز الطبي - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مجمع المانع الطبي - الخبر" },
-        { class: "VIP", city: "الدمام", name: "مستشفى السعودي الألماني - الدمام" },
-        { class: "VIP", city: "الدمام", name: "مستشفى المانع - الدمام" },
-        { class: "VIP", city: "الدمام", name: "مستشفى المواساة - الدمام" },
-        { class: "VIP", city: "الدمام", name: "مستشفى الولادة والأطفال - الدمام" },
-        { class: "VIP", city: "الدمام", name: "مستشفى تداوي العام - الدمام" },
-        { class: "VIP", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام" },
-        { class: "VIP", city: "الرياض", name: "مستشفى الملك فيصل التخصصي ومركز الأبحاث - الرياض" },
-        { class: "VIP", city: "الرياض", name: "مستشفى الدكتور سليمان الحبيب - التخصصي - الرياض" },
-        { class: "VIP", city: "الرياض", name: "مستشفى الدكتور سليمان الحبيب - الريان - الرياض" },
-        { class: "VIP", city: "الرياض", name: "مستشفى المملكة - الرياض" },
-        { class: "VIP", city: "الرياض", name: "مستشفى المركز التخصصي الطبي - العليا - الرياض" },
-        { class: "VIP", city: "الرياض", name: "مدينة الأمير سلطان الطبية العسكرية - الرياض" },
-        { class: "A", city: "الخبر", name: "مستشفى المانع - الخبر" },
-        { class: "A", city: "الخبر", name: "مستشفى المواساة - الخبر" },
-        { class: "A", city: "الخبر", name: "مستشفى اليوسف - الخبر" },
-        { class: "A", city: "الخبر", name: "مستشفى جاما - الخبر" },
-        { class: "A", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر" },
-        { class: "A", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر" },
-        { class: "A", city: "الدمام", name: "مستشفى السعودي الألماني - الدمام" },
-        { class: "A", city: "الدمام", name: "مستشفى المانع - الدمام" },
-        { class: "A", city: "الدمام", name: "مستشفى المواساة - الدمام" },
-        { class: "A", city: "الدمام", name: "مستشفى الولادة والأطفال - الدمام" },
-        { class: "A", city: "الدمام", name: "مستشفى تداوي العام - الدمام" },
-        { class: "A", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام" },
-        { class: "A", city: "الرياض", name: "مستشفى السعودي الالماني - الرياض" },
-        { class: "A", city: "الرياض", name: "مستشفى الحمادي - السويدي - الرياض" },
-        { class: "A", city: "الرياض", name: "مستشفى دلة - الرياض" },
-        { class: "A", city: "الرياض", name: "مستشفى المواساة - الرياض" },
-        { class: "A", city: "الرياض", name: "مستشفى رعاية الرياض - الرياض" },
-        { class: "A", city: "الرياض", name: "مستشفى المملكة - الرياض" },
-        { class: "B", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر" },
-        { class: "B", city: "الخبر", name: "مستشفى اليوسف - الخبر" },
-        { class: "B", city: "الخبر", name: "مستشفى جاما - الخبر" },
-        { class: "B", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر" },
-        { class: "B", city: "الدمام", name: "مستشفى الولادة والأطفال - الدمام" },
-        { class: "B", city: "الدمام", name: "مستشفى تداوي العام - الدمام" },
-        { class: "B", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام" },
-        { class: "B", city: "الرياض", name: "مستشفى الحياة الوطني - الرياض" },
-        { class: "B", city: "الرياض", name: "مستشفى دار الشفا - الرياض" },
-        { class: "B", city: "الرياض", name: "مستشفى الفلاح الدولي - الرياض" },
-        { class: "B", city: "الرياض", name: "مستشفى عبيد التخصصي - الرياض" },
-        { class: "B+", city: "الخبر", name: "مستشفى المانع - الخبر" },
-        { class: "B+", city: "الخبر", name: "مستشفى المواساة - الخبر" },
-        { class: "B+", city: "الخبر", name: "مستشفى اليوسف - الخبر" },
-        { class: "B+", city: "الدمام", name: "مستشفى السعودي الألماني - الدمام" },
-        { class: "B+", city: "الدمام", name: "مستشفى المانع - الدمام" },
-        { class: "B+", city: "الدمام", name: "مستشفى المواساة - الدمام" },
-        { class: "B+", city: "الرياض", name: "مستشفى الحمادي - الرياض (النزهة)" },
-        { class: "B+", city: "الرياض", name: "مستشفى المركز التخصصي الطبي (2) - الرياض" },
-        { class: "B+", city: "الرياض", name: "مستشفى دلة - الرياض" },
-        { class: "C", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر" },
-        { class: "C", city: "الخبر", name: "مستشفى اليوسف - الخبر" },
-        { class: "C", city: "الدمام", name: "مستشفى الولادة والأطفال - الدمام" },
-        { class: "C", city: "الدمام", name: "مستشفى تداوي العام - الدمام" },
-        { class: "C", city: "الرياض", name: "مستشفى الآزهار الطبي - الرياض" },
-        { class: "C", city: "الرياض", name: "مستشفى رابية الطبي - الرياض" },
-        { class: "C1", city: "الخبر", name: "مستشفى اليوسف - الخبر" },
-        { class: "C1", city: "الدمام", name: "مستشفى تداوي العام - الدمام" },
-        { class: "C1", city: "الرياض", name: "مستشفى أستر سند للرعاية الطبية - الرياض" },
-        { class: "C1", city: "الرياض", name: "مستشفى صحة السلام الطبي - الرياض" },
-        { class: "C-R", city: "الدمام", name: "مستشفى الولادة والأطفال - الدمام" },
-        { class: "C-R", city: "الرياض", name: "مستشفى عناية العائلة - الرياض" },
-        { class: "C-R", city: "الرياض", name: "مستشفى مغربي للعيون والأسنان - الرياض" }
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى الدكتور سليمان الحبيب - الخبر", nameEn: "Dr. Sulaiman Al Habib Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى الملك فهد الجامعي (وزارة التعليم) - الخبر", nameEn: "King Fahd University Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى محمد الدوسري - الخبر", nameEn: "Mohammed Al Dossary Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "د. سليمان الحبيب المركز الطبي - الخبر", nameEn: "Dr. Sulaiman Al Habib Medical Center - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مجمع المانع الطبي - الخبر", nameEn: "Al Mane Medical Complex - Khobar" },
+        { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مستشفى السعودي الألماني - الدمام", nameEn: "Saudi German Hospital - Dammam" },
+        { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع - الدمام", nameEn: "Al Mane Hospital - Dammam" },
+        { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مستشفى المواساة - الدمام", nameEn: "Al Mouwasat Hospital - Dammam" },
+        { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال - الدمام", nameEn: "Maternity & Children Hospital - Dammam" },
+        { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مستشفى تداوي العام - الدمام", nameEn: "Tadawi General Hospital - Dammam" },
+        { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مستشفى مغربي للعيون والأسنان - الدمام", nameEn: "Magrabi Eye & Dental Hospital - Dammam" },
+        { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الملك فيصل التخصصي ومركز الأبحاث - الرياض", nameEn: "King Faisal Specialist Hospital - Riyadh" },
+        { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الدكتور سليمان الحبيب - التخصصي - الرياض", nameEn: "Dr. Sulaiman Al Habib Hospital - Riyadh" },
+        { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الدكتور سليمان الحبيب - الريان - الرياض", nameEn: "Dr. Sulaiman Al Habib Hospital - Al Rayyan - Riyadh" },
+        { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المملكة - الرياض", nameEn: "Kingdom Hospital - Riyadh" },
+        { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المركز التخصصي الطبي - العليا - الرياض", nameEn: "Specialized Medical Center - Riyadh" },
+        { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "مدينة الأمير سلطان الطبية العسكرية - الرياض", nameEn: "Prince Sultan Military Medical City - Riyadh" },
+        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
+        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
+        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
+        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى محمد الدوسري - الخبر", nameEn: "Mohammed Al Dossary Hospital - Khobar" },
+        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
+        { class: "A", city: "الدمام", cityEn: "Dammam", name: "مستشفى السعودي الألماني - الدمام", nameEn: "Saudi German Hospital - Dammam" },
+        { class: "A", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع - الدمام", nameEn: "Al Mane Hospital - Dammam" },
+        { class: "A", city: "الدمام", cityEn: "Dammam", name: "مستشفى المواساة - الدمام", nameEn: "Al Mouwasat Hospital - Dammam" },
+        { class: "A", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال - الدمام", nameEn: "Maternity & Children Hospital - Dammam" },
+        { class: "A", city: "الدمام", cityEn: "Dammam", name: "مستشفى تداوي العام - الدمام", nameEn: "Tadawi General Hospital - Dammam" },
+        { class: "A", city: "الدمام", cityEn: "Dammam", name: "مستشفى مغربي للعيون والأسنان - الدمام", nameEn: "Magrabi Eye & Dental Hospital - Dammam" },
+        { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى السعودي الالماني - الرياض", nameEn: "Saudi German Hospital - Riyadh" },
+        { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الحمادي - السويدي - الرياض", nameEn: "Al Hammadi Hospital - Riyadh" },
+        { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى دلة - الرياض", nameEn: "Dallah Hospital - Riyadh" },
+        { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المواساة - الرياض", nameEn: "Al Mouwasat Hospital - Riyadh" },
+        { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى رعاية الرياض - الرياض", nameEn: "Riyadh Care Hospital - Riyadh" },
+        { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المملكة - الرياض", nameEn: "Kingdom Hospital - Riyadh" },
+        { class: "B", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
+        { class: "B", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "B", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
+        { class: "B", city: "الخبر", cityEn: "Khobar", name: "مستشفى محمد الدوسري - الخبر", nameEn: "Mohammed Al Dossary Hospital - Khobar" },
+        { class: "B", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال - الدمام", nameEn: "Maternity & Children Hospital - Dammam" },
+        { class: "B", city: "الدمام", cityEn: "Dammam", name: "مستشفى تداوي العام - الدمام", nameEn: "Tadawi General Hospital - Dammam" },
+        { class: "B", city: "الدمام", cityEn: "Dammam", name: "مستشفى مغربي للعيون والأسنان - الدمام", nameEn: "Magrabi Eye & Dental Hospital - Dammam" },
+        { class: "B", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الحياة الوطني - الرياض", nameEn: "Al Hayat National Hospital - Riyadh" },
+        { class: "B", city: "الرياض", cityEn: "Riyadh", name: "مستشفى دار الشفا - الرياض", nameEn: "Dar Al Shifa Hospital - Riyadh" },
+        { class: "B", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الفلاح الدولي - الرياض", nameEn: "Al Falah International Hospital - Riyadh" },
+        { class: "B", city: "الرياض", cityEn: "Riyadh", name: "مستشفى عبيد التخصصي - الرياض", nameEn: "Obeid Specialized Hospital - Riyadh" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى السعودي الألماني - الدمام", nameEn: "Saudi German Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع - الدمام", nameEn: "Al Mane Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المواساة - الدمام", nameEn: "Al Mouwasat Hospital - Dammam" },
+        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الحمادي - الرياض (النزهة)", nameEn: "Al Hammadi Hospital - Riyadh (Nuzha)" },
+        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المركز التخصصي الطبي (2) - الرياض", nameEn: "Specialized Medical Center (2) - Riyadh" },
+        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى دلة - الرياض", nameEn: "Dallah Hospital - Riyadh" },
+        { class: "C", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
+        { class: "C", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "C", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال - الدمام", nameEn: "Maternity & Children Hospital - Dammam" },
+        { class: "C", city: "الدمام", cityEn: "Dammam", name: "مستشفى تداوي العام - الدمام", nameEn: "Tadawi General Hospital - Dammam" },
+        { class: "C", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الآزهار الطبي - الرياض", nameEn: "Al Azhar Medical Hospital - Riyadh" },
+        { class: "C", city: "الرياض", cityEn: "Riyadh", name: "مستشفى رابية الطبي - الرياض", nameEn: "Rabia Medical Hospital - Riyadh" },
+        { class: "C1", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "C1", city: "الدمام", cityEn: "Dammam", name: "مستشفى تداوي العام - الدمام", nameEn: "Tadawi General Hospital - Dammam" },
+        { class: "C1", city: "الرياض", cityEn: "Riyadh", name: "مستشفى أستر سند للرعاية الطبية - الرياض", nameEn: "Aster Sanad Medical Care - Riyadh" },
+        { class: "C1", city: "الرياض", cityEn: "Riyadh", name: "مستشفى صحة السلام الطبي - الرياض", nameEn: "Salam Health Hospital - Riyadh" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال - الدمام", nameEn: "Maternity & Children Hospital - Dammam" },
+        { class: "C-R", city: "الرياض", cityEn: "Riyadh", name: "مستشفى عناية العائلة - الرياض", nameEn: "Family Care Hospital - Riyadh" },
+        { class: "C-R", city: "الرياض", cityEn: "Riyadh", name: "مستشفى مغربي للعيون والأسنان - الرياض", nameEn: "Magrabi Eye & Dental Hospital - Riyadh" }
     ];
+
+    let currentLang = 'ar';
 
     function getCardClass(c) {
         const map = { 'VIP': 'card-vip', 'A': 'card-a', 'B': 'card-b', 'B+': 'card-bplus', 'C': 'card-c', 'C1': 'card-c1', 'C-R': 'card-cr' };
@@ -321,22 +598,60 @@
         div.className = `card ${getCardClass(h.class)}`;
         div.setAttribute('data-class', h.class);
         div.setAttribute('data-city', h.city);
-        const encoded = encodeURIComponent(`${h.name} ${h.city}`);
+        const displayName = currentLang === 'ar' ? h.name : h.nameEn;
+        const displayCity = currentLang === 'ar' ? h.city : h.cityEn;
+        const encoded = encodeURIComponent(`${displayName} ${displayCity}`);
+        const mapText = currentLang === 'ar' ? 'فتح في قوقل ماب' : 'Open in Google Maps';
         div.innerHTML = `
             <div class="card-body">
                 <div class="card-header">
-                    <h3 class="card-title">${h.name}</h3>
+                    <h3 class="card-title">${displayName}</h3>
                     <span class="class-badge ${getBadgeClass(h.class)}">${h.class}</span>
                 </div>
-                <div class="card-city"><i class="fas fa-map-marker-alt"></i> ${h.city}</div>
+                <div class="card-city"><i class="fas fa-map-marker-alt"></i> ${displayCity}</div>
             </div>
             <div class="card-footer">
                 <a href="https://www.google.com/maps/search/${encoded}" target="_blank" class="map-btn">
-                    <i class="fas fa-map-marked-alt"></i> فتح في قوقل ماب
+                    <i class="fas fa-map-marked-alt"></i> ${mapText}
                 </a>
             </div>
         `;
         return div;
+    }
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+
+        // Update lang buttons
+        document.querySelectorAll('.lang-btn').forEach(b => {
+            b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        });
+
+        // Update header
+        document.querySelector('.header h1').textContent = document.querySelector('.header h1').getAttribute(`data-${lang}`);
+        document.querySelector('.header .sub').textContent = document.querySelector('.header .sub').getAttribute(`data-${lang}`);
+
+        // Update search placeholder
+        const searchInput = document.getElementById('searchInput');
+        searchInput.placeholder = searchInput.getAttribute(`data-${lang}-placeholder`);
+
+        // Update filter labels
+        document.querySelectorAll('.filter-label').forEach(el => {
+            el.textContent = el.getAttribute(`data-${lang}`);
+        });
+
+        // Update buttons with data-ar/data-en
+        document.querySelectorAll('.btn[data-ar]').forEach(el => {
+            el.textContent = el.getAttribute(`data-${lang}`);
+        });
+
+        // Update stats label
+        document.querySelector('.st-total .lbl').textContent = document.querySelector('.st-total .lbl').getAttribute(`data-${lang}`);
+
+        // Rerender cards
+        render();
     }
 
     function render() {
@@ -348,8 +663,13 @@
 
         let f = hospitals.filter(h => {
             if (cf !== 'all' && h.class !== cf) return false;
-            if (ctf !== 'all' && h.city !== ctf) return false;
-            if (q && !`${h.name} ${h.city}`.toLowerCase().includes(q)) return false;
+            const cityMatch = currentLang === 'ar' ? h.city : h.cityEn;
+            if (ctf !== 'all' && cityMatch !== ctf) return false;
+            if (q) {
+                const displayName = currentLang === 'ar' ? h.name : h.nameEn;
+                const displayCity = currentLang === 'ar' ? h.city : h.cityEn;
+                if (!`${displayName} ${displayCity} ${h.nameEn} ${h.cityEn}`.toLowerCase().includes(q)) return false;
+            }
             return true;
         });
 
@@ -363,13 +683,23 @@
         document.getElementById('crCount').textContent = f.filter(h => h.class === 'C-R').length;
 
         if (f.length === 0) {
-            grid.innerHTML = `<div class="no-res">🔍 لا توجد نتائج مطابقة</div>`;
+            grid.innerHTML = `<div class="no-res">${currentLang === 'ar' ? '🔍 لا توجد نتائج مطابقة' : '🔍 No results found'}</div>`;
         } else {
             f.forEach(h => grid.appendChild(createCard(h)));
         }
     }
 
+    // Language toggle
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            switchLanguage(this.getAttribute('data-lang'));
+        });
+    });
+
+    // Search
     document.getElementById('searchInput').addEventListener('input', render);
+
+    // Class filter
     document.getElementById('classFilters').addEventListener('click', e => {
         if (e.target.classList.contains('btn')) {
             document.querySelectorAll('#classFilters .btn').forEach(b => b.classList.remove('active'));
@@ -377,6 +707,8 @@
             render();
         }
     });
+
+    // City filter
     document.getElementById('cityFilters').addEventListener('click', e => {
         if (e.target.classList.contains('btn')) {
             document.querySelectorAll('#cityFilters .btn').forEach(b => b.classList.remove('active'));
@@ -385,6 +717,7 @@
         }
     });
 
+    // Initial render
     render();
 </script>
 </body>
