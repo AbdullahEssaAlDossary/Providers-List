@@ -15,12 +15,6 @@
             --class-c: #64748b;
             --class-c1: #475569;
             --class-cr: #78716c;
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --text: #1e293b;
-            --text2: #64748b;
-            --radius: 16px;
-            --shadow: 0 2px 12px rgba(0,0,0,0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,163 +24,62 @@
             background: #f1f5f9;
             min-height: 100vh;
             padding: 20px;
-            color: var(--text);
+            color: #1e293b;
         }
 
         .container { max-width: 1400px; margin: 0 auto; }
 
-        /* Language Toggle */
         .lang-toggle {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 12px;
-            gap: 6px;
+            display: flex; justify-content: flex-end; margin-bottom: 12px; gap: 6px;
         }
         .lang-btn {
-            padding: 8px 16px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            transition: all 0.25s;
-            color: var(--text2);
+            padding: 8px 16px; border: 2px solid #e2e8f0; background: white;
+            border-radius: 50px; cursor: pointer; font-family: 'Cairo', sans-serif;
+            font-size: 13px; font-weight: 700; transition: all 0.25s; color: #64748b;
         }
-        .lang-btn:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-        }
-        .lang-btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
+        .lang-btn:hover { border-color: #2563eb; color: #2563eb; }
+        .lang-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            border-radius: 16px;
-            padding: 24px 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 8px 24px rgba(30,58,138,0.2);
+            border-radius: 16px; padding: 24px 20px; margin-bottom: 20px;
+            text-align: center; color: white; box-shadow: 0 8px 24px rgba(30,58,138,0.2);
         }
-        .header h1 {
-            font-size: 1.6em;
-            font-weight: 800;
-        }
-        .header .sub {
-            opacity: 0.85;
-            font-size: 0.9em;
-            margin-top: 4px;
-        }
+        .header h1 { font-size: 1.6em; font-weight: 800; }
+        .header .sub { opacity: 0.85; font-size: 0.9em; margin-top: 4px; }
 
-        /* Controls */
         .controls {
-            background: white;
-            border-radius: var(--radius);
-            padding: 14px 18px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
+            background: white; border-radius: 16px; padding: 14px 18px;
+            margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
         }
-        .search-wrap {
-            flex: 1;
-            min-width: 200px;
-            position: relative;
-        }
+        .search-wrap { flex: 1; min-width: 200px; position: relative; }
         .search-wrap input {
-            width: 100%;
-            padding: 10px 40px 10px 14px;
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s;
-            background: #f8fafc;
+            width: 100%; padding: 10px 40px 10px 14px; border: 2px solid #e2e8f0;
+            border-radius: 50px; font-family: 'Cairo', sans-serif; font-size: 14px;
+            outline: none; transition: all 0.3s; background: #f8fafc;
         }
-        .search-wrap input:focus {
-            border-color: #2563eb;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-        }
-        .search-wrap .sicon {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
-        .btn-group {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-        }
+        .search-wrap input:focus { border-color: #2563eb; background: white; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .search-wrap .sicon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .btn-group { display: flex; gap: 5px; flex-wrap: wrap; }
         .btn {
-            padding: 7px 12px;
-            border: 2px solid #e2e8f0;
-            background: #f8fafc;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            transition: all 0.25s;
-            white-space: nowrap;
-            color: var(--text2);
+            padding: 7px 12px; border: 2px solid #e2e8f0; background: #f8fafc;
+            border-radius: 50px; cursor: pointer; font-family: 'Cairo', sans-serif;
+            font-size: 11px; font-weight: 600; transition: all 0.25s; white-space: nowrap; color: #64748b;
         }
-        .btn:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-            background: #eff6ff;
-        }
-        .btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
-        .divider {
-            width: 1px;
-            height: 20px;
-            background: #e2e8f0;
-            margin: 0 4px;
-        }
-        .filter-label {
-            font-size: 11px;
-            font-weight: 700;
-            color: #64748b;
-        }
+        .btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+        .btn.active { background: #2563eb; color: white; border-color: #2563eb; }
+        .divider { width: 1px; height: 20px; background: #e2e8f0; margin: 0 4px; }
+        .filter-label { font-size: 11px; font-weight: 700; color: #64748b; }
 
-        /* Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 12px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 12px; }
 
-        /* Card */
         .card {
-            background: white;
-            border-radius: 14px;
-            box-shadow: var(--shadow);
-            transition: all 0.25s;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #f1f5f9;
-            border-right: 5px solid #e2e8f0;
+            background: white; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: all 0.25s; display: flex; flex-direction: column;
+            border: 1px solid #f1f5f9; border-right: 5px solid #e2e8f0;
         }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-        }
-
+        .card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
         .card-vip { border-right-color: var(--vip); }
         .card-a { border-right-color: var(--class-a); }
         .card-bplus { border-right-color: var(--class-bplus); }
@@ -196,109 +89,43 @@
         .card-cr { border-right-color: var(--class-cr); }
 
         .card-body { padding: 16px 18px; flex: 1; }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-            gap: 8px;
-        }
-        .card-title {
-            font-size: 0.95em;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.5;
-            flex: 1;
-        }
-        .class-badge {
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-size: 0.7em;
-            font-weight: 700;
-            color: white;
-            white-space: nowrap;
-        }
-        .bd-vip { background: var(--vip); }
-        .bd-a { background: var(--class-a); }
-        .bd-bplus { background: var(--class-bplus); }
-        .bd-b { background: var(--class-b); }
-        .bd-c { background: var(--class-c); }
-        .bd-c1 { background: var(--class-c1); }
-        .bd-cr { background: var(--class-cr); }
-
+        .card-title { font-size: 0.95em; font-weight: 700; color: #1e293b; line-height: 1.5; margin-bottom: 10px; }
         .card-city {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.78em;
-            color: var(--text2);
-            margin-bottom: 4px;
-            background: #f8fafc;
-            padding: 4px 10px;
-            border-radius: 8px;
+            display: inline-flex; align-items: center; gap: 5px; font-size: 0.78em;
+            color: #64748b; margin-bottom: 10px; background: #f8fafc;
+            padding: 4px 10px; border-radius: 8px;
         }
-        .card-footer {
-            padding: 10px 18px;
-            border-top: 1px solid #f1f5f9;
-            display: flex;
-            gap: 8px;
+        .classes-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+        .class-tag {
+            padding: 4px 10px; border-radius: 10px; font-size: 0.72em;
+            font-weight: 700; color: white;
         }
+        .tag-vip { background: var(--vip); }
+        .tag-a { background: var(--class-a); }
+        .tag-bplus { background: var(--class-bplus); }
+        .tag-b { background: var(--class-b); }
+        .tag-c { background: var(--class-c); }
+        .tag-c1 { background: var(--class-c1); }
+        .tag-cr { background: var(--class-cr); }
+
+        .card-footer { padding: 10px 18px; border-top: 1px solid #f1f5f9; display: flex; gap: 8px; }
         .map-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 10px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 0.8em;
-            font-weight: 700;
-            transition: all 0.2s;
-            background: #f8fafc;
-            color: #2563eb;
-            border: 1px solid #e2e8f0;
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            gap: 6px; padding: 10px; border-radius: 10px; text-decoration: none;
+            font-size: 0.8em; font-weight: 700; transition: all 0.2s;
+            background: #f8fafc; color: #2563eb; border: 1px solid #e2e8f0;
         }
-        .map-btn:hover {
-            background: #eff6ff;
-            border-color: #bfdbfe;
-        }
+        .map-btn:hover { background: #eff6ff; border-color: #bfdbfe; }
 
         .no-res {
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--text2);
-            font-size: 1.1em;
-            grid-column: 1 / -1;
-            background: white;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            text-align: center; padding: 50px 20px; color: #64748b;
+            font-size: 1.1em; grid-column: 1 / -1; background: white;
+            border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
         }
-
-        /* Footer */
         .footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: var(--text2);
-            opacity: 0.8;
+            text-align: center; padding: 20px; margin-top: 20px;
+            font-size: 0.8em; color: #64748b; opacity: 0.8;
         }
-
-        /* RTL/LTR support */
-        [dir="ltr"] .card {
-            border-right: none;
-            border-left: 5px solid #e2e8f0;
-        }
-        [dir="ltr"] .card-vip { border-left-color: var(--vip); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .card-a { border-left-color: var(--class-a); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .card-bplus { border-left-color: var(--class-bplus); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .card-b { border-left-color: var(--class-b); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .card-c { border-left-color: var(--class-c); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .card-c1 { border-left-color: var(--class-c1); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .card-cr { border-left-color: var(--class-cr); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .search-wrap .sicon { right: auto; left: 14px; }
-        [dir="ltr"] .search-wrap input { padding: 10px 14px 10px 40px; }
 
         @media (max-width: 600px) {
             .grid { grid-template-columns: 1fr; }
@@ -357,7 +184,8 @@
 </div>
 
 <script>
-    const hospitals = [
+    // Raw data - each entry is one hospital in one class
+    const raw = [
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى الدكتور سليمان الحبيب - الخبر", nameEn: "Dr. Sulaiman Al Habib Hospital - Khobar" },
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى الملك فهد الجامعي (وزارة التعليم) - الخبر", nameEn: "King Fahd University Hospital - Khobar" },
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
@@ -433,33 +261,62 @@
         { class: "C-R", city: "الرياض", cityEn: "Riyadh", name: "مستشفى مغربي للعيون والأسنان - الرياض", nameEn: "Magrabi Eye & Dental Hospital - Riyadh" }
     ];
 
+    // Merge hospitals by name+city
+    const merged = {};
+    raw.forEach(h => {
+        const key = `${h.name}|||${h.city}`;
+        if (!merged[key]) {
+            merged[key] = { name: h.name, nameEn: h.nameEn, city: h.city, cityEn: h.cityEn, classes: [] };
+        }
+        if (!merged[key].classes.includes(h.class)) {
+            merged[key].classes.push(h.class);
+        }
+    });
+
+    // Sort classes: VIP, A, B+, B, C, C1, C-R
+    const classOrder = ["VIP", "A", "B+", "B", "C", "C1", "C-R"];
+    const hospitals = Object.values(merged).map(h => ({
+        ...h,
+        classes: h.classes.sort((a, b) => classOrder.indexOf(a) - classOrder.indexOf(b))
+    }));
+
     let currentLang = 'ar';
 
-    function getCardClass(c) {
+    function getHighestClass(classes) {
+        for (const c of classOrder) {
+            if (classes.includes(c)) return c;
+        }
+        return classes[0];
+    }
+
+    function getCardClass(classes) {
+        const c = getHighestClass(classes);
         const map = { 'VIP': 'card-vip', 'A': 'card-a', 'B+': 'card-bplus', 'B': 'card-b', 'C': 'card-c', 'C1': 'card-c1', 'C-R': 'card-cr' };
         return map[c] || '';
     }
-    function getBadgeClass(c) {
-        const map = { 'VIP': 'bd-vip', 'A': 'bd-a', 'B+': 'bd-bplus', 'B': 'bd-b', 'C': 'bd-c', 'C1': 'bd-c1', 'C-R': 'bd-cr' };
+
+    function getTagClass(c) {
+        const map = { 'VIP': 'tag-vip', 'A': 'tag-a', 'B+': 'tag-bplus', 'B': 'tag-b', 'C': 'tag-c', 'C1': 'tag-c1', 'C-R': 'tag-cr' };
         return map[c] || '';
     }
 
     function createCard(h) {
         const div = document.createElement('div');
-        div.className = `card ${getCardClass(h.class)}`;
-        div.setAttribute('data-class', h.class);
+        div.className = `card ${getCardClass(h.classes)}`;
+        div.setAttribute('data-classes', h.classes.join(','));
         div.setAttribute('data-city', h.city);
         const displayName = currentLang === 'ar' ? h.name : h.nameEn;
         const displayCity = currentLang === 'ar' ? h.city : h.cityEn;
         const encoded = encodeURIComponent(`${displayName} ${displayCity}`);
         const mapText = currentLang === 'ar' ? 'فتح في قوقل ماب' : 'Open in Google Maps';
+        const classesLabel = currentLang === 'ar' ? 'الفئات' : 'Classes';
+        const tagsHTML = h.classes.map(c => `<span class="class-tag ${getTagClass(c)}">${c}</span>`).join(' ');
         div.innerHTML = `
             <div class="card-body">
-                <div class="card-header">
-                    <h3 class="card-title">${displayName}</h3>
-                    <span class="class-badge ${getBadgeClass(h.class)}">${h.class}</span>
-                </div>
+                <h3 class="card-title">🏥 ${displayName}</h3>
                 <div class="card-city"><i class="fas fa-map-marker-alt"></i> ${displayCity}</div>
+                <div style="font-size:0.75em;color:#64748b;margin-bottom:4px;">${classesLabel}:</div>
+                <div class="classes-row">${tagsHTML}</div>
             </div>
             <div class="card-footer">
                 <a href="https://www.google.com/maps/search/${encoded}" target="_blank" class="map-btn">
@@ -474,27 +331,16 @@
         currentLang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.lang = lang;
-
         document.querySelectorAll('.lang-btn').forEach(b => {
             b.classList.toggle('active', b.getAttribute('data-lang') === lang);
         });
-
         document.querySelector('.header h1').textContent = document.querySelector('.header h1').getAttribute(`data-${lang}`);
         document.querySelector('.header .sub').textContent = document.querySelector('.header .sub').getAttribute(`data-${lang}`);
-
-        const searchInput = document.getElementById('searchInput');
-        searchInput.placeholder = searchInput.getAttribute(`data-${lang}-placeholder`);
-
-        document.querySelectorAll('.filter-label').forEach(el => {
-            el.textContent = el.getAttribute(`data-${lang}`);
-        });
-
-        document.querySelectorAll('.btn[data-ar]').forEach(el => {
-            el.textContent = el.getAttribute(`data-${lang}`);
-        });
-
+        const si = document.getElementById('searchInput');
+        si.placeholder = si.getAttribute(`data-${lang}-placeholder`);
+        document.querySelectorAll('.filter-label').forEach(el => el.textContent = el.getAttribute(`data-${lang}`));
+        document.querySelectorAll('.btn[data-ar]').forEach(el => el.textContent = el.getAttribute(`data-${lang}`));
         document.querySelector('.footer').textContent = document.querySelector('.footer').getAttribute(`data-${lang}`);
-
         render();
     }
 
@@ -506,13 +352,13 @@
         const ctf = document.querySelector('#cityFilters .btn.active')?.getAttribute('data-city') || 'all';
 
         let f = hospitals.filter(h => {
-            if (cf !== 'all' && h.class !== cf) return false;
+            if (cf !== 'all' && !h.classes.includes(cf)) return false;
             const cityMatch = currentLang === 'ar' ? h.city : h.cityEn;
             if (ctf !== 'all' && cityMatch !== ctf) return false;
             if (q) {
-                const displayName = currentLang === 'ar' ? h.name : h.nameEn;
-                const displayCity = currentLang === 'ar' ? h.city : h.cityEn;
-                if (!`${displayName} ${displayCity} ${h.nameEn} ${h.cityEn}`.toLowerCase().includes(q)) return false;
+                const dn = currentLang === 'ar' ? h.name : h.nameEn;
+                const dc = currentLang === 'ar' ? h.city : h.cityEn;
+                if (!`${dn} ${dc} ${h.nameEn} ${h.cityEn} ${h.classes.join(' ')}`.toLowerCase().includes(q)) return false;
             }
             return true;
         });
@@ -525,13 +371,9 @@
     }
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            switchLanguage(this.getAttribute('data-lang'));
-        });
+        btn.addEventListener('click', function() { switchLanguage(this.getAttribute('data-lang')); });
     });
-
     document.getElementById('searchInput').addEventListener('input', render);
-
     document.getElementById('classFilters').addEventListener('click', e => {
         if (e.target.classList.contains('btn')) {
             document.querySelectorAll('#classFilters .btn').forEach(b => b.classList.remove('active'));
@@ -539,7 +381,6 @@
             render();
         }
     });
-
     document.getElementById('cityFilters').addEventListener('click', e => {
         if (e.target.classList.contains('btn')) {
             document.querySelectorAll('#cityFilters .btn').forEach(b => b.classList.remove('active'));
