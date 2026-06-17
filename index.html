@@ -1,20 +1,26 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل مستشفيات التعاونية للتأمين</title>
+    <title>دليل مستشفيات التعاونية - Tawuniya Medical Network</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            --primary-color: #1e3a8a;
+            --accent-color: #2563eb;
+            --bg-color: #f0f4f8;
+            --text-main: #2d3748;
+            --text-muted: #718096;
             --vip-color: #7c3aed;
             --class-a-color: #ea580c;
             --class-b-color: #2563eb;
+            --class-bplus-color: #0891b2;
             --class-c-color: #64748b;
-            --bg-color: #f0f4f8;
-            --card-bg: #ffffff;
-            --text-main: #2d3748;
-            --text-muted: #718096;
+            --class-c1-color: #475569;
+            --class-cr-color: #78716c;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,11 +33,11 @@
             color: var(--text-main);
         }
 
-        .container { max-width: 1300px; margin: 0 auto; }
+        .container { max-width: 1500px; margin: 0 auto; }
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
             padding: 30px;
             border-radius: 20px;
@@ -39,193 +45,13 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
         }
-
         .header .logo {
-            width: 70px;
-            height: 70px;
-            background: white;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            font-weight: 800;
-            color: #1e3a8a;
-            margin: 0 auto 15px;
+            width: 70px; height: 70px; background: white; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2em; font-weight: 800; color: #1e3a8a; margin: 0 auto 15px;
         }
-
         .header h1 { font-size: 2em; font-weight: 800; margin-bottom: 5px; }
         .header p { opacity: 0.95; font-size: 1.1em; }
-
-        /* Legend */
-        .legend {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 20px;
-            background: white;
-            padding: 15px 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-
-        .legend-dot {
-            width: 18px;
-            height: 18px;
-            border-radius: 5px;
-        }
-
-        .legend-vip { background: var(--vip-color); }
-        .legend-a { background: var(--class-a-color); }
-        .legend-b { background: var(--class-b-color); }
-        .legend-c { background: var(--class-c-color); }
-
-        /* Search */
-        .search-container {
-            margin-bottom: 20px;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 15px 25px;
-            font-size: 16px;
-            font-family: 'Cairo', sans-serif;
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
-            outline: none;
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-        }
-
-        .search-box:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-        }
-
-        /* Filter Buttons */
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .filter-btn:hover { border-color: #2563eb; color: #2563eb; }
-        .filter-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
-
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 15px;
-        }
-
-        .hospital-card {
-            background: white;
-            border-radius: 12px;
-            padding: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-right: 5px solid #e2e8f0;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .hospital-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .card-vip { border-right-color: var(--vip-color); background: #faf5ff; }
-        .card-a { border-right-color: var(--class-a-color); background: #fff7ed; }
-        .card-b { border-right-color: var(--class-b-color); background: #eff6ff; }
-        .card-c { border-right-color: var(--class-c-color); background: #f8fafc; }
-
-        .hospital-name {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 10px;
-        }
-
-        .hospital-info {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-            font-size: 0.85em;
-            color: var(--text-muted);
-        }
-
-        .class-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.8em;
-            color: white;
-        }
-
-        .badge-vip { background: var(--vip-color); }
-        .badge-a { background: var(--class-a-color); }
-        .badge-b { background: var(--class-b-color); }
-        .badge-c { background: var(--class-c-color); }
-
-        .city-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: #f1f5f9;
-            padding: 4px 10px;
-            border-radius: 10px;
-            font-size: 0.8em;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #f1f5f9;
-            font-size: 0.8em;
-            color: var(--text-muted);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px;
-            color: var(--text-muted);
-            font-size: 1.2em;
-            grid-column: 1 / -1;
-            background: white;
-            border-radius: 15px;
-        }
 
         /* Stats */
         .stats-row {
@@ -234,23 +60,110 @@
             gap: 12px;
             margin-bottom: 20px;
         }
-
         .stat-card {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid #e2e8f0;
+            background: white; padding: 15px; border-radius: 12px;
+            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #e2e8f0; transition: transform 0.3s ease;
         }
-
+        .stat-card:hover { transform: translateY(-3px); }
         .stat-number { font-size: 1.8em; font-weight: 800; display: block; }
         .stat-label { color: var(--text-muted); font-size: 0.8em; }
-        .stat-vip { border-top-color: var(--vip-color); } .stat-vip .stat-number { color: var(--vip-color); }
-        .stat-a { border-top-color: var(--class-a-color); } .stat-a .stat-number { color: var(--class-a-color); }
-        .stat-b { border-top-color: var(--class-b-color); } .stat-b .stat-number { color: var(--class-b-color); }
-        .stat-c { border-top-color: var(--class-c-color); } .stat-c .stat-number { color: var(--class-c-color); }
 
+        /* Legend */
+        .legend {
+            display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+            margin-bottom: 20px; background: white; padding: 12px 20px;
+            border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.85em; }
+        .legend-dot { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Search */
+        .search-container { margin-bottom: 15px; }
+        .search-box {
+            width: 100%; padding: 15px 25px; font-size: 16px;
+            font-family: 'Cairo', sans-serif; border: 2px solid #e2e8f0;
+            border-radius: 50px; outline: none; background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.3s ease;
+        }
+        .search-box:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+
+        /* Filters */
+        .filter-container {
+            display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+            margin-bottom: 15px; background: white; padding: 15px 20px;
+            border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 8px 16px; border: 2px solid #e2e8f0; background: white;
+            border-radius: 50px; cursor: pointer; font-family: 'Cairo', sans-serif;
+            font-size: 13px; font-weight: 600; transition: all 0.3s ease; white-space: nowrap;
+        }
+        .filter-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+        .filter-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+        .filter-label { font-weight: 700; color: var(--text-muted); margin-left: 8px; font-size: 13px; }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 15px;
+        }
+        .hospital-card {
+            background: white; border-radius: 12px; padding: 16px 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-right: 5px solid #e2e8f0;
+            transition: all 0.3s ease; display: flex; flex-direction: column;
+            justify-content: space-between; position: relative;
+        }
+        .hospital-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        .card-VIP { border-right-color: var(--vip-color); background: #faf5ff; }
+        .card-A { border-right-color: var(--class-a-color); background: #fff7ed; }
+        .card-B { border-right-color: var(--class-b-color); background: #eff6ff; }
+        .card-B\+ { border-right-color: var(--class-bplus-color); background: #ecfeff; }
+        .card-C { border-right-color: var(--class-c-color); background: #f8fafc; }
+        .card-C1 { border-right-color: var(--class-c1-color); background: #f8fafc; }
+        .card-C-R { border-right-color: var(--class-cr-color); background: #fafaf9; }
+
+        .hospital-name {
+            font-size: 1em; font-weight: 700; color: var(--text-main);
+            margin-bottom: 8px; line-height: 1.4;
+        }
+        .hospital-meta {
+            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+            margin-bottom: 10px;
+        }
+        .class-badge {
+            display: inline-block; padding: 3px 10px; border-radius: 10px;
+            font-weight: 700; font-size: 0.75em; color: white;
+        }
+        .badge-VIP { background: var(--vip-color); }
+        .badge-A { background: var(--class-a-color); }
+        .badge-B { background: var(--class-b-color); }
+        .badge-B\+ { background: var(--class-bplus-color); }
+        .badge-C { background: var(--class-c-color); }
+        .badge-C1 { background: var(--class-c1-color); }
+        .badge-C-R { background: var(--class-cr-color); }
+
+        .city-tag {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: #f1f5f9; padding: 3px 10px; border-radius: 10px;
+            font-size: 0.8em; color: var(--text-muted);
+        }
+        .map-link {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 8px 14px; background: #f0f4f8; color: #1e40af;
+            border-radius: 20px; text-decoration: none; font-size: 0.8em;
+            font-weight: 600; transition: all 0.3s ease; margin-top: auto;
+            border: 1px solid #e2e8f0; justify-content: center;
+        }
+        .map-link:hover { background: #dbeafe; border-color: #bfdbfe; color: #1e3a8a; }
+        .no-results {
+            text-align: center; padding: 60px; color: var(--text-muted);
+            font-size: 1.2em; grid-column: 1 / -1; background: white;
+            border-radius: 15px;
+        }
         @media (max-width: 768px) {
             .cards-grid { grid-template-columns: 1fr; }
             .header h1 { font-size: 1.5em; }
@@ -260,204 +173,772 @@
 <body>
 
 <div class="container">
-    <!-- Header -->
     <div class="header">
         <div class="logo">ت</div>
-        <h1>🏥 دليل مستشفيات التعاونية للتأمين</h1>
-        <p>Tawuniya Insurance - Medical Network Guide</p>
+        <h1>🏥 دليل شبكة مزودي التعاونية الطبي</h1>
+        <p>Tawuniya Insurance - Complete Medical Network Guide</p>
     </div>
 
-    <!-- Legend -->
     <div class="legend">
-        <div class="legend-item"><div class="legend-dot legend-vip"></div> VIP</div>
-        <div class="legend-item"><div class="legend-dot legend-a"></div> A</div>
-        <div class="legend-item"><div class="legend-dot legend-b"></div> B</div>
-        <div class="legend-item"><div class="legend-dot legend-c"></div> C</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed;"></div> VIP</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ea580c;"></div> A</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2563eb;"></div> B</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0891b2;"></div> B+</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#64748b;"></div> C</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#475569;"></div> C1</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#78716c;"></div> C-R</div>
     </div>
 
-    <!-- Stats -->
     <div class="stats-row">
-        <div class="stat-card stat-vip"><span class="stat-number" id="vipCount">0</span><span class="stat-label">VIP</span></div>
-        <div class="stat-card stat-a"><span class="stat-number" id="aCount">0</span><span class="stat-label">A</span></div>
-        <div class="stat-card stat-b"><span class="stat-number" id="bCount">0</span><span class="stat-label">B</span></div>
-        <div class="stat-card stat-c"><span class="stat-number" id="cCount">0</span><span class="stat-label">C</span></div>
+        <div class="stat-card"><span class="stat-number" id="totalCount" style="color:#1e3a8a;">0</span><span class="stat-label">🏥 المجموع</span></div>
+        <div class="stat-card" style="border-top-color:#7c3aed;"><span class="stat-number" id="vipCount" style="color:#7c3aed;">0</span><span class="stat-label">VIP</span></div>
+        <div class="stat-card" style="border-top-color:#ea580c;"><span class="stat-number" id="aCount" style="color:#ea580c;">0</span><span class="stat-label">A</span></div>
+        <div class="stat-card" style="border-top-color:#2563eb;"><span class="stat-number" id="bCount" style="color:#2563eb;">0</span><span class="stat-label">B</span></div>
+        <div class="stat-card" style="border-top-color:#0891b2;"><span class="stat-number" id="bplusCount" style="color:#0891b2;">0</span><span class="stat-label">B+</span></div>
+        <div class="stat-card" style="border-top-color:#64748b;"><span class="stat-number" id="cCount" style="color:#64748b;">0</span><span class="stat-label">C</span></div>
+        <div class="stat-card" style="border-top-color:#475569;"><span class="stat-number" id="c1Count" style="color:#475569;">0</span><span class="stat-label">C1</span></div>
+        <div class="stat-card" style="border-top-color:#78716c;"><span class="stat-number" id="crCount" style="color:#78716c;">0</span><span class="stat-label">C-R</span></div>
     </div>
 
-    <!-- Search -->
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث عن مستشفى أو مدينة...">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث عن مستشفى، مدينة، أو فئة...">
     </div>
 
-    <!-- Filter Buttons -->
-    <div class="filter-buttons" id="filterButtons">
-        <button class="filter-btn active" data-filter="all">🏥 الكل</button>
-        <button class="filter-btn" data-filter="VIP">🟣 VIP</button>
-        <button class="filter-btn" data-filter="A">🟠 A</button>
-        <button class="filter-btn" data-filter="B">🔵 B</button>
-        <button class="filter-btn" data-filter="C">⚫ C</button>
+    <div class="filter-container">
+        <span class="filter-label">🏷️ الفئة:</span>
+        <div class="filter-group" id="classFilters">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="VIP">VIP</button>
+            <button class="filter-btn" data-filter="A">A</button>
+            <button class="filter-btn" data-filter="B">B</button>
+            <button class="filter-btn" data-filter="B+">B+</button>
+            <button class="filter-btn" data-filter="C">C</button>
+            <button class="filter-btn" data-filter="C1">C1</button>
+            <button class="filter-btn" data-filter="C-R">C-R</button>
+        </div>
+        <span class="filter-label" style="margin-right: 15px;">📍 المدينة:</span>
+        <div class="filter-group" id="cityFilters">
+            <button class="filter-btn active" data-city="all">الكل</button>
+            <button class="filter-btn" data-city="الخبر">الخبر</button>
+            <button class="filter-btn" data-city="الدمام">الدمام</button>
+            <button class="filter-btn" data-city="الرياض">الرياض</button>
+        </div>
     </div>
 
-    <!-- Cards Grid -->
     <div class="cards-grid" id="cardsGrid"></div>
 </div>
 
 <script>
-    // ==================== HOSPITALS DATABASE ====================
+    // ==================== DATABASE ====================
     const hospitals = [
-        // منطقة الرياض
-        { name: "مستشفى الدكتور سليمان الحبيب - العليا", class: "VIP", city: "الرياض" },
-        { name: "مستشفى الدكتور سليمان الحبيب - الريان", class: "VIP", city: "الرياض" },
-        { name: "مستشفى الدكتور سليمان الحبيب - التخصصي", class: "VIP", city: "الرياض" },
-        { name: "مستشفى المملكة", class: "VIP", city: "الرياض" },
-        { name: "مستشفى المركز التخصصي الطبي", class: "VIP", city: "الرياض" },
-        { name: "مستشفى الحمادي", class: "VIP", city: "الرياض" },
-        { name: "مستشفى السعودي الألماني", class: "A", city: "الرياض" },
-        { name: "مستشفى المواساة", class: "A", city: "الرياض" },
-        { name: "مستشفى دله", class: "A", city: "الرياض" },
-        { name: "مستشفى رعاية الوطني", class: "A", city: "الرياض" },
-        { name: "مستشفى الحياة الوطني", class: "A", city: "الرياض" },
-        { name: "مستشفى عيادة العبير", class: "B", city: "الرياض" },
-        { name: "مستشفى الزهراء", class: "B", city: "الرياض" },
-        { name: "مستشفى الدكتور عبدالرحمن المشاري", class: "B", city: "الرياض" },
-        { name: "مستشفى اليمامة", class: "C", city: "الرياض" },
-        
-        // المنطقة الشرقية - الخبر
-        { name: "مستشفى الدكتور سليمان الحبيب - الخبر", class: "VIP", city: "الخبر" },
-        { name: "مستشفى سعد التخصصي", class: "VIP", city: "الخبر" },
-        { name: "مستشفى الرعاية - الخبر", class: "A", city: "الخبر" },
-        { name: "مستشفى الخبر الوطني", class: "A", city: "الخبر" },
-        { name: "مستشفى محمد الدوسري", class: "B", city: "الخبر" },
-        { name: "مستشفى الهلال", class: "C", city: "الخبر" },
-        
-        // المنطقة الشرقية - الدمام
-        { name: "مستشفى المواساة - الدمام", class: "A", city: "الدمام" },
-        { name: "مستشفى المانع العام", class: "A", city: "الدمام" },
-        { name: "مستشفى الأهلي", class: "B", city: "الدمام" },
-        { name: "مجمع الدمام الطبي", class: "B", city: "الدمام" },
-        { name: "مستشفى الدمام الوطني", class: "B", city: "الدمام" },
-        
-        // المنطقة الشرقية - الظهران
-        { name: "مستشفى الظهران العام", class: "B", city: "الظهران" },
-        { name: "مستشفى الظهران الطبي", class: "B", city: "الظهران" },
-        
-        // المنطقة الشرقية - القطيف
-        { name: "مستشفى القطيف المركزي", class: "B", city: "القطيف" },
-        { name: "مستشفى القطيف الأهلي", class: "C", city: "القطيف" },
-        
-        // المنطقة الشرقية - الجبيل
-        { name: "مستشفى الهيئة الملكية", class: "A", city: "الجبيل" },
-        { name: "مستشفى الجبيل العام", class: "C", city: "الجبيل" },
-        { name: "مستشفى المانع - الجبيل", class: "B", city: "الجبيل" },
-        
-        // المنطقة الشرقية - أخرى
-        { name: "مستشفى عنك", class: "C", city: "عنك" },
-        { name: "مستشفى عين دار", class: "C", city: "عين دار" },
-        { name: "مستشفى بقيق العام", class: "C", city: "بقيق" },
-        { name: "مستشفى رأس تنورة", class: "C", city: "رأس تنورة" },
-        { name: "مستشفى النعيرية", class: "C", city: "النعيرية" },
-        
-        // المنطقة الغربية
-        { name: "مستشفى الدكتور سليمان الحبيب - جدة", class: "VIP", city: "جدة" },
-        { name: "مستشفى السعودي الألماني - جدة", class: "A", city: "جدة" },
-        { name: "مستشفى المواساة - جدة", class: "A", city: "جدة" },
-        { name: "مستشفى باقدو والدكتور عرفان", class: "B", city: "جدة" }
+        // VIP - الخبر
+        { class: "VIP", city: "الخبر", name: "صيدليات الدواء حي العقربية شارع 25" },
+        { class: "VIP", city: "الخبر", name: "مستشفى الملك فهد الجامعي- ( وزارة التعليم ) - الخبر AL AQRABIYAH AL KHOBAR" },
+        { class: "VIP", city: "الخبر", name: "المانا للنظارات - الخبر Khobar" },
+        { class: "VIP", city: "الخبر", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر Al Rakah Al Janoubiyah" },
+        { class: "VIP", city: "الخبر", name: "با دغيش للبصريات - الخبر Khobar - King fahad Street  Beside National Coercail Bank" },
+        { class: "VIP", city: "الخبر", name: "د سليمان الحبيب المركز الطبي - الخبر Al Manar Dist." },
+        { class: "VIP", city: "الخبر", name: "شركة العدسات المبتكرة المحدودة ( ايوا ) Khobar - Al Hizam Al Thahaby" },
+        { class: "VIP", city: "الخبر", name: "شركة رؤى للخدمات الطبية المنزلية - الخبر الدمام -عثمان بن عفان- الريان" },
+        { class: "VIP", city: "الخبر", name: "شركة عرب تون الطبية الحزام الأخضر" },
+        { class: "VIP", city: "الخبر", name: "شركة مستشفى دار السلامة الطبي - الخبر The Nourth Khobar  Prince Mansour Street" },
+        { class: "VIP", city: "الخبر", name: "مجمع أوزون لطب الأسنان - الخبر Northern Khobar" },
+        { class: "VIP", city: "الخبر", name: "مجمع اطباء الخليج الطبي - الخبر Al Kobar - Al Shera" },
+        { class: "VIP", city: "الخبر", name: "مجمع الجزيرة الطبي - الثقبة - الخبر Al Thoqbah Riyadh Street" },
+        { class: "VIP", city: "الخبر", name: "مجمع الرعاية الحديثة الطبي - الخبر Khobar - Al Jisr Dist" },
+        { class: "VIP", city: "الخبر", name: "مجمع الرونق لطب الأسنان - الخبر Olaya District" },
+        { class: "VIP", city: "الخبر", name: "مجمع المانع الطبي - الخبر AL RAKAH DISTRICT" },
+        { class: "VIP", city: "الخبر", name: "مجمع الهلال الفضي - الثقبة Al Thoqbah -Al Khobar - Al Elaa- Badr Street" },
+        { class: "VIP", city: "الخبر", name: "مجمع درة الخزامى الطبي العام - الخبر Al Khozama Dis" },
+        { class: "VIP", city: "الخبر", name: "مجمع طب الاسنان الحديث - بالخبر Alkkhobar Alsamaliyah" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان - الخبر مدينة العمال" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات المغربي بالخبر مخطط 71" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات النخبة التخصصية -الخبر Alyarmook District" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات بسمات لطب الأسنان  - الخبر حي الراكة - شارع محلي" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات جبل رام لطب الأسنان - الخبر شارع الأمير فيصل بن فهد- حيالخبر الشمالية" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات د.أمجد الحقيل2- الخبر AL YARMOOK DISTRICT" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات دار رام اسنان - الخبر حي العقربية" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات رام الطبية - العزيزية - الخبر Al Khuzama Dist." },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات رام الطبية في العليا (السعودي السويسري سابقا) - الخبر حي المغربيه شارع الملك عبدالله" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات رام لطب الأسنان - الخبر شارع الظهران تقاطع شارع حمود فوق بنك الراجحي العقربية" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات رفاء الطبي - الخبر Al Kurnaish" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات شام لطب الأسنان - الخبر الحزام الأخضر" },
+        { class: "VIP", city: "الخبر", name: "مجمع عيادات شفاء الخبر - الخبر Al khobar" },
+        { class: "VIP", city: "الخبر", name: "مجمع قمة الصحه الطبي - الخبر الخبر - الامير تركي - الكورنيش" },
+        { class: "VIP", city: "الخبر", name: "مجمع مجال الأسنان الطبي - الخبر  Alaqrabiyah Dis" },
+        { class: "VIP", city: "الخبر", name: "مجمع نهج الشفاء الطبي العام - الخبر الجسر" },
+        { class: "VIP", city: "الخبر", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر qurtoba" },
+        { class: "VIP", city: "الخبر", name: "مركز الاستشاريون للاشعه - الخبر KHOBAR KHABAR AL GANOBIAH" },
+        { class: "VIP", city: "الخبر", name: "مركز العلاج المتقدم الطبي - الخبر Golden Belt Dist." },
+        { class: "VIP", city: "الخبر", name: "مركز العناية بالجمال لطب الأسنان والجلدية -  الخبر AL-RAKAH DISTRICT" },
+        { class: "VIP", city: "الخبر", name: "مركز الموسى الصحي - الخبر BUHAIRA" },
+        { class: "VIP", city: "الخبر", name: "مستشفى الدكتور سليمان الحبيب - الخبر الخبر - غرب شارع الدمام الخبر - الحي الشمالية" },
+        { class: "VIP", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير)- الخبر حي العليا - مقابل مجمع الظهران جيان - شارع المطار سابقاً" },
+        { class: "VIP", city: "الخبر", name: "مستشفى المانع - الخبر Prince Talal Street  behined  Sefway Market" },
+        { class: "VIP", city: "الخبر", name: "مستشفى المواساة - الخبر AL OROUJ DISTRICT" },
+        { class: "VIP", city: "الخبر", name: "مستشفى اليوسف - الخبر al beouniah al mobaraz street" },
+        { class: "VIP", city: "الخبر", name: "مستشفى جاما - الخبر Khobar - Dammam & Khobar Haiyway Road" },
+        { class: "VIP", city: "الخبر", name: "مستشفى شركة السلام للخدمات الطبية-الخبر alrakah south" },
+        { class: "VIP", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر Khobar - Al Baewniah Area  Al Dhahran Street" },
+        { class: "VIP", city: "الخبر", name: "مستوصف الخبر التعاوني - الخبر Khobar - Al Agrbiah area  42  Street" },
+        // VIP - الدمام
+        { class: "VIP", city: "الدمام", name: "مجمع شركة الفارابي الطبي-  بالدمام Dammam 1st Industrial City" },
+        { class: "VIP", city: "الدمام", name: "مركز إرادة للتأهيل الطبي - الفيصلية - الدمام ALFAISALIYAH DAMMAM" },
+        { class: "VIP", city: "الدمام", name: "البشاوري للنظارات- الدمام DAMMAM-STREET 11- DAWASER" },
+        { class: "VIP", city: "الدمام", name: "جمعية إيفاء لرعاية ذوي الإعاقة - الدمام Al Basateen Dist." },
+        { class: "VIP", city: "الدمام", name: "شركة الدليمان للبصريات ( جميع فروع السعودية ) الدمام" },
+        { class: "VIP", city: "الدمام", name: "شركة الرعاية المستقبلية بالدمام Al Khaldiyah Dist." },
+        { class: "VIP", city: "الدمام", name: "شركة دياليز الطبي - الدمام Ash Shati Ash Sharqi Dist." },
+        { class: "VIP", city: "الدمام", name: "شركة عيادات رام الطبية - المزروعية - الدمام ALMAZROIA" },
+        { class: "VIP", city: "الدمام", name: "شركة مركز طب الاسنان الحديث - الدمام Guranatah Dis" },
+        { class: "VIP", city: "الدمام", name: "عيادات رام الطبية - الفاخرية - الدمام Sholaa Dist." },
+        { class: "VIP", city: "الدمام", name: "فرع مجمع الامتياز الطبي - الدمام First Industrial Area" },
+        { class: "VIP", city: "الدمام", name: "مجمع ابن سينا لطب الاسنان - الدمام - الراكة DAMMAM - ALRAKA DIST" },
+        { class: "VIP", city: "الدمام", name: "مجمع الأحمدي الطبي - الدمام DAMMAM - KING FAHAD St. -AHAD" },
+        { class: "VIP", city: "الدمام", name: "مجمع التاسعة الجديد الطبي - الدمام Dammam - Al Mohammadiah" },
+        { class: "VIP", city: "الدمام", name: "مجمع الحصن المنيع الطبي - الدمام Dammam - King Fahad Dist" },
+        { class: "VIP", city: "الدمام", name: "مجمع الروضة الأهلي - الدمام Al Tebaishi Area" },
+        { class: "VIP", city: "الدمام", name: "مجمع السيف الطبي - الدمام الدمام - شارع الامير نايف" },
+        { class: "VIP", city: "الدمام", name: "مجمع الصحة والحياة الطبي - الدمام Bader District" },
+        { class: "VIP", city: "الدمام", name: "مجمع الكحال الطبي - الدمام حي المباركية - شارع ابو هريرة اتجاه جزيرة المرجان" },
+        { class: "VIP", city: "الدمام", name: "مجمع المركز الكندي الطبي - الدمام مخطط ( 71 ) شارع الضغط العالي" },
+        { class: "VIP", city: "الدمام", name: "مجمع بدر الربيع الطبي - الدمام Ar Rabi" },
+        { class: "VIP", city: "الدمام", name: "مجمع رويال الطبي - الدمام حي الروضة" },
+        { class: "VIP", city: "الدمام", name: "مجمع ريسبونس بلس الطبي - الدمام Al Nuzha Dist." },
+        { class: "VIP", city: "الدمام", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام الدمام" },
+        { class: "VIP", city: "الدمام", name: "مجمع شركة اجياد للخدمات الطبية المحدودة حي الطبيشي شارع الملك فيصل- الدمام" },
+        { class: "VIP", city: "الدمام", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام DAMMAM 1ST INDUSTRIAL CITY - DAMMAM" },
+        { class: "VIP", city: "الدمام", name: "مجمع صحة الرعاية الطبي - الدمام Alsoug" },
+        { class: "VIP", city: "الدمام", name: "مجمع عالم رام الطبي - الدمام AL FAYSALYAH DISTRCIT" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات أهالينا لطب الأسنان - الدمام حي الزهور - الشارع 18 ( الخزان )" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات التقوى الطبي العام - الدمام حي السلام" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات الدمام الأهلي - الدمام Bursheed Area" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات الرأي الطبي - الدمام Badr" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات العلاج التخصصي لطب الأسنان - الدمام Alamazroeyah Dis" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات د.أمجد الحقيل -الدمام ALRAYAN DISTRICT" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات رام الطبي وتقويم الآسنان 2 - الدمام Dammam" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات رام الطبيه - ابو بكر - الدمام Almanar Dist." },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان - الدمام DAMMAM" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان 3- الدمام AL-BOHAYRAH DISTRICT" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات زهرة العبير الطبي - الدمام حي الخليج" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات شام لطب الأسنان - الدمام (العزيزية) حي العزيزية" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات شام لطب و تقويم الأسنان - بالدمام ( الريان) حي الريان" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام حي الخليج - شارع الملك سعود" },
+        { class: "VIP", city: "الدمام", name: "مجمع عيادات شفاء الدمام الطبي - الدمام Al Athir Dammam" },
+        { class: "VIP", city: "الدمام", name: "مجمع فجر الدمام الطبي (2) - الدمام الشرقية - شارع الامام محمد بن عبدالوهاب -الفاخريه-الدمام" },
+        { class: "VIP", city: "الدمام", name: "مجمع فجر الدمام الطبي - الدمام Gharnata Area ( Mukattatt 75 ) - King Khalid Bin Abdulaziz St." },
+        { class: "VIP", city: "الدمام", name: "مجمع لاما الطبي - الدمام  حي الفيصلية- شارع أبو بكر الصديق" },
+        { class: "VIP", city: "الدمام", name: "مجموعة دار العافية الطبية - الدمام  Aljoharah Dist" },
+        { class: "VIP", city: "الدمام", name: "مراكز ابن سينا لطب الأسنان - الدمام Al Fanateer" },
+        { class: "VIP", city: "الدمام", name: "مركز أشعة الدمام - الدمام Dammam" },
+        { class: "VIP", city: "الدمام", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام AL-JAMMEN DISTRICT- DAMMAM" },
+        { class: "VIP", city: "الدمام", name: "مركز إرادة للتأهيل الطبي - المنتزه - الدمام Almuntazah Dammam" },
+        { class: "VIP", city: "الدمام", name: "مركز إصرار للعلاج الطبيعي والتأهيل – الدمام Prince Muhammed bin Saud" },
+        { class: "VIP", city: "الدمام", name: "مركز العلاج الطبيعي الأول الطبي - الدمام حي النزهه - الدمام" },
+        { class: "VIP", city: "الدمام", name: "مركز دوالي الطبي - الدمام DAMMAM - AL MAZRUIYAH" },
+        { class: "VIP", city: "الدمام", name: "مستشفى السعودي الألماني – الدمام Dahiat King Fahad District" },
+        { class: "VIP", city: "الدمام", name: "مستشفى المانع - الدمام Abdullah Fouad Area" },
+        { class: "VIP", city: "الدمام", name: "مستشفى المانع الطبي - الدمام - العزيزية DAMMAM  - AL AZIZYAH" },
+        { class: "VIP", city: "الدمام", name: "مستشفى المواساة - الدمام Mukattatt 71" },
+        { class: "VIP", city: "الدمام", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام المريكبات" },
+        { class: "VIP", city: "الدمام", name: "مستشفى تداوي العام - الدمام Al Mazroueiah Area  Behined Sheraton Hotel" },
+        { class: "VIP", city: "الدمام", name: "مستشفى د. خالد محمد الرحيمي - الدمام East" },
+        { class: "VIP", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام Dammam Zone 71" },
+        { class: "VIP", city: "الدمام", name: "مستوصف المانع - الدمام Seconud Industrieal Area" },
+        { class: "VIP", city: "الدمام", name: "مستوصف دار الحكمة - الدمام Alsifaa" },
+        { class: "VIP", city: "الدمام", name: "مستوصف دارالصحة - الدمام Az Zuhur" },
+        { class: "VIP", city: "الدمام", name: "مستوصف صفا الدمام الطبي - الدمام Alodamah District" },
+        { class: "VIP", city: "الدمام", name: "مسشتفى الروضة العام - الدمام Altobaishi" },
+        { class: "VIP", city: "الدمام", name: "نظارات الكحال - الدمام Al Hamra Area" },
+        // A - الخبر
+        { class: "A", city: "الخبر", name: "صيدليات الدواء حي العقربية شارع 25" },
+        { class: "A", city: "الخبر", name: "المانا للنظارات - الخبر Khobar" },
+        { class: "A", city: "الخبر", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر Al Rakah Al Janoubiyah" },
+        { class: "A", city: "الخبر", name: "با دغيش للبصريات - الخبر Khobar - King fahad Street  Beside National Coercail Bank" },
+        { class: "A", city: "الخبر", name: "د سليمان الحبيب المركز الطبي - الخبر Al Manar Dist." },
+        { class: "A", city: "الخبر", name: "شركة العدسات المبتكرة المحدودة ( ايوا ) Khobar - Al Hizam Al Thahaby" },
+        { class: "A", city: "الخبر", name: "شركة رؤى للخدمات الطبية المنزلية - الخبر الدمام -عثمان بن عفان- الريان" },
+        { class: "A", city: "الخبر", name: "شركة عرب تون الطبية الحزام الأخضر" },
+        { class: "A", city: "الخبر", name: "شركة مستشفى دار السلامة الطبي - الخبر The Nourth Khobar  Prince Mansour Street" },
+        { class: "A", city: "الخبر", name: "مجمع أوزون لطب الأسنان - الخبر Northern Khobar" },
+        { class: "A", city: "الخبر", name: "مجمع اطباء الخليج الطبي - الخبر Al Kobar - Al Shera" },
+        { class: "A", city: "الخبر", name: "مجمع الجزيرة الطبي - الثقبة - الخبر Al Thoqbah Riyadh Street" },
+        { class: "A", city: "الخبر", name: "مجمع الرعاية الحديثة الطبي - الخبر Khobar - Al Jisr Dist" },
+        { class: "A", city: "الخبر", name: "مجمع الرونق لطب الأسنان - الخبر Olaya District" },
+        { class: "A", city: "الخبر", name: "مجمع المانع الطبي - الخبر AL RAKAH DISTRICT" },
+        { class: "A", city: "الخبر", name: "مجمع الهلال الفضي - الثقبة Al Thoqbah -Al Khobar - Al Elaa- Badr Street" },
+        { class: "A", city: "الخبر", name: "مجمع درة الخزامى الطبي العام - الخبر Al Khozama Dis" },
+        { class: "A", city: "الخبر", name: "مجمع طب الاسنان الحديث - بالخبر Alkkhobar Alsamaliyah" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان - الخبر مدينة العمال" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات المغربي بالخبر مخطط 71" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات النخبة التخصصية -الخبر Alyarmook District" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات بسمات لطب الأسنان  - الخبر حي الراكة - شارع محلي" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات جبل رام لطب الأسنان - الخبر شارع الأمير فيصل بن فهد- حيالخبر الشمالية" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات د.أمجد الحقيل2- الخبر AL YARMOOK DISTRICT" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات دار رام اسنان - الخبر حي العقربية" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات رام الطبية - العزيزية - الخبر Al Khuzama Dist." },
+        { class: "A", city: "الخبر", name: "مجمع عيادات رام الطبية في العليا (السعودي السويسري سابقا) - الخبر حي المغربيه شارع الملك عبدالله" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات رام لطب الأسنان - الخبر شارع الظهران تقاطع شارع حمود فوق بنك الراجحي العقربية" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات رفاء الطبي - الخبر Al Kurnaish" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات شام لطب الأسنان - الخبر الحزام الأخضر" },
+        { class: "A", city: "الخبر", name: "مجمع عيادات شفاء الخبر - الخبر Al khobar" },
+        { class: "A", city: "الخبر", name: "مجمع قمة الصحه الطبي - الخبر الخبر - الامير تركي - الكورنيش" },
+        { class: "A", city: "الخبر", name: "مجمع مجال الأسنان الطبي - الخبر  Alaqrabiyah Dis" },
+        { class: "A", city: "الخبر", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر qurtoba" },
+        { class: "A", city: "الخبر", name: "مركز الاستشاريون للاشعه - الخبر KHOBAR KHABAR AL GANOBIAH" },
+        { class: "A", city: "الخبر", name: "مركز العلاج المتقدم الطبي - الخبر Golden Belt Dist." },
+        { class: "A", city: "الخبر", name: "مركز العناية بالجمال لطب الأسنان والجلدية -  الخبر AL-RAKAH DISTRICT" },
+        { class: "A", city: "الخبر", name: "مركز الموسى الصحي - الخبر BUHAIRA" },
+        { class: "A", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير)- الخبر حي العليا - مقابل مجمع الظهران جيان - شارع المطار سابقاً" },
+        { class: "A", city: "الخبر", name: "مستشفى المانع - الخبر Prince Talal Street  behined  Sefway Market" },
+        { class: "A", city: "الخبر", name: "مستشفى المواساة - الخبر AL OROUJ DISTRICT" },
+        { class: "A", city: "الخبر", name: "مستشفى اليوسف - الخبر al beouniah al mobaraz street" },
+        { class: "A", city: "الخبر", name: "مستشفى جاما - الخبر Khobar - Dammam & Khobar Haiyway Road" },
+        { class: "A", city: "الخبر", name: "مستشفى شركة السلام للخدمات الطبية-الخبر alrakah south" },
+        { class: "A", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر Khobar - Al Baewniah Area  Al Dhahran Street" },
+        { class: "A", city: "الخبر", name: "مستوصف الخبر التعاوني - الخبر Khobar - Al Agrbiah area  42  Street" },
+        // A - الدمام
+        { class: "A", city: "الدمام", name: "مجمع شركة الفارابي الطبي-  بالدمام Dammam 1st Industrial City" },
+        { class: "A", city: "الدمام", name: "مركز إرادة للتأهيل الطبي - الفيصلية - الدمام ALFAISALIYAH DAMMAM" },
+        { class: "A", city: "الدمام", name: "البشاوري للنظارات- الدمام DAMMAM-STREET 11- DAWASER" },
+        { class: "A", city: "الدمام", name: "شركة الرعاية المستقبلية بالدمام Al Khaldiyah Dist." },
+        { class: "A", city: "الدمام", name: "شركة دياليز الطبي - الدمام Ash Shati Ash Sharqi Dist." },
+        { class: "A", city: "الدمام", name: "شركة عيادات رام الطبية - المزروعية - الدمام ALMAZROIA" },
+        { class: "A", city: "الدمام", name: "شركة مركز طب الاسنان الحديث - الدمام Guranatah Dis" },
+        { class: "A", city: "الدمام", name: "عيادات رام الطبية - الفاخرية - الدمام Sholaa Dist." },
+        { class: "A", city: "الدمام", name: "فرع مجمع الامتياز الطبي - الدمام First Industrial Area" },
+        { class: "A", city: "الدمام", name: "مجمع ابن سينا لطب الاسنان - الدمام - الراكة DAMMAM - ALRAKA DIST" },
+        { class: "A", city: "الدمام", name: "مجمع الأحمدي الطبي - الدمام DAMMAM - KING FAHAD St. -AHAD" },
+        { class: "A", city: "الدمام", name: "مجمع التاسعة الجديد الطبي - الدمام Dammam - Al Mohammadiah" },
+        { class: "A", city: "الدمام", name: "مجمع الحصن المنيع الطبي - الدمام Dammam - King Fahad Dist" },
+        { class: "A", city: "الدمام", name: "مجمع الروضة الأهلي - الدمام Al Tebaishi Area" },
+        { class: "A", city: "الدمام", name: "مجمع السيف الطبي - الدمام الدمام - شارع الامير نايف" },
+        { class: "A", city: "الدمام", name: "مجمع الصحة والحياة الطبي - الدمام Bader District" },
+        { class: "A", city: "الدمام", name: "مجمع الكحال الطبي - الدمام حي المباركية - شارع ابو هريرة اتجاه جزيرة المرجان" },
+        { class: "A", city: "الدمام", name: "مجمع المركز الكندي الطبي - الدمام مخطط ( 71 ) شارع الضغط العالي" },
+        { class: "A", city: "الدمام", name: "مجمع بدر الربيع الطبي - الدمام Ar Rabi" },
+        { class: "A", city: "الدمام", name: "مجمع رويال الطبي - الدمام حي الروضة" },
+        { class: "A", city: "الدمام", name: "مجمع ريسبونس بلس الطبي - الدمام Al Nuzha Dist." },
+        { class: "A", city: "الدمام", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام الدمام" },
+        { class: "A", city: "الدمام", name: "مجمع شركة اجياد للخدمات الطبية المحدودة حي الطبيشي شارع الملك فيصل- الدمام" },
+        { class: "A", city: "الدمام", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام DAMMAM 1ST INDUSTRIAL CITY - DAMMAM" },
+        { class: "A", city: "الدمام", name: "مجمع صحة الرعاية الطبي - الدمام Alsoug" },
+        { class: "A", city: "الدمام", name: "مجمع عالم رام الطبي - الدمام AL FAYSALYAH DISTRCIT" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات أهالينا لطب الأسنان - الدمام حي الزهور - الشارع 18 ( الخزان )" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات التقوى الطبي العام - الدمام حي السلام" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات الدمام الأهلي - الدمام Bursheed Area" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات الرأي الطبي - الدمام Badr" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات العلاج التخصصي لطب الأسنان - الدمام Alamazroeyah Dis" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات د.أمجد الحقيل -الدمام ALRAYAN DISTRICT" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات رام الطبي وتقويم الآسنان 2 - الدمام Dammam" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات رام الطبيه - ابو بكر - الدمام Almanar Dist." },
+        { class: "A", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان - الدمام DAMMAM" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان 3- الدمام AL-BOHAYRAH DISTRICT" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات زهرة العبير الطبي - الدمام حي الخليج" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات شام لطب الأسنان - الدمام (العزيزية) حي العزيزية" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات شام لطب و تقويم الأسنان - بالدمام ( الريان) حي الريان" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام حي الخليج - شارع الملك سعود" },
+        { class: "A", city: "الدمام", name: "مجمع عيادات شفاء الدمام الطبي - الدمام Al Athir Dammam" },
+        { class: "A", city: "الدمام", name: "مجمع فجر الدمام الطبي (2) - الدمام الشرقية - شارع الامام محمد بن عبدالوهاب -الفاخريه-الدمام" },
+        { class: "A", city: "الدمام", name: "مجمع فجر الدمام الطبي - الدمام Gharnata Area ( Mukattatt 75 ) - King Khalid Bin Abdulaziz St." },
+        { class: "A", city: "الدمام", name: "مجمع لاما الطبي - الدمام  حي الفيصلية- شارع أبو بكر الصديق" },
+        { class: "A", city: "الدمام", name: "مجموعة دار العافية الطبية - الدمام  Aljoharah Dist" },
+        { class: "A", city: "الدمام", name: "مراكز ابن سينا لطب الأسنان - الدمام Al Fanateer" },
+        { class: "A", city: "الدمام", name: "مركز أشعة الدمام - الدمام Dammam" },
+        { class: "A", city: "الدمام", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام AL-JAMMEN DISTRICT- DAMMAM" },
+        { class: "A", city: "الدمام", name: "مركز إرادة للتأهيل الطبي - المنتزه - الدمام Almuntazah Dammam" },
+        { class: "A", city: "الدمام", name: "مركز إصرار للعلاج الطبيعي والتأهيل – الدمام Prince Muhammed bin Saud" },
+        { class: "A", city: "الدمام", name: "مركز العلاج الطبيعي الأول الطبي - الدمام حي النزهه - الدمام" },
+        { class: "A", city: "الدمام", name: "مركز دوالي الطبي - الدمام DAMMAM - AL MAZRUIYAH" },
+        { class: "A", city: "الدمام", name: "مستشفى السعودي الألماني – الدمام Dahiat King Fahad District" },
+        { class: "A", city: "الدمام", name: "مستشفى المانع - الدمام Abdullah Fouad Area" },
+        { class: "A", city: "الدمام", name: "مستشفى المانع الطبي - الدمام - العزيزية DAMMAM  - AL AZIZYAH" },
+        { class: "A", city: "الدمام", name: "مستشفى المواساة - الدمام Mukattatt 71" },
+        { class: "A", city: "الدمام", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام المريكبات" },
+        { class: "A", city: "الدمام", name: "مستشفى تداوي العام - الدمام Al Mazroueiah Area  Behined Sheraton Hotel" },
+        { class: "A", city: "الدمام", name: "مستشفى د. خالد محمد الرحيمي - الدمام East" },
+        { class: "A", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام Dammam Zone 71" },
+        { class: "A", city: "الدمام", name: "مستوصف المانع - الدمام Seconud Industrieal Area" },
+        { class: "A", city: "الدمام", name: "مستوصف دار الحكمة - الدمام Alsifaa" },
+        { class: "A", city: "الدمام", name: "مستوصف دارالصحة - الدمام Az Zuhur" },
+        { class: "A", city: "الدمام", name: "مستوصف صفا الدمام الطبي - الدمام Alodamah District" },
+        { class: "A", city: "الدمام", name: "مسشتفى الروضة العام - الدمام Altobaishi" },
+        { class: "A", city: "الدمام", name: "نظارات الكحال - الدمام Al Hamra Area" },
+        // B - الخبر
+        { class: "B", city: "الخبر", name: "صيدليات الدواء حي العقربية شارع 25" },
+        { class: "B", city: "الخبر", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر Al Rakah Al Janoubiyah" },
+        { class: "B", city: "الخبر", name: "با دغيش للبصريات - الخبر Khobar - King fahad Street  Beside National Coercail Bank" },
+        { class: "B", city: "الخبر", name: "شركة العدسات المبتكرة المحدودة ( ايوا ) Khobar - Al Hizam Al Thahaby" },
+        { class: "B", city: "الخبر", name: "شركة عرب تون الطبية الحزام الأخضر" },
+        { class: "B", city: "الخبر", name: "شركة مستشفى دار السلامة الطبي - الخبر The Nourth Khobar  Prince Mansour Street" },
+        { class: "B", city: "الخبر", name: "مجمع اطباء الخليج الطبي - الخبر Al Kobar - Al Shera" },
+        { class: "B", city: "الخبر", name: "مجمع الجزيرة الطبي - الثقبة - الخبر Al Thoqbah Riyadh Street" },
+        { class: "B", city: "الخبر", name: "مجمع الرعاية الحديثة الطبي - الخبر Khobar - Al Jisr Dist" },
+        { class: "B", city: "الخبر", name: "مجمع الهلال الفضي - الثقبة Al Thoqbah -Al Khobar - Al Elaa- Badr Street" },
+        { class: "B", city: "الخبر", name: "مجمع درة الخزامى الطبي العام - الخبر Al Khozama Dis" },
+        { class: "B", city: "الخبر", name: "مجمع طب الاسنان الحديث - بالخبر Alkkhobar Alsamaliyah" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان - الخبر مدينة العمال" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات المغربي بالخبر مخطط 71" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات النخبة التخصصية -الخبر Alyarmook District" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات بسمات لطب الأسنان  - الخبر حي الراكة - شارع محلي" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات جبل رام لطب الأسنان - الخبر شارع الأمير فيصل بن فهد- حيالخبر الشمالية" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات دار رام اسنان - الخبر حي العقربية" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات رام الطبية - العزيزية - الخبر Al Khuzama Dist." },
+        { class: "B", city: "الخبر", name: "مجمع عيادات رام الطبية في العليا (السعودي السويسري سابقا) - الخبر حي المغربيه شارع الملك عبدالله" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات رام لطب الأسنان - الخبر شارع الظهران تقاطع شارع حمود فوق بنك الراجحي العقربية" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات رفاء الطبي - الخبر Al Kurnaish" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات شام لطب الأسنان - الخبر الحزام الأخضر" },
+        { class: "B", city: "الخبر", name: "مجمع عيادات شفاء الخبر - الخبر Al khobar" },
+        { class: "B", city: "الخبر", name: "مجمع قمة الصحه الطبي - الخبر الخبر - الامير تركي - الكورنيش" },
+        { class: "B", city: "الخبر", name: "مجمع مجال الأسنان الطبي - الخبر  Alaqrabiyah Dis" },
+        { class: "B", city: "الخبر", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر qurtoba" },
+        { class: "B", city: "الخبر", name: "مركز الاستشاريون للاشعه - الخبر KHOBAR KHABAR AL GANOBIAH" },
+        { class: "B", city: "الخبر", name: "مركز العلاج المتقدم الطبي - الخبر Golden Belt Dist." },
+        { class: "B", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير)- الخبر حي العليا - مقابل مجمع الظهران جيان - شارع المطار سابقاً" },
+        { class: "B", city: "الخبر", name: "مستشفى اليوسف - الخبر al beouniah al mobaraz street" },
+        { class: "B", city: "الخبر", name: "مستشفى جاما - الخبر Khobar - Dammam & Khobar Haiyway Road" },
+        { class: "B", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر Khobar - Al Baewniah Area  Al Dhahran Street" },
+        // B - الدمام
+        { class: "B", city: "الدمام", name: "مجمع شركة الفارابي الطبي-  بالدمام Dammam 1st Industrial City" },
+        { class: "B", city: "الدمام", name: "البشاوري للنظارات- الدمام DAMMAM-STREET 11- DAWASER" },
+        { class: "B", city: "الدمام", name: "شركة دياليز الطبي - الدمام Ash Shati Ash Sharqi Dist." },
+        { class: "B", city: "الدمام", name: "شركة عيادات رام الطبية - المزروعية - الدمام ALMAZROIA" },
+        { class: "B", city: "الدمام", name: "عيادات رام الطبية - الفاخرية - الدمام Sholaa Dist." },
+        { class: "B", city: "الدمام", name: "فرع مجمع الامتياز الطبي - الدمام First Industrial Area" },
+        { class: "B", city: "الدمام", name: "مجمع الأحمدي الطبي - الدمام DAMMAM - KING FAHAD St. -AHAD" },
+        { class: "B", city: "الدمام", name: "مجمع التاسعة الجديد الطبي - الدمام Dammam - Al Mohammadiah" },
+        { class: "B", city: "الدمام", name: "مجمع الحصن المنيع الطبي - الدمام Dammam - King Fahad Dist" },
+        { class: "B", city: "الدمام", name: "مجمع الروضة الأهلي - الدمام Al Tebaishi Area" },
+        { class: "B", city: "الدمام", name: "مجمع السيف الطبي - الدمام الدمام - شارع الامير نايف" },
+        { class: "B", city: "الدمام", name: "مجمع الصحة والحياة الطبي - الدمام Bader District" },
+        { class: "B", city: "الدمام", name: "مجمع الكحال الطبي - الدمام حي المباركية - شارع ابو هريرة اتجاه جزيرة المرجان" },
+        { class: "B", city: "الدمام", name: "مجمع المركز الكندي الطبي - الدمام مخطط ( 71 ) شارع الضغط العالي" },
+        { class: "B", city: "الدمام", name: "مجمع بدر الربيع الطبي - الدمام Ar Rabi" },
+        { class: "B", city: "الدمام", name: "مجمع ريسبونس بلس الطبي - الدمام Al Nuzha Dist." },
+        { class: "B", city: "الدمام", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام الدمام" },
+        { class: "B", city: "الدمام", name: "مجمع شركة اجياد للخدمات الطبية المحدودة حي الطبيشي شارع الملك فيصل- الدمام" },
+        { class: "B", city: "الدمام", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام DAMMAM 1ST INDUSTRIAL CITY - DAMMAM" },
+        { class: "B", city: "الدمام", name: "مجمع صحة الرعاية الطبي - الدمام Alsoug" },
+        { class: "B", city: "الدمام", name: "مجمع عالم رام الطبي - الدمام AL FAYSALYAH DISTRCIT" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات التقوى الطبي العام - الدمام حي السلام" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات الدمام الأهلي - الدمام Bursheed Area" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات الرأي الطبي - الدمام Badr" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات رام الطبي وتقويم الآسنان 2 - الدمام Dammam" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات رام الطبيه - ابو بكر - الدمام Almanar Dist." },
+        { class: "B", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان - الدمام DAMMAM" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان 3- الدمام AL-BOHAYRAH DISTRICT" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات زهرة العبير الطبي - الدمام حي الخليج" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام حي الخليج - شارع الملك سعود" },
+        { class: "B", city: "الدمام", name: "مجمع عيادات شفاء الدمام الطبي - الدمام Al Athir Dammam" },
+        { class: "B", city: "الدمام", name: "مجمع فجر الدمام الطبي (2) - الدمام الشرقية - شارع الامام محمد بن عبدالوهاب -الفاخريه-الدمام" },
+        { class: "B", city: "الدمام", name: "مجمع فجر الدمام الطبي - الدمام Gharnata Area ( Mukattatt 75 ) - King Khalid Bin Abdulaziz St." },
+        { class: "B", city: "الدمام", name: "مجموعة دار العافية الطبية - الدمام  Aljoharah Dist" },
+        { class: "B", city: "الدمام", name: "مراكز ابن سينا لطب الأسنان - الدمام Al Fanateer" },
+        { class: "B", city: "الدمام", name: "مركز أشعة الدمام - الدمام Dammam" },
+        { class: "B", city: "الدمام", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام AL-JAMMEN DISTRICT- DAMMAM" },
+        { class: "B", city: "الدمام", name: "مركز إصرار للعلاج الطبيعي والتأهيل – الدمام Prince Muhammed bin Saud" },
+        { class: "B", city: "الدمام", name: "مركز العلاج الطبيعي الأول الطبي - الدمام حي النزهه - الدمام" },
+        { class: "B", city: "الدمام", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام المريكبات" },
+        { class: "B", city: "الدمام", name: "مستشفى تداوي العام - الدمام Al Mazroueiah Area  Behined Sheraton Hotel" },
+        { class: "B", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام Dammam Zone 71" },
+        { class: "B", city: "الدمام", name: "مستوصف المانع - الدمام Seconud Industrieal Area" },
+        { class: "B", city: "الدمام", name: "مستوصف دار الحكمة - الدمام Alsifaa" },
+        { class: "B", city: "الدمام", name: "مستوصف دارالصحة - الدمام Az Zuhur" },
+        { class: "B", city: "الدمام", name: "مستوصف صفا الدمام الطبي - الدمام Alodamah District" },
+        { class: "B", city: "الدمام", name: "مسشتفى الروضة العام - الدمام Altobaishi" },
+        { class: "B", city: "الدمام", name: "نظارات الكحال - الدمام Al Hamra Area" },
+        // B+ - الخبر
+        { class: "B+", city: "الخبر", name: "صيدليات الدواء حي العقربية شارع 25" },
+        { class: "B+", city: "الخبر", name: "المانا للنظارات - الخبر Khobar" },
+        { class: "B+", city: "الخبر", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر Al Rakah Al Janoubiyah" },
+        { class: "B+", city: "الخبر", name: "با دغيش للبصريات - الخبر Khobar - King fahad Street  Beside National Coercail Bank" },
+        { class: "B+", city: "الخبر", name: "د سليمان الحبيب المركز الطبي - الخبر Al Manar Dist." },
+        { class: "B+", city: "الخبر", name: "شركة العدسات المبتكرة المحدودة ( ايوا ) Khobar - Al Hizam Al Thahaby" },
+        { class: "B+", city: "الخبر", name: "شركة رؤى للخدمات الطبية المنزلية - الخبر الدمام -عثمان بن عفان- الريان" },
+        { class: "B+", city: "الخبر", name: "شركة عرب تون الطبية الحزام الأخضر" },
+        { class: "B+", city: "الخبر", name: "شركة مستشفى دار السلامة الطبي - الخبر The Nourth Khobar  Prince Mansour Street" },
+        { class: "B+", city: "الخبر", name: "مجمع أوزون لطب الأسنان - الخبر Northern Khobar" },
+        { class: "B+", city: "الخبر", name: "مجمع اطباء الخليج الطبي - الخبر Al Kobar - Al Shera" },
+        { class: "B+", city: "الخبر", name: "مجمع الجزيرة الطبي - الثقبة - الخبر Al Thoqbah Riyadh Street" },
+        { class: "B+", city: "الخبر", name: "مجمع الرعاية الحديثة الطبي - الخبر Khobar - Al Jisr Dist" },
+        { class: "B+", city: "الخبر", name: "مجمع الرونق لطب الأسنان - الخبر Olaya District" },
+        { class: "B+", city: "الخبر", name: "مجمع المانع الطبي - الخبر AL RAKAH DISTRICT" },
+        { class: "B+", city: "الخبر", name: "مجمع الهلال الفضي - الثقبة Al Thoqbah -Al Khobar - Al Elaa- Badr Street" },
+        { class: "B+", city: "الخبر", name: "مجمع درة الخزامى الطبي العام - الخبر Al Khozama Dis" },
+        { class: "B+", city: "الخبر", name: "مجمع طب الاسنان الحديث - بالخبر Alkkhobar Alsamaliyah" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان - الخبر مدينة العمال" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات المغربي بالخبر مخطط 71" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات النخبة التخصصية -الخبر Alyarmook District" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات بسمات لطب الأسنان  - الخبر حي الراكة - شارع محلي" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات جبل رام لطب الأسنان - الخبر شارع الأمير فيصل بن فهد- حيالخبر الشمالية" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات د.أمجد الحقيل2- الخبر AL YARMOOK DISTRICT" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات دار رام اسنان - الخبر حي العقربية" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات رام الطبية - العزيزية - الخبر Al Khuzama Dist." },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات رام الطبية في العليا (السعودي السويسري سابقا) - الخبر حي المغربيه شارع الملك عبدالله" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات رام لطب الأسنان - الخبر شارع الظهران تقاطع شارع حمود فوق بنك الراجحي العقربية" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات رفاء الطبي - الخبر Al Kurnaish" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات شام لطب الأسنان - الخبر الحزام الأخضر" },
+        { class: "B+", city: "الخبر", name: "مجمع عيادات شفاء الخبر - الخبر Al khobar" },
+        { class: "B+", city: "الخبر", name: "مجمع قمة الصحه الطبي - الخبر الخبر - الامير تركي - الكورنيش" },
+        { class: "B+", city: "الخبر", name: "مجمع مجال الأسنان الطبي - الخبر  Alaqrabiyah Dis" },
+        { class: "B+", city: "الخبر", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر qurtoba" },
+        { class: "B+", city: "الخبر", name: "مركز الاستشاريون للاشعه - الخبر KHOBAR KHABAR AL GANOBIAH" },
+        { class: "B+", city: "الخبر", name: "مركز العلاج المتقدم الطبي - الخبر Golden Belt Dist." },
+        { class: "B+", city: "الخبر", name: "مركز العناية بالجمال لطب الأسنان والجلدية -  الخبر AL-RAKAH DISTRICT" },
+        { class: "B+", city: "الخبر", name: "مركز الموسى الصحي - الخبر BUHAIRA" },
+        { class: "B+", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير)- الخبر حي العليا - مقابل مجمع الظهران جيان - شارع المطار سابقاً" },
+        { class: "B+", city: "الخبر", name: "مستشفى المانع - الخبر Prince Talal Street  behined  Sefway Market" },
+        { class: "B+", city: "الخبر", name: "مستشفى المواساة - الخبر AL OROUJ DISTRICT" },
+        { class: "B+", city: "الخبر", name: "مستشفى اليوسف - الخبر al beouniah al mobaraz street" },
+        { class: "B+", city: "الخبر", name: "مستشفى جاما - الخبر Khobar - Dammam & Khobar Haiyway Road" },
+        { class: "B+", city: "الخبر", name: "مستشفى شركة السلام للخدمات الطبية-الخبر alrakah south" },
+        { class: "B+", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر Khobar - Al Baewniah Area  Al Dhahran Street" },
+        { class: "B+", city: "الخبر", name: "مستوصف الخبر التعاوني - الخبر Khobar - Al Agrbiah area  42  Street" },
+        // B+ - الدمام
+        { class: "B+", city: "الدمام", name: "مجمع شركة الفارابي الطبي-  بالدمام Dammam 1st Industrial City" },
+        { class: "B+", city: "الدمام", name: "مركز إرادة للتأهيل الطبي - الفيصلية - الدمام ALFAISALIYAH DAMMAM" },
+        { class: "B+", city: "الدمام", name: "البشاوري للنظارات- الدمام DAMMAM-STREET 11- DAWASER" },
+        { class: "B+", city: "الدمام", name: "شركة الرعاية المستقبلية بالدمام Al Khaldiyah Dist." },
+        { class: "B+", city: "الدمام", name: "شركة دياليز الطبي - الدمام Ash Shati Ash Sharqi Dist." },
+        { class: "B+", city: "الدمام", name: "شركة عيادات رام الطبية - المزروعية - الدمام ALMAZROIA" },
+        { class: "B+", city: "الدمام", name: "شركة مركز طب الاسنان الحديث - الدمام Guranatah Dis" },
+        { class: "B+", city: "الدمام", name: "عيادات رام الطبية - الفاخرية - الدمام Sholaa Dist." },
+        { class: "B+", city: "الدمام", name: "فرع مجمع الامتياز الطبي - الدمام First Industrial Area" },
+        { class: "B+", city: "الدمام", name: "مجمع ابن سينا لطب الاسنان - الدمام - الراكة DAMMAM - ALRAKA DIST" },
+        { class: "B+", city: "الدمام", name: "مجمع الأحمدي الطبي - الدمام DAMMAM - KING FAHAD St. -AHAD" },
+        { class: "B+", city: "الدمام", name: "مجمع التاسعة الجديد الطبي - الدمام Dammam - Al Mohammadiah" },
+        { class: "B+", city: "الدمام", name: "مجمع الحصن المنيع الطبي - الدمام Dammam - King Fahad Dist" },
+        { class: "B+", city: "الدمام", name: "مجمع الروضة الأهلي - الدمام Al Tebaishi Area" },
+        { class: "B+", city: "الدمام", name: "مجمع السيف الطبي - الدمام الدمام - شارع الامير نايف" },
+        { class: "B+", city: "الدمام", name: "مجمع الصحة والحياة الطبي - الدمام Bader District" },
+        { class: "B+", city: "الدمام", name: "مجمع الكحال الطبي - الدمام حي المباركية - شارع ابو هريرة اتجاه جزيرة المرجان" },
+        { class: "B+", city: "الدمام", name: "مجمع المركز الكندي الطبي - الدمام مخطط ( 71 ) شارع الضغط العالي" },
+        { class: "B+", city: "الدمام", name: "مجمع بدر الربيع الطبي - الدمام Ar Rabi" },
+        { class: "B+", city: "الدمام", name: "مجمع رويال الطبي - الدمام حي الروضة" },
+        { class: "B+", city: "الدمام", name: "مجمع ريسبونس بلس الطبي - الدمام Al Nuzha Dist." },
+        { class: "B+", city: "الدمام", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام الدمام" },
+        { class: "B+", city: "الدمام", name: "مجمع شركة اجياد للخدمات الطبية المحدودة حي الطبيشي شارع الملك فيصل- الدمام" },
+        { class: "B+", city: "الدمام", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام DAMMAM 1ST INDUSTRIAL CITY - DAMMAM" },
+        { class: "B+", city: "الدمام", name: "مجمع صحة الرعاية الطبي - الدمام Alsoug" },
+        { class: "B+", city: "الدمام", name: "مجمع عالم رام الطبي - الدمام AL FAYSALYAH DISTRCIT" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات أهالينا لطب الأسنان - الدمام حي الزهور - الشارع 18 ( الخزان )" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات التقوى الطبي العام - الدمام حي السلام" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات الدمام الأهلي - الدمام Bursheed Area" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات الرأي الطبي - الدمام Badr" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات العلاج التخصصي لطب الأسنان - الدمام Alamazroeyah Dis" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات د.أمجد الحقيل -الدمام ALRAYAN DISTRICT" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات رام الطبي وتقويم الآسنان 2 - الدمام Dammam" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات رام الطبيه - ابو بكر - الدمام Almanar Dist." },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان - الدمام DAMMAM" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان 3- الدمام AL-BOHAYRAH DISTRICT" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات زهرة العبير الطبي - الدمام حي الخليج" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات شام لطب الأسنان - الدمام (العزيزية) حي العزيزية" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات شام لطب و تقويم الأسنان - بالدمام ( الريان) حي الريان" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام حي الخليج - شارع الملك سعود" },
+        { class: "B+", city: "الدمام", name: "مجمع عيادات شفاء الدمام الطبي - الدمام Al Athir Dammam" },
+        { class: "B+", city: "الدمام", name: "مجمع فجر الدمام الطبي (2) - الدمام الشرقية - شارع الامام محمد بن عبدالوهاب -الفاخريه-الدمام" },
+        { class: "B+", city: "الدمام", name: "مجمع فجر الدمام الطبي - الدمام Gharnata Area ( Mukattatt 75 ) - King Khalid Bin Abdulaziz St." },
+        { class: "B+", city: "الدمام", name: "مجمع لاما الطبي - الدمام  حي الفيصلية- شارع أبو بكر الصديق" },
+        { class: "B+", city: "الدمام", name: "مجموعة دار العافية الطبية - الدمام  Aljoharah Dist" },
+        { class: "B+", city: "الدمام", name: "مراكز ابن سينا لطب الأسنان - الدمام Al Fanateer" },
+        { class: "B+", city: "الدمام", name: "مركز أشعة الدمام - الدمام Dammam" },
+        { class: "B+", city: "الدمام", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام AL-JAMMEN DISTRICT- DAMMAM" },
+        { class: "B+", city: "الدمام", name: "مركز إرادة للتأهيل الطبي - المنتزه - الدمام Almuntazah Dammam" },
+        { class: "B+", city: "الدمام", name: "مركز إصرار للعلاج الطبيعي والتأهيل – الدمام Prince Muhammed bin Saud" },
+        { class: "B+", city: "الدمام", name: "مركز العلاج الطبيعي الأول الطبي - الدمام حي النزهه - الدمام" },
+        { class: "B+", city: "الدمام", name: "مركز دوالي الطبي - الدمام DAMMAM - AL MAZRUIYAH" },
+        { class: "B+", city: "الدمام", name: "مستشفى السعودي الألماني – الدمام Dahiat King Fahad District" },
+        { class: "B+", city: "الدمام", name: "مستشفى المانع - الدمام Abdullah Fouad Area" },
+        { class: "B+", city: "الدمام", name: "مستشفى المانع الطبي - الدمام - العزيزية DAMMAM  - AL AZIZYAH" },
+        { class: "B+", city: "الدمام", name: "مستشفى المواساة - الدمام Mukattatt 71" },
+        { class: "B+", city: "الدمام", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام المريكبات" },
+        { class: "B+", city: "الدمام", name: "مستشفى تداوي العام - الدمام Al Mazroueiah Area  Behined Sheraton Hotel" },
+        { class: "B+", city: "الدمام", name: "مستشفى د. خالد محمد الرحيمي - الدمام East" },
+        { class: "B+", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام Dammam Zone 71" },
+        { class: "B+", city: "الدمام", name: "مستوصف المانع - الدمام Seconud Industrieal Area" },
+        { class: "B+", city: "الدمام", name: "مستوصف دار الحكمة - الدمام Alsifaa" },
+        { class: "B+", city: "الدمام", name: "مستوصف دارالصحة - الدمام Az Zuhur" },
+        { class: "B+", city: "الدمام", name: "مستوصف صفا الدمام الطبي - الدمام Alodamah District" },
+        { class: "B+", city: "الدمام", name: "مسشتفى الروضة العام - الدمام Altobaishi" },
+        { class: "B+", city: "الدمام", name: "نظارات الكحال - الدمام Al Hamra Area" },
+        // C - الخبر
+        { class: "C", city: "الخبر", name: "صيدليات الدواء حي العقربية شارع 25" },
+        { class: "C", city: "الخبر", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر Al Rakah Al Janoubiyah" },
+        { class: "C", city: "الخبر", name: "با دغيش للبصريات - الخبر Khobar - King fahad Street  Beside National Coercail Bank" },
+        { class: "C", city: "الخبر", name: "شركة العدسات المبتكرة المحدودة ( ايوا ) Khobar - Al Hizam Al Thahaby" },
+        { class: "C", city: "الخبر", name: "شركة عرب تون الطبية الحزام الأخضر" },
+        { class: "C", city: "الخبر", name: "شركة مستشفى دار السلامة الطبي - الخبر The Nourth Khobar  Prince Mansour Street" },
+        { class: "C", city: "الخبر", name: "مجمع اطباء الخليج الطبي - الخبر Al Kobar - Al Shera" },
+        { class: "C", city: "الخبر", name: "مجمع الجزيرة الطبي - الثقبة - الخبر Al Thoqbah Riyadh Street" },
+        { class: "C", city: "الخبر", name: "مجمع الرعاية الحديثة الطبي - الخبر Khobar - Al Jisr Dist" },
+        { class: "C", city: "الخبر", name: "مجمع الهلال الفضي - الثقبة Al Thoqbah -Al Khobar - Al Elaa- Badr Street" },
+        { class: "C", city: "الخبر", name: "مجمع درة الخزامى الطبي العام - الخبر Al Khozama Dis" },
+        { class: "C", city: "الخبر", name: "مجمع طب الاسنان الحديث - بالخبر Alkkhobar Alsamaliyah" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان - الخبر مدينة العمال" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات المغربي بالخبر مخطط 71" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات النخبة التخصصية -الخبر Alyarmook District" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات بسمات لطب الأسنان  - الخبر حي الراكة - شارع محلي" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات جبل رام لطب الأسنان - الخبر شارع الأمير فيصل بن فهد- حيالخبر الشمالية" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات دار رام اسنان - الخبر حي العقربية" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات رام الطبية - العزيزية - الخبر Al Khuzama Dist." },
+        { class: "C", city: "الخبر", name: "مجمع عيادات رام الطبية في العليا (السعودي السويسري سابقا) - الخبر حي المغربيه شارع الملك عبدالله" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات رام لطب الأسنان - الخبر شارع الظهران تقاطع شارع حمود فوق بنك الراجحي العقربية" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات رفاء الطبي - الخبر Al Kurnaish" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات شام لطب الأسنان - الخبر الحزام الأخضر" },
+        { class: "C", city: "الخبر", name: "مجمع عيادات شفاء الخبر - الخبر Al khobar" },
+        { class: "C", city: "الخبر", name: "مجمع قمة الصحه الطبي - الخبر الخبر - الامير تركي - الكورنيش" },
+        { class: "C", city: "الخبر", name: "مجمع مجال الأسنان الطبي - الخبر  Alaqrabiyah Dis" },
+        { class: "C", city: "الخبر", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر qurtoba" },
+        { class: "C", city: "الخبر", name: "مركز الاستشاريون للاشعه - الخبر KHOBAR KHABAR AL GANOBIAH" },
+        { class: "C", city: "الخبر", name: "مركز العلاج المتقدم الطبي - الخبر Golden Belt Dist." },
+        { class: "C", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير)- الخبر حي العليا - مقابل مجمع الظهران جيان - شارع المطار سابقاً" },
+        { class: "C", city: "الخبر", name: "مستشفى اليوسف - الخبر al beouniah al mobaraz street" },
+        { class: "C", city: "الخبر", name: "مستشفى جاما - الخبر Khobar - Dammam & Khobar Haiyway Road" },
+        { class: "C", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر Khobar - Al Baewniah Area  Al Dhahran Street" },
+        // C - الدمام
+        { class: "C", city: "الدمام", name: "مجمع شركة الفارابي الطبي-  بالدمام Dammam 1st Industrial City" },
+        { class: "C", city: "الدمام", name: "البشاوري للنظارات- الدمام DAMMAM-STREET 11- DAWASER" },
+        { class: "C", city: "الدمام", name: "شركة دياليز الطبي - الدمام Ash Shati Ash Sharqi Dist." },
+        { class: "C", city: "الدمام", name: "شركة عيادات رام الطبية - المزروعية - الدمام ALMAZROIA" },
+        { class: "C", city: "الدمام", name: "عيادات رام الطبية - الفاخرية - الدمام Sholaa Dist." },
+        { class: "C", city: "الدمام", name: "فرع مجمع الامتياز الطبي - الدمام First Industrial Area" },
+        { class: "C", city: "الدمام", name: "مجمع الأحمدي الطبي - الدمام DAMMAM - KING FAHAD St. -AHAD" },
+        { class: "C", city: "الدمام", name: "مجمع التاسعة الجديد الطبي - الدمام Dammam - Al Mohammadiah" },
+        { class: "C", city: "الدمام", name: "مجمع الحصن المنيع الطبي - الدمام Dammam - King Fahad Dist" },
+        { class: "C", city: "الدمام", name: "مجمع الروضة الأهلي - الدمام Al Tebaishi Area" },
+        { class: "C", city: "الدمام", name: "مجمع السيف الطبي - الدمام الدمام - شارع الامير نايف" },
+        { class: "C", city: "الدمام", name: "مجمع الصحة والحياة الطبي - الدمام Bader District" },
+        { class: "C", city: "الدمام", name: "مجمع الكحال الطبي - الدمام حي المباركية - شارع ابو هريرة اتجاه جزيرة المرجان" },
+        { class: "C", city: "الدمام", name: "مجمع المركز الكندي الطبي - الدمام مخطط ( 71 ) شارع الضغط العالي" },
+        { class: "C", city: "الدمام", name: "مجمع بدر الربيع الطبي - الدمام Ar Rabi" },
+        { class: "C", city: "الدمام", name: "مجمع ريسبونس بلس الطبي - الدمام Al Nuzha Dist." },
+        { class: "C", city: "الدمام", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام الدمام" },
+        { class: "C", city: "الدمام", name: "مجمع شركة اجياد للخدمات الطبية المحدودة حي الطبيشي شارع الملك فيصل- الدمام" },
+        { class: "C", city: "الدمام", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام DAMMAM 1ST INDUSTRIAL CITY - DAMMAM" },
+        { class: "C", city: "الدمام", name: "مجمع صحة الرعاية الطبي - الدمام Alsoug" },
+        { class: "C", city: "الدمام", name: "مجمع عالم رام الطبي - الدمام AL FAYSALYAH DISTRCIT" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات التقوى الطبي العام - الدمام حي السلام" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات الدمام الأهلي - الدمام Bursheed Area" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات الرأي الطبي - الدمام Badr" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات رام الطبي وتقويم الآسنان 2 - الدمام Dammam" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات رام الطبيه - ابو بكر - الدمام Almanar Dist." },
+        { class: "C", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان - الدمام DAMMAM" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات رام لطب الأسنان 3- الدمام AL-BOHAYRAH DISTRICT" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات زهرة العبير الطبي - الدمام حي الخليج" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام حي الخليج - شارع الملك سعود" },
+        { class: "C", city: "الدمام", name: "مجمع عيادات شفاء الدمام الطبي - الدمام Al Athir Dammam" },
+        { class: "C", city: "الدمام", name: "مجمع فجر الدمام الطبي (2) - الدمام الشرقية - شارع الامام محمد بن عبدالوهاب -الفاخريه-الدمام" },
+        { class: "C", city: "الدمام", name: "مجمع فجر الدمام الطبي - الدمام Gharnata Area ( Mukattatt 75 ) - King Khalid Bin Abdulaziz St." },
+        { class: "C", city: "الدمام", name: "مجموعة دار العافية الطبية - الدمام  Aljoharah Dist" },
+        { class: "C", city: "الدمام", name: "مراكز ابن سينا لطب الأسنان - الدمام Al Fanateer" },
+        { class: "C", city: "الدمام", name: "مركز أشعة الدمام - الدمام Dammam" },
+        { class: "C", city: "الدمام", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام AL-JAMMEN DISTRICT- DAMMAM" },
+        { class: "C", city: "الدمام", name: "مركز إصرار للعلاج الطبيعي والتأهيل – الدمام Prince Muhammed bin Saud" },
+        { class: "C", city: "الدمام", name: "مركز العلاج الطبيعي الأول الطبي - الدمام حي النزهه - الدمام" },
+        { class: "C", city: "الدمام", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام المريكبات" },
+        { class: "C", city: "الدمام", name: "مستشفى تداوي العام - الدمام Al Mazroueiah Area  Behined Sheraton Hotel" },
+        { class: "C", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام Dammam Zone 71" },
+        { class: "C", city: "الدمام", name: "مستوصف المانع - الدمام Seconud Industrieal Area" },
+        { class: "C", city: "الدمام", name: "مستوصف دار الحكمة - الدمام Alsifaa" },
+        { class: "C", city: "الدمام", name: "مستوصف دارالصحة - الدمام Az Zuhur" },
+        { class: "C", city: "الدمام", name: "مستوصف صفا الدمام الطبي - الدمام Alodamah District" },
+        { class: "C", city: "الدمام", name: "مسشتفى الروضة العام - الدمام Altobaishi" },
+        { class: "C", city: "الدمام", name: "نظارات الكحال - الدمام Al Hamra Area" },
+        // C-R - الخبر
+        { class: "C-R", city: "الخبر", name: "صيدليات الدواء حي العقربية شارع 25" },
+        { class: "C-R", city: "الخبر", name: "با دغيش للبصريات - الخبر Khobar - King fahad Street  Beside National Coercail Bank" },
+        { class: "C-R", city: "الخبر", name: "مجمع الهلال الفضي - الثقبة Al Thoqbah -Al Khobar - Al Elaa- Badr Street" },
+        { class: "C-R", city: "الخبر", name: "مجمع عيادات رفاء الطبي - الخبر Al Kurnaish" },
+        { class: "C-R", city: "الخبر", name: "مجمع عيادات شفاء الخبر - الخبر Al khobar" },
+        { class: "C-R", city: "الخبر", name: "مجمع قمة الصحه الطبي - الخبر الخبر - الامير تركي - الكورنيش" },
+        // C-R - الدمام
+        { class: "C-R", city: "الدمام", name: "البشاوري للنظارات- الدمام DAMMAM-STREET 11- DAWASER" },
+        { class: "C-R", city: "الدمام", name: "مجمع الصحة والحياة الطبي - الدمام Bader District" },
+        { class: "C-R", city: "الدمام", name: "مجمع المركز الكندي الطبي - الدمام مخطط ( 71 ) شارع الضغط العالي" },
+        { class: "C-R", city: "الدمام", name: "مجمع بدر الربيع الطبي - الدمام Ar Rabi" },
+        { class: "C-R", city: "الدمام", name: "مجمع شركة اجياد للخدمات الطبية المحدودة حي الطبيشي شارع الملك فيصل- الدمام" },
+        { class: "C-R", city: "الدمام", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام DAMMAM 1ST INDUSTRIAL CITY - DAMMAM" },
+        { class: "C-R", city: "الدمام", name: "مجمع عيادات التقوى الطبي العام - الدمام حي السلام" },
+        { class: "C-R", city: "الدمام", name: "مجمع عيادات الرأي الطبي - الدمام Badr" },
+        { class: "C-R", city: "الدمام", name: "مجمع عيادات زهرة العبير الطبي - الدمام حي الخليج" },
+        { class: "C-R", city: "الدمام", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام حي الخليج - شارع الملك سعود" },
+        { class: "C-R", city: "الدمام", name: "مجمع عيادات شفاء الدمام الطبي - الدمام Al Athir Dammam" },
+        { class: "C-R", city: "الدمام", name: "مجمع فجر الدمام الطبي - الدمام Gharnata Area ( Mukattatt 75 ) - King Khalid Bin Abdulaziz St." },
+        { class: "C-R", city: "الدمام", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام المريكبات" },
+        { class: "C-R", city: "الدمام", name: "مستوصف دارالصحة - الدمام Az Zuhur" },
+        { class: "C-R", city: "الدمام", name: "مستوصف صفا الدمام الطبي - الدمام Alodamah District" },
+        // C1 - الخبر
+        { class: "C1", city: "الخبر", name: "صيدليات الدواء حي العقربية شارع 25" },
+        { class: "C1", city: "الخبر", name: "با دغيش للبصريات - الخبر Khobar - King fahad Street  Beside National Coercail Bank" },
+        { class: "C1", city: "الخبر", name: "مجمع الجزيرة الطبي - الثقبة - الخبر Al Thoqbah Riyadh Street" },
+        { class: "C1", city: "الخبر", name: "مجمع الهلال الفضي - الثقبة Al Thoqbah -Al Khobar - Al Elaa- Badr Street" },
+        { class: "C1", city: "الخبر", name: "مجمع درة الخزامى الطبي العام - الخبر Al Khozama Dis" },
+        { class: "C1", city: "الخبر", name: "مجمع طب الاسنان الحديث - بالخبر Alkkhobar Alsamaliyah" },
+        { class: "C1", city: "الخبر", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان - الخبر مدينة العمال" },
+        { class: "C1", city: "الخبر", name: "مجمع عيادات المغربي بالخبر مخطط 71" },
+        { class: "C1", city: "الخبر", name: "مجمع عيادات النخبة التخصصية -الخبر Alyarmook District" },
+        { class: "C1", city: "الخبر", name: "مجمع عيادات رفاء الطبي - الخبر Al Kurnaish" },
+        { class: "C1", city: "الخبر", name: "مجمع عيادات شفاء الخبر - الخبر Al khobar" },
+        { class: "C1", city: "الخبر", name: "مجمع قمة الصحه الطبي - الخبر الخبر - الامير تركي - الكورنيش" },
+        { class: "C1", city: "الخبر", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر qurtoba" },
+        { class: "C1", city: "الخبر", name: "مركز الاستشاريون للاشعه - الخبر KHOBAR KHABAR AL GANOBIAH" },
+        { class: "C1", city: "الخبر", name: "مستشفى اليوسف - الخبر al beouniah al mobaraz street" },
+        { class: "C1", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر Khobar - Al Baewniah Area  Al Dhahran Street" },
+        // C1 - الدمام
+        { class: "C1", city: "الدمام", name: "مجمع شركة الفارابي الطبي-  بالدمام Dammam 1st Industrial City" },
+        { class: "C1", city: "الدمام", name: "البشاوري للنظارات- الدمام DAMMAM-STREET 11- DAWASER" },
+        { class: "C1", city: "الدمام", name: "شركة دياليز الطبي - الدمام Ash Shati Ash Sharqi Dist." },
+        { class: "C1", city: "الدمام", name: "مجمع الروضة الأهلي - الدمام Al Tebaishi Area" },
+        { class: "C1", city: "الدمام", name: "مجمع السيف الطبي - الدمام الدمام - شارع الامير نايف" },
+        { class: "C1", city: "الدمام", name: "مجمع الصحة والحياة الطبي - الدمام Bader District" },
+        { class: "C1", city: "الدمام", name: "مجمع الكحال الطبي - الدمام حي المباركية - شارع ابو هريرة اتجاه جزيرة المرجان" },
+        { class: "C1", city: "الدمام", name: "مجمع المركز الكندي الطبي - الدمام مخطط ( 71 ) شارع الضغط العالي" },
+        { class: "C1", city: "الدمام", name: "مجمع بدر الربيع الطبي - الدمام Ar Rabi" },
+        { class: "C1", city: "الدمام", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام الدمام" },
+        { class: "C1", city: "الدمام", name: "مجمع شركة اجياد للخدمات الطبية المحدودة حي الطبيشي شارع الملك فيصل- الدمام" },
+        { class: "C1", city: "الدمام", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام DAMMAM 1ST INDUSTRIAL CITY - DAMMAM" },
+        { class: "C1", city: "الدمام", name: "مجمع صحة الرعاية الطبي - الدمام Alsoug" },
+        { class: "C1", city: "الدمام", name: "مجمع عيادات التقوى الطبي العام - الدمام حي السلام" },
+        { class: "C1", city: "الدمام", name: "مجمع عيادات الدمام الأهلي - الدمام Bursheed Area" },
+        { class: "C1", city: "الدمام", name: "مجمع عيادات الرأي الطبي - الدمام Badr" },
+        { class: "C1", city: "الدمام", name: "مجمع عيادات زهرة العبير الطبي - الدمام حي الخليج" },
+        { class: "C1", city: "الدمام", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام حي الخليج - شارع الملك سعود" },
+        { class: "C1", city: "الدمام", name: "مجمع عيادات شفاء الدمام الطبي - الدمام Al Athir Dammam" },
+        { class: "C1", city: "الدمام", name: "مجمع فجر الدمام الطبي (2) - الدمام الشرقية - شارع الامام محمد بن عبدالوهاب -الفاخريه-الدمام" },
+        { class: "C1", city: "الدمام", name: "مجمع فجر الدمام الطبي - الدمام Gharnata Area ( Mukattatt 75 ) - King Khalid Bin Abdulaziz St." },
+        { class: "C1", city: "الدمام", name: "مركز أشعة الدمام - الدمام Dammam" },
+        { class: "C1", city: "الدمام", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام AL-JAMMEN DISTRICT- DAMMAM" },
+        { class: "C1", city: "الدمام", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام المريكبات" },
+        { class: "C1", city: "الدمام", name: "مستشفى تداوي العام - الدمام Al Mazroueiah Area  Behined Sheraton Hotel" },
+        { class: "C1", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام Dammam Zone 71" },
+        { class: "C1", city: "الدمام", name: "مستوصف المانع - الدمام Seconud Industrieal Area" },
+        { class: "C1", city: "الدمام", name: "مستوصف دارالصحة - الدمام Az Zuhur" },
+        { class: "C1", city: "الدمام", name: "مستوصف صفا الدمام الطبي - الدمام Alodamah District" },
+        { class: "C1", city: "الدمام", name: "نظارات الكحال - الدمام Al Hamra Area" },
+        // VIP - الرياض
+        { class: "VIP", city: "الرياض", name: "الاستشاريون لطب العيون - الرياض (الفلاح) Al Falah District" },
+        { class: "VIP", city: "الرياض", name: "المها للبصريات السلي- الحمراء" },
+        { class: "VIP", city: "الرياض", name: "د. سليمان الحبيب المركز الطبي - النرجس - الرياض An Narjis" },
+        { class: "VIP", city: "الرياض", name: "شركة ابتسامتك لطب وتقويم الأسنان - الرياض RIYADH - Al Naseem Osamah Bin Zeed Street" },
+        { class: "VIP", city: "الرياض", name: "شركة اشراقة الابتسامه لطب الاسنان - الرياض شارع التخصصي الفرعي العليا" },
+        { class: "VIP", city: "الرياض", name: "مجمع أسرة المجد الطبي - الرياض حي السويدي الغربي، شارع حمزة بن عبد المطلب" },
+        { class: "VIP", city: "الرياض", name: "مجمع عيادات سند الجزيرة الطبي - الرياض Mahdea Dist" },
+        { class: "VIP", city: "الرياض", name: "مجمع قمة الطب الطبية - الرياض DHARAT LABAN RIYADH" },
+        { class: "VIP", city: "الرياض", name: "مركز الامير سلطان لمعالجة أمراض وجراحة القلب (وزارة الدفاع)- الرياض حي السليمانية" },
+        { class: "VIP", city: "الرياض", name: "مستشفى المركز التخصصي الطبي - العليا - الرياض Olaya King Fahad Road" },
+        { class: "VIP", city: "الرياض", name: "مستشفى الملك فيصل التخصصي ومركز الأبحاث - الرياض RIYADH-TAKHASUSI" },
+        { class: "VIP", city: "الرياض", name: "مستشفى الدكتور سليمان الحبيب - التخصصي - الرياض Riyadh Al Rahmanya Area" },
+        { class: "VIP", city: "الرياض", name: "مستشفى الدكتور سليمان الحبيب - الريان - الرياض" },
+        { class: "VIP", city: "الرياض", name: "مستشفى المملكة - الرياض Moursalat At the end of King Abdulaziz Street" },
+        { class: "VIP", city: "الرياض", name: "مدينة الأمير سلطان الطبية العسكرية - الرياض RIYADH - SILYIMANYAH" },
+        // A - الرياض (sample)
+        { class: "A", city: "الرياض", name: "الاستشاريون لطب العيون - الرياض (الفلاح) Al Falah District" },
+        { class: "A", city: "الرياض", name: "د. سليمان الحبيب المركز الطبي - النرجس - الرياض An Narjis" },
+        { class: "A", city: "الرياض", name: "مستشفى المركز التخصصي الطبي - العليا - الرياض Olaya King Fahad Road" },
+        { class: "A", city: "الرياض", name: "مستشفى الحمادي - السويدي - الرياض Alswaidi District" },
+        { class: "A", city: "الرياض", name: "مستشفى دلة - الرياض (نمار) NAMAR DISTRICT" },
+        { class: "A", city: "الرياض", name: "مستشفى المملكة - الرياض" },
+        { class: "A", city: "الرياض", name: "مستشفى السعودي الالماني - الرياض Al Sahafah District" },
+        { class: "A", city: "الرياض", name: "مستشفى المواساة - الرياض Ghoirnata Area" },
+        { class: "A", city: "الرياض", name: "مستشفى رعاية الرياض - الرياض" },
+        // B - الرياض (sample)
+        { class: "B", city: "الرياض", name: "مستشفى الحياة الوطني - الرياض AL RABWAH RIYADH" },
+        { class: "B", city: "الرياض", name: "مستشفى دار الشفا - الرياض Al Khazan" },
+        { class: "B", city: "الرياض", name: "مستشفى الفلاح الدولي - الرياض Ghubairah" },
+        { class: "B", city: "الرياض", name: "مستشفى عبيد التخصصي – الرياض Malaz" },
+        // B+ - الرياض (sample)
+        { class: "B+", city: "الرياض", name: "مستشفى الحمادي- الرياض (النزهة) RIYADH-AL NUZHA DISTRICT" },
+        { class: "B+", city: "الرياض", name: "مستشفى المركز التخصصي الطبي (2) - الرياض" },
+        { class: "B+", city: "الرياض", name: "مستشفى دلة - الرياض (نمار) NAMAR DISTRICT" },
+        // C - الرياض (sample)
+        { class: "C", city: "الرياض", name: "مستشفى الآزهار الطبي - الرياض ANASIM AL SHARQI RIYADH" },
+        { class: "C", city: "الرياض", name: "مستشفى رابية الطبي - الرياض AL ESKAN RIYAH" },
+        // C1 - الرياض (sample)
+        { class: "C1", city: "الرياض", name: "مستشفى أستر سند للرعاية الطبية - الرياض AL HAMRAA RIYADH" },
+        { class: "C1", city: "الرياض", name: "مستشفى صحة السلام الطبي - الرياض Alsalam District" },
+        // C-R - الرياض (sample)
+        { class: "C-R", city: "الرياض", name: "مستشفى عناية العائلة - الرياض الندوة" },
+        { class: "C-R", city: "الرياض", name: "مستشفى مغربي للعيون والأسنان - الرياض AL MOHAMMADIYAH RIYADH" }
     ];
 
     // ==================== FUNCTIONS ====================
-    const cardsGrid = document.getElementById('cardsGrid');
-    const searchInput = document.getElementById('searchInput');
-    const filterButtons = document.getElementById('filterButtons');
-    let currentFilter = 'all';
-
-    function getCardClass(hospitalClass) {
-        switch(hospitalClass) {
-            case 'VIP': return 'card-vip';
-            case 'A': return 'card-a';
-            case 'B': return 'card-b';
-            case 'C': return 'card-c';
-            default: return '';
-        }
-    }
-
-    function getBadgeClass(hospitalClass) {
-        switch(hospitalClass) {
-            case 'VIP': return 'badge-vip';
-            case 'A': return 'badge-a';
-            case 'B': return 'badge-b';
-            case 'C': return 'badge-c';
-            default: return '';
-        }
-    }
-
-    function createCard(hospital) {
-        const card = document.createElement('div');
-        card.className = `hospital-card ${getCardClass(hospital.class)}`;
-        card.setAttribute('data-class', hospital.class);
-        card.setAttribute('data-city', hospital.city);
-        
-        card.innerHTML = `
-            <h3 class="hospital-name">🏥 ${hospital.name}</h3>
-            <div class="hospital-info">
-                <span class="class-badge ${getBadgeClass(hospital.class)}">${hospital.class}</span>
-                <span class="city-tag">📍 ${hospital.city}</span>
+    function createCard(h) {
+        const div = document.createElement('div');
+        div.className = `hospital-card card-${h.class}`;
+        div.setAttribute('data-class', h.class);
+        div.setAttribute('data-city', h.city);
+        const encoded = encodeURIComponent(`${h.name} ${h.city}`);
+        div.innerHTML = `
+            <h3 class="hospital-name">🏥 ${h.name}</h3>
+            <div class="hospital-meta">
+                <span class="class-badge badge-${h.class}">${h.class}</span>
+                <span class="city-tag">📍 ${h.city}</span>
             </div>
-            <div class="card-footer">
-                <span>🟢 متاح</span>
-                <span>التعاونية</span>
-            </div>
+            <a href="https://www.google.com/maps/search/${encoded}" target="_blank" class="map-link">
+                🗺️ فتح الموقع في قوقل ماب
+            </a>
         `;
-        
-        return card;
+        return div;
     }
 
     function renderCards() {
-        cardsGrid.innerHTML = '';
-        
-        const searchQuery = searchInput.value.toLowerCase();
-        
-        let filtered = hospitals.filter(hospital => {
-            // Class filter
-            if (currentFilter !== 'all' && hospital.class !== currentFilter) return false;
-            
-            // Search filter
+        const grid = document.getElementById('cardsGrid');
+        grid.innerHTML = '';
+        const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+        const activeClassBtn = document.querySelector('#classFilters .filter-btn.active');
+        const activeCityBtn = document.querySelector('#cityFilters .filter-btn.active');
+        const classFilter = activeClassBtn ? activeClassBtn.getAttribute('data-filter') : 'all';
+        const cityFilter = activeCityBtn ? activeCityBtn.getAttribute('data-city') : 'all';
+
+        let filtered = hospitals.filter(h => {
+            if (classFilter !== 'all' && h.class !== classFilter) return false;
+            if (cityFilter !== 'all' && h.city !== cityFilter) return false;
             if (searchQuery) {
-                const searchText = `${hospital.name} ${hospital.city} ${hospital.class}`.toLowerCase();
-                if (!searchText.includes(searchQuery)) return false;
+                const txt = `${h.name} ${h.city} ${h.class}`.toLowerCase();
+                if (!txt.includes(searchQuery)) return false;
             }
-            
             return true;
         });
-        
-        // Update stats
-        document.getElementById('vipCount').textContent = hospitals.filter(h => h.class === 'VIP').length;
-        document.getElementById('aCount').textContent = hospitals.filter(h => h.class === 'A').length;
-        document.getElementById('bCount').textContent = hospitals.filter(h => h.class === 'B').length;
-        document.getElementById('cCount').textContent = hospitals.filter(h => h.class === 'C').length;
-        
+
+        // Stats
+        document.getElementById('totalCount').textContent = filtered.length;
+        document.getElementById('vipCount').textContent = filtered.filter(h => h.class === 'VIP').length;
+        document.getElementById('aCount').textContent = filtered.filter(h => h.class === 'A').length;
+        document.getElementById('bCount').textContent = filtered.filter(h => h.class === 'B').length;
+        document.getElementById('bplusCount').textContent = filtered.filter(h => h.class === 'B+').length;
+        document.getElementById('cCount').textContent = filtered.filter(h => h.class === 'C').length;
+        document.getElementById('c1Count').textContent = filtered.filter(h => h.class === 'C1').length;
+        document.getElementById('crCount').textContent = filtered.filter(h => h.class === 'C-R').length;
+
         if (filtered.length === 0) {
-            cardsGrid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة للبحث</div>';
+            grid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة</div>';
         } else {
-            filtered.forEach(hospital => {
-                cardsGrid.appendChild(createCard(hospital));
-            });
+            filtered.forEach(h => grid.appendChild(createCard(h)));
         }
     }
 
-    // ==================== EVENT LISTENERS ====================
-    searchInput.addEventListener('input', () => renderCards());
+    // Event Listeners
+    document.getElementById('searchInput').addEventListener('input', renderCards);
 
-    filterButtons.addEventListener('click', function(e) {
+    document.getElementById('classFilters').addEventListener('click', function(e) {
         if (e.target.classList.contains('filter-btn')) {
-            this.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            this.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            currentFilter = e.target.getAttribute('data-filter');
             renderCards();
         }
     });
 
-    // Initial render
+    document.getElementById('cityFilters').addEventListener('click', function(e) {
+        if (e.target.classList.contains('filter-btn')) {
+            this.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            renderCards();
+        }
+    });
+
+    // Initial
     renderCards();
 </script>
-
 </body>
 </html>
+```
