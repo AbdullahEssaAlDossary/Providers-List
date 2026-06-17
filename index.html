@@ -19,8 +19,8 @@
             --surface: #ffffff;
             --text: #1e293b;
             --text2: #64748b;
-            --radius: 20px;
-            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --shadow: 0 2px 12px rgba(0,0,0,0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,68 +28,40 @@
         body {
             font-family: 'Cairo', sans-serif;
             background: #f1f5f9;
-            background-image: 
-                radial-gradient(ellipse at 20% 20%, rgba(37,99,235,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(124,58,237,0.04) 0%, transparent 50%);
             min-height: 100vh;
-            padding: 16px;
+            padding: 20px;
             color: var(--text);
         }
 
         .container { max-width: 1400px; margin: 0 auto; }
 
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #6366f1 100%);
-            border-radius: 24px;
-            padding: 28px 24px 24px;
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            border-radius: 16px;
+            padding: 24px 20px;
             margin-bottom: 20px;
             text-align: center;
             color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(30,58,138,0.25);
+            box-shadow: 0 8px 24px rgba(30,58,138,0.2);
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -60px; right: -60px;
-            width: 200px; height: 200px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 50%;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -40px; left: -40px;
-            width: 160px; height: 160px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 50%;
-        }
-        .hero-logo {
-            width: 64px; height: 64px;
-            background: white; border-radius: 16px;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 32px; font-weight: 900; color: #1e3a8a;
-            margin-bottom: 12px; position: relative; z-index: 1;
-        }
-        .hero h1 { font-size: 1.8em; font-weight: 800; position: relative; z-index: 1; }
-        .hero p { opacity: 0.9; font-size: 1em; margin-top: 4px; position: relative; z-index: 1; }
+        .header h1 { font-size: 1.6em; font-weight: 800; }
+        .header p { opacity: 0.85; font-size: 0.9em; margin-top: 4px; }
 
-        /* Stats Row */
+        /* Stats */
         .stats {
-            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+            display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
             margin-bottom: 20px;
         }
         .stat {
-            background: white; padding: 12px 16px; border-radius: 14px;
+            background: white; padding: 10px 14px; border-radius: 12px;
             text-align: center; box-shadow: var(--shadow);
-            min-width: 70px; transition: transform 0.2s;
+            min-width: 60px; transition: transform 0.2s;
             border-bottom: 3px solid transparent;
         }
         .stat:hover { transform: translateY(-2px); }
-        .stat .num { font-size: 1.5em; font-weight: 800; display: block; }
-        .stat .lbl { font-size: 0.7em; color: var(--text2); }
+        .stat .num { font-size: 1.4em; font-weight: 800; display: block; }
+        .stat .lbl { font-size: 0.65em; color: var(--text2); }
         .st-vip { border-bottom-color: var(--vip); } .st-vip .num { color: var(--vip); }
         .st-a { border-bottom-color: var(--class-a); } .st-a .num { color: var(--class-a); }
         .st-b { border-bottom-color: var(--class-b); } .st-b .num { color: var(--class-b); }
@@ -101,123 +73,122 @@
 
         /* Controls */
         .controls {
-            background: white; border-radius: var(--radius); padding: 16px 20px;
+            background: white; border-radius: var(--radius); padding: 14px 18px;
             margin-bottom: 20px; box-shadow: var(--shadow); display: flex;
-            flex-wrap: wrap; gap: 12px; align-items: center;
+            flex-wrap: wrap; gap: 10px; align-items: center;
         }
         .search-wrap {
-            flex: 1; min-width: 220px; position: relative;
+            flex: 1; min-width: 200px; position: relative;
         }
         .search-wrap input {
-            width: 100%; padding: 12px 44px 12px 16px; border: 2px solid #e2e8f0;
+            width: 100%; padding: 10px 40px 10px 14px; border: 2px solid #e2e8f0;
             border-radius: 50px; font-family: 'Cairo', sans-serif; font-size: 14px;
             outline: none; transition: all 0.3s; background: #f8fafc;
         }
-        .search-wrap input:focus { border-color: #3b82f6; background: white; box-shadow: 0 0 0 4px rgba(59,130,246,0.1); }
-        .search-wrap .sicon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-        .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
+        .search-wrap input:focus { border-color: #2563eb; background: white; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .search-wrap .sicon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .btn-group { display: flex; gap: 5px; flex-wrap: wrap; }
         .btn {
-            padding: 8px 14px; border: 2px solid #e2e8f0; background: #f8fafc;
+            padding: 7px 12px; border: 2px solid #e2e8f0; background: #f8fafc;
             border-radius: 50px; cursor: pointer; font-family: 'Cairo', sans-serif;
-            font-size: 12px; font-weight: 600; transition: all 0.25s; white-space: nowrap;
+            font-size: 11px; font-weight: 600; transition: all 0.25s; white-space: nowrap;
             color: var(--text2);
         }
-        .btn:hover { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
-        .btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
-        .divider { width: 1px; height: 24px; background: #e2e8f0; margin: 0 6px; }
+        .btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+        .btn.active { background: #2563eb; color: white; border-color: #2563eb; }
+        .divider { width: 1px; height: 20px; background: #e2e8f0; margin: 0 4px; }
 
         /* Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 14px;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 12px;
         }
 
         /* Card */
         .card {
-            background: white; border-radius: 16px; overflow: hidden;
-            box-shadow: var(--shadow); transition: all 0.3s;
+            background: white; border-radius: 14px;
+            box-shadow: var(--shadow); transition: all 0.25s;
             display: flex; flex-direction: column;
             border: 1px solid #f1f5f9;
+            border-right: 5px solid #e2e8f0;
         }
-        .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
 
-        .card-img {
-            height: 100px; display: flex; align-items: center; justify-content: center;
-            font-size: 3em; position: relative;
+        .card-vip { border-right-color: var(--vip); }
+        .card-a { border-right-color: var(--class-a); }
+        .card-b { border-right-color: var(--class-b); }
+        .card-bplus { border-right-color: var(--class-bplus); }
+        .card-c { border-right-color: var(--class-c); }
+        .card-c1 { border-right-color: var(--class-c1); }
+        .card-cr { border-right-color: var(--class-cr); }
+
+        .card-body { padding: 16px 18px; flex: 1; }
+        .card-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 8px; gap: 8px;
         }
-        .img-vip { background: linear-gradient(135deg, #ede9fe, #c4b5fd); }
-        .img-a { background: linear-gradient(135deg, #fff7ed, #fed7aa); }
-        .img-b { background: linear-gradient(135deg, #eff6ff, #bfdbfe); }
-        .img-bplus { background: linear-gradient(135deg, #ecfeff, #a5f3fc); }
-        .img-c { background: linear-gradient(135deg, #f8fafc, #e2e8f0); }
-        .img-c1 { background: linear-gradient(135deg, #f8fafc, #cbd5e1); }
-        .img-cr { background: linear-gradient(135deg, #fafaf9, #d6d3d1); }
-
-        .card-class {
-            position: absolute; top: 10px; left: 10px;
-            padding: 4px 10px; border-radius: 10px; font-size: 0.7em;
-            font-weight: 700; color: white;
-        }
-        .cl-vip { background: var(--vip); }
-        .cl-a { background: var(--class-a); }
-        .cl-b { background: var(--class-b); }
-        .cl-bplus { background: var(--class-bplus); }
-        .cl-c { background: var(--class-c); }
-        .cl-c1 { background: var(--class-c1); }
-        .cl-cr { background: var(--class-cr); }
-
-        .card-body { padding: 14px 16px; flex: 1; }
         .card-title {
             font-size: 0.95em; font-weight: 700; color: var(--text);
-            line-height: 1.5; margin-bottom: 6px; display: -webkit-box;
-            -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.5; flex: 1;
         }
+        .class-badge {
+            padding: 3px 10px; border-radius: 10px; font-size: 0.7em;
+            font-weight: 700; color: white; white-space: nowrap;
+        }
+        .bd-vip { background: var(--vip); }
+        .bd-a { background: var(--class-a); }
+        .bd-b { background: var(--class-b); }
+        .bd-bplus { background: var(--class-bplus); }
+        .bd-c { background: var(--class-c); }
+        .bd-c1 { background: var(--class-c1); }
+        .bd-cr { background: var(--class-cr); }
+
         .card-city {
-            display: inline-flex; align-items: center; gap: 4px;
+            display: inline-flex; align-items: center; gap: 5px;
             font-size: 0.78em; color: var(--text2); margin-bottom: 4px;
+            background: #f8fafc; padding: 4px 10px; border-radius: 8px;
         }
         .card-footer {
-            padding: 10px 16px; border-top: 1px solid #f1f5f9;
+            padding: 10px 18px; border-top: 1px solid #f1f5f9;
             display: flex; gap: 8px;
         }
         .map-btn {
             flex: 1; display: flex; align-items: center; justify-content: center;
-            gap: 6px; padding: 10px; border-radius: 12px;
-            text-decoration: none; font-size: 0.82em; font-weight: 700;
-            transition: all 0.2s; background: #f0fdf4; color: #166534;
-            border: 1px solid #bbf7d0;
+            gap: 6px; padding: 10px; border-radius: 10px;
+            text-decoration: none; font-size: 0.8em; font-weight: 700;
+            transition: all 0.2s; background: #f8fafc; color: #2563eb;
+            border: 1px solid #e2e8f0;
         }
-        .map-btn:hover { background: #dcfce7; border-color: #86efac; }
+        .map-btn:hover { background: #eff6ff; border-color: #bfdbfe; }
 
         .no-res {
-            text-align: center; padding: 60px 20px; color: var(--text2);
+            text-align: center; padding: 50px 20px; color: var(--text2);
             font-size: 1.1em; grid-column: 1 / -1; background: white;
             border-radius: var(--radius); box-shadow: var(--shadow);
         }
-        .no-res .icon { font-size: 4em; display: block; margin-bottom: 12px; }
 
         @media (max-width: 600px) {
             .grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 1.4em; }
-            .btn { padding: 6px 10px; font-size: 11px; }
+            .header h1 { font-size: 1.3em; }
+            .btn { padding: 6px 10px; font-size: 10px; }
             .divider { display: none; }
+            body { padding: 10px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Hero -->
-    <div class="hero">
-        <div class="hero-logo">ت</div>
-        <h1>دليل شبكة مزودي التعاونية الطبي</h1>
+    <!-- Header -->
+    <div class="header">
+        <h1>🏥 دليل شبكة مزودي التعاونية الطبي</h1>
         <p>Tawuniya Insurance - Medical Network Guide</p>
     </div>
 
     <!-- Stats -->
     <div class="stats">
-        <div class="stat st-total"><span class="num" id="totalCount">0</span><span class="lbl">🏥 الكل</span></div>
+        <div class="stat st-total"><span class="num" id="totalCount">0</span><span class="lbl">الكل</span></div>
         <div class="stat st-vip"><span class="num" id="vipCount">0</span><span class="lbl">VIP</span></div>
         <div class="stat st-a"><span class="num" id="aCount">0</span><span class="lbl">A</span></div>
         <div class="stat st-b"><span class="num" id="bCount">0</span><span class="lbl">B</span></div>
@@ -234,7 +205,7 @@
             <span class="sicon"><i class="fas fa-search"></i></span>
         </div>
         <div class="divider"></div>
-        <span style="font-size:12px;font-weight:700;color:#64748b;">الفئة:</span>
+        <span style="font-size:11px;font-weight:700;color:#64748b;">الفئة:</span>
         <div class="btn-group" id="classFilters">
             <button class="btn active" data-filter="all">الكل</button>
             <button class="btn" data-filter="VIP">VIP</button>
@@ -246,7 +217,7 @@
             <button class="btn" data-filter="C-R">C-R</button>
         </div>
         <div class="divider"></div>
-        <span style="font-size:12px;font-weight:700;color:#64748b;">المدينة:</span>
+        <span style="font-size:11px;font-weight:700;color:#64748b;">المدينة:</span>
         <div class="btn-group" id="cityFilters">
             <button class="btn active" data-city="all">الكل</button>
             <button class="btn" data-city="الخبر">الخبر</button>
@@ -267,7 +238,6 @@
         { class: "VIP", city: "الخبر", name: "مستشفى المواساة - الخبر" },
         { class: "VIP", city: "الخبر", name: "مستشفى اليوسف - الخبر" },
         { class: "VIP", city: "الخبر", name: "مستشفى جاما - الخبر" },
-        { class: "VIP", city: "الخبر", name: "مستشفى شركة السلام للخدمات الطبية - الخبر" },
         { class: "VIP", city: "الخبر", name: "مستشفى محمد الدوسري - الخبر" },
         { class: "VIP", city: "الخبر", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر" },
         { class: "VIP", city: "الخبر", name: "د. سليمان الحبيب المركز الطبي - الخبر" },
@@ -278,7 +248,6 @@
         { class: "VIP", city: "الدمام", name: "مستشفى الولادة والأطفال - الدمام" },
         { class: "VIP", city: "الدمام", name: "مستشفى تداوي العام - الدمام" },
         { class: "VIP", city: "الدمام", name: "مستشفى مغربي للعيون والأسنان - الدمام" },
-        { class: "VIP", city: "الدمام", name: "مستشفى د. خالد محمد الرحيمي - الدمام" },
         { class: "VIP", city: "الرياض", name: "مستشفى الملك فيصل التخصصي ومركز الأبحاث - الرياض" },
         { class: "VIP", city: "الرياض", name: "مستشفى الدكتور سليمان الحبيب - التخصصي - الرياض" },
         { class: "VIP", city: "الرياض", name: "مستشفى الدكتور سليمان الحبيب - الريان - الرياض" },
@@ -338,32 +307,27 @@
         { class: "C-R", city: "الرياض", name: "مستشفى مغربي للعيون والأسنان - الرياض" }
     ];
 
-    function getImgClass(c) {
-        const map = { 'VIP': 'img-vip', 'A': 'img-a', 'B': 'img-b', 'B+': 'img-bplus', 'C': 'img-c', 'C1': 'img-c1', 'C-R': 'img-cr' };
-        return map[c] || 'img-c';
+    function getCardClass(c) {
+        const map = { 'VIP': 'card-vip', 'A': 'card-a', 'B': 'card-b', 'B+': 'card-bplus', 'C': 'card-c', 'C1': 'card-c1', 'C-R': 'card-cr' };
+        return map[c] || '';
     }
-    function getClClass(c) {
-        const map = { 'VIP': 'cl-vip', 'A': 'cl-a', 'B': 'cl-b', 'B+': 'cl-bplus', 'C': 'cl-c', 'C1': 'cl-c1', 'C-R': 'cl-cr' };
-        return map[c] || 'cl-c';
-    }
-    function getIcon(c) {
-        const map = { 'VIP': '💎', 'A': '⭐', 'B': '🏥', 'B+': '🏨', 'C': '🩺', 'C1': '💊', 'C-R': '🩹' };
-        return map[c] || '🏥';
+    function getBadgeClass(c) {
+        const map = { 'VIP': 'bd-vip', 'A': 'bd-a', 'B': 'bd-b', 'B+': 'bd-bplus', 'C': 'bd-c', 'C1': 'bd-c1', 'C-R': 'bd-cr' };
+        return map[c] || '';
     }
 
     function createCard(h) {
         const div = document.createElement('div');
-        div.className = 'card';
+        div.className = `card ${getCardClass(h.class)}`;
         div.setAttribute('data-class', h.class);
         div.setAttribute('data-city', h.city);
         const encoded = encodeURIComponent(`${h.name} ${h.city}`);
         div.innerHTML = `
-            <div class="card-img ${getImgClass(h.class)}">
-                <span class="card-class ${getClClass(h.class)}">${h.class}</span>
-                ${getIcon(h.class)}
-            </div>
             <div class="card-body">
-                <h3 class="card-title">${h.name}</h3>
+                <div class="card-header">
+                    <h3 class="card-title">${h.name}</h3>
+                    <span class="class-badge ${getBadgeClass(h.class)}">${h.class}</span>
+                </div>
                 <div class="card-city"><i class="fas fa-map-marker-alt"></i> ${h.city}</div>
             </div>
             <div class="card-footer">
@@ -399,7 +363,7 @@
         document.getElementById('crCount').textContent = f.filter(h => h.class === 'C-R').length;
 
         if (f.length === 0) {
-            grid.innerHTML = `<div class="no-res"><span class="icon">🔍</span>لا توجد نتائج مطابقة</div>`;
+            grid.innerHTML = `<div class="no-res">🔍 لا توجد نتائج مطابقة</div>`;
         } else {
             f.forEach(h => grid.appendChild(createCard(h)));
         }
