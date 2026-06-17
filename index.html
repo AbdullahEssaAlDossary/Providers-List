@@ -3,963 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام إدارة وثائق التأمين الطبي - المستشفيات والفئات</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>دليل المستشفيات والمراكز الطبية</title>
+    <!-- Tailwind CSS لضمان تصميم أنيق ومتجاوب -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        :root {
-            --primary-color: #1a365d;
-            --accent-color: #3182ce;
-            --bg-color: #f7fafc;
-            --card-bg: #ffffff;
-            --text-main: #2d3748;
-            --text-muted: #718096;
-            --success-color: #38a169;
-            --warning-color: #d69e2e;
-            --danger-color: #e53e3e;
-            --tawuniya-color: #2563eb;
-            --saqar-color: #059669;
-            --vip-color: #9b59b6;
-            --class-a-color: #e67e22;
-            --class-b-color: #3498db;
-            --class-c-color: #95a5a6;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-            min-height: 100vh;
-            color: var(--text-main);
-            padding: 20px;
-        }
-
-        .container { max-width: 1600px; margin: 0 auto; }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
-            color: white;
-            padding: 25px 30px;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .header h1 { font-size: 2em; font-weight: 800; margin-bottom: 5px; }
-        .header .date-display {
-            font-size: 1em;
-            opacity: 0.9;
-            background: rgba(255,255,255,0.1);
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 25px;
-        }
-
-        /* Navigation Tabs */
-        .nav-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-tab {
-            padding: 15px 30px;
-            background: white;
-            border: 3px solid #e2e8f0;
-            border-radius: 15px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .nav-tab:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        .nav-tab.active {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.3);
-        }
-
-        .nav-tab .tab-icon { font-size: 1.3em; }
-
-        /* Tab Content */
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        /* Insurance Guide Section */
-        .insurance-guide {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 900px) {
-            .insurance-guide { grid-template-columns: 1fr; }
-        }
-
-        .insurance-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid #e2e8f0;
-        }
-
-        .insurance-card.tawuniya { border-top-color: var(--tawuniya-color); }
-        .insurance-card.saqar { border-top-color: var(--saqar-color); }
-
-        .insurance-header {
-            padding: 20px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .insurance-header.tawuniya { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
-        .insurance-header.saqar { background: linear-gradient(135deg, #065f46, #10b981); }
-
-        .insurance-logo {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            font-weight: 800;
-        }
-
-        .insurance-logo.tawuniya { color: var(--tawuniya-color); }
-        .insurance-logo.saqar { color: var(--saqar-color); }
-
-        .insurance-info h3 { font-size: 1.3em; margin-bottom: 5px; }
-        .insurance-info p { opacity: 0.9; font-size: 0.9em; }
-
-        .hospital-list {
-            padding: 20px;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        .hospital-item {
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            border-radius: 10px;
-            background: #f8fafc;
-            border-right: 4px solid #e2e8f0;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .hospital-item:hover {
-            background: #f0f4f8;
-            border-right-color: var(--accent-color);
-            transform: translateX(-3px);
-        }
-
-        .hospital-name {
-            font-weight: 700;
-            font-size: 1em;
-            color: var(--text-main);
-            margin-bottom: 3px;
-        }
-
-        .hospital-meta {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            font-size: 0.8em;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-
-        .hospital-class {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.75em;
-            color: white;
-        }
-
-        .class-vip { background: var(--vip-color); }
-        .class-a { background: var(--class-a-color); }
-        .class-b { background: var(--class-b-color); }
-        .class-c { background: var(--class-c-color); }
-
-        .class-legend {
-            display: flex;
-            gap: 15px;
-            padding: 15px 20px;
-            background: #f7fafc;
-            border-radius: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .legend-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 4px;
-        }
-
-        /* Search for hospitals */
-        .hospital-search {
-            margin-bottom: 15px;
-        }
-
-        .hospital-search input {
-            width: 100%;
-            padding: 12px 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .hospital-search input:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
-        }
-
-        /* ==================== STATS BAR ==================== */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 18px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s ease;
-            border-right: 4px solid #e2e8f0;
-        }
-
-        .stat-card:hover { transform: translateY(-3px); }
-        .stat-card .stat-icon { font-size: 1.8em; margin-bottom: 8px; }
-        .stat-card .stat-number { font-size: 2.2em; font-weight: 800; display: block; }
-        .stat-card .stat-label { color: var(--text-muted); font-size: 0.85em; margin-top: 3px; }
-
-        .stat-total { border-right-color: var(--accent-color); }
-        .stat-total .stat-number { color: var(--accent-color); }
-        .stat-active { border-right-color: var(--success-color); }
-        .stat-active .stat-number { color: var(--success-color); }
-        .stat-warning { border-right-color: var(--warning-color); }
-        .stat-warning .stat-number { color: var(--warning-color); }
-        .stat-expired { border-right-color: var(--danger-color); }
-        .stat-expired .stat-number { color: var(--danger-color); }
-
-        /* ==================== CONTROLS ==================== */
-        .controls-container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 15px 25px;
-            font-size: 16px;
-            font-family: 'Cairo', sans-serif;
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
-            outline: none;
-            transition: all 0.3s ease;
-            margin-bottom: 15px;
-        }
-
-        .search-box:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
-        }
-
-        .filter-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
-
-        .filter-btn {
-            padding: 10px 18px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .filter-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
-        .filter-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
-        .filter-label { font-weight: 700; color: var(--text-muted); margin-left: 8px; font-size: 13px; }
-
-        /* Sort */
-        .sort-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-            padding-top: 12px;
-            border-top: 2px solid #f7fafc;
-        }
-
-        .sort-btn {
-            padding: 9px 16px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .sort-btn:hover { background: #f7fafc; }
-        .sort-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
-        .sort-btn .sort-icon { font-size: 11px; transition: transform 0.3s ease; }
-        .sort-btn.asc .sort-icon { transform: rotate(0deg); }
-        .sort-btn.desc .sort-icon { transform: rotate(180deg); }
-
-        /* ==================== CARDS ==================== */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 20px;
-        }
-
-        .company-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-right: 5px solid #cbd5e0;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .company-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
-        .card-active { border-right-color: var(--success-color); background: linear-gradient(to left, #f0fff4 0%, #ffffff 30%); }
-        .card-warning { border-right-color: var(--warning-color); background: linear-gradient(to left, #fffff0 0%, #ffffff 30%); }
-        .card-expired { border-right-color: var(--danger-color); background: linear-gradient(to left, #fff5f5 0%, #ffffff 30%); }
-
-        .insurance-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .insurance-tawuniya { background: #dbeafe; color: #1e40af; }
-        .insurance-saqar { background: #d1fae5; color: #065f46; }
-
-        .company-name {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 8px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f7fafc;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-        }
-
-        .company-name-en { font-size: 0.75em; color: var(--text-muted); font-weight: 400; display: block; }
-
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-            font-size: 12px;
-            padding: 3px 0;
-        }
-
-        .data-label { color: var(--text-muted); font-weight: 600; font-size: 11px; }
-        .data-value { font-weight: 700; color: var(--text-main); font-family: 'Courier New', monospace; font-size: 12px; direction: ltr; text-align: right; }
-        .date-value { font-family: 'Cairo', sans-serif; direction: rtl; }
-
-        .status-section { margin-top: 8px; padding-top: 8px; border-top: 2px solid #f7fafc; }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .status-active { background: #c6f6d5; color: #22543d; }
-        .status-warning { background: #fefcbf; color: #744210; }
-        .status-expired { background: #fed7d7; color: #742a2a; }
-
-        .progress-container { margin-top: 6px; }
-        .progress-label { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px; }
-        .progress-bar { height: 5px; background: #edf2f7; border-radius: 3px; overflow: hidden; }
-        .progress-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
-        .progress-active { background: var(--success-color); }
-        .progress-warning { background: var(--warning-color); }
-        .progress-expired { background: var(--danger-color); }
-
-        .branch-count {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: #edf2f7;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .hospital-link-btn {
-            margin-top: 10px;
-            width: 100%;
-            padding: 8px;
-            background: #f0f4f8;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent-color);
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .hospital-link-btn:hover {
-            background: #e2e8f0;
-            color: #1e40af;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 50px;
-            color: var(--text-muted);
-            font-size: 1.1em;
-            grid-column: 1 / -1;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        @media (max-width: 768px) {
-            .cards-grid { grid-template-columns: 1fr; }
-            .stats-container { grid-template-columns: repeat(2, 1fr); }
-            .nav-tab { padding: 12px 20px; font-size: 14px; }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
 
-<div class="container">
-    <!-- Header -->
-    <div class="header">
-        <h1>📋 نظام التأمين الطبي الذكي</h1>
-        <div class="date-display">📅 تاريخ اليوم: <strong id="todayDate"></strong></div>
-    </div>
-
-    <!-- Navigation Tabs -->
-    <div class="nav-tabs">
-        <button class="nav-tab active" data-tab="policies">
-            <span class="tab-icon">📄</span> وثائق التأمين
-        </button>
-        <button class="nav-tab" data-tab="hospitals">
-            <span class="tab-icon">🏥</span> دليل المستشفيات والفئات
-        </button>
-    </div>
-
-    <!-- ==================== TAB 1: POLICIES ==================== -->
-    <div class="tab-content active" id="tab-policies">
-        <!-- Stats -->
-        <div class="stats-container">
-            <div class="stat-card stat-total">
-                <div class="stat-icon">📊</div>
-                <span class="stat-number" id="totalCount">0</span>
-                <span class="stat-label">إجمالي الوثائق</span>
+    <!-- الهيدر -->
+    <header class="bg-blue-600 text-white shadow-lg py-6 px-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold">دليل الشبكة الطبية للتأمين</h1>
+                <p class="text-sm text-blue-100 mt-1">ابحث عن المستشفيات والمجمعات الطبية المعتمدة ومستويات الكلاس</p>
             </div>
-            <div class="stat-card stat-active">
-                <div class="stat-icon">✅</div>
-                <span class="stat-number" id="activeCount">0</span>
-                <span class="stat-label">وثائق سارية</span>
-            </div>
-            <div class="stat-card stat-warning">
-                <div class="stat-icon">⚠️</div>
-                <span class="stat-number" id="warningCount">0</span>
-                <span class="stat-label">قاربت على الانتهاء</span>
-            </div>
-            <div class="stat-card stat-expired">
-                <div class="stat-icon">❌</div>
-                <span class="stat-number" id="expiredCount">0</span>
-                <span class="stat-label">وثائق منتهية</span>
+            <div id="stats" class="bg-blue-700 px-4 py-2 rounded-lg text-sm font-semibold">
+                جاري تحميل البيانات...
             </div>
         </div>
+    </header>
 
-        <!-- Controls -->
-        <div class="controls-container">
-            <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث باسم الشركة، رقم السجل، رقم الوثيقة، أو الرقم الضريبي...">
+    <!-- أدوات البحث والفلترة -->
+    <main class="max-w-6xl mx-auto w-full p-4 flex-grow">
+        <div class="bg-white rounded-xl shadow-sm p-4 md:p-6 mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
             
-            <div class="filter-container">
-                <span class="filter-label">الحالة:</span>
-                <div class="filter-group" id="statusFilters">
-                    <button class="filter-btn active" data-filter="all">📋 الكل</button>
-                    <button class="filter-btn" data-filter="active">✅ سارية</button>
-                    <button class="filter-btn" data-filter="warning">⚠️ تنبيه</button>
-                    <button class="filter-btn" data-filter="expired">❌ منتهية</button>
-                </div>
-                <span class="filter-label" style="margin-right: 15px;">التأمين:</span>
-                <div class="filter-group" id="insuranceFilters">
-                    <button class="filter-btn active" data-insurance="all">🏢 الكل</button>
-                    <button class="filter-btn" data-insurance="Tawuniya">🔵 التعاونية</button>
-                    <button class="filter-btn" data-insurance="Al Saqar">🟢 الصقر</button>
-                </div>
+            <!-- خانة البحث -->
+            <div class="md:col-span-2">
+                <label class="block text-sm font-semibold text-gray-600 mb-1">ابحث باسم المستشفى أو المركز:</label>
+                <input type="text" id="searchInput" placeholder="اكتب اسم المستشفى، نوع المنشأة..." 
+                       class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none text-base">
             </div>
 
-            <div class="sort-container">
-                <span class="filter-label">🔽 ترتيب:</span>
-                <div class="filter-group" id="sortButtons">
-                    <button class="sort-btn active asc" data-sort="expiry">📅 الانتهاء <span class="sort-icon">▲</span></button>
-                    <button class="sort-btn" data-sort="name">📝 الاسم <span class="sort-icon">▲</span></button>
-                    <button class="sort-btn" data-sort="inception">📅 الابتداء <span class="sort-icon">▲</span></button>
-                    <button class="sort-btn" data-sort="daysRemaining">⏳ المتبقي <span class="sort-icon">▲</span></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="cards-grid" id="cardsGrid"></div>
-    </div>
-
-    <!-- ==================== TAB 2: HOSPITALS GUIDE ==================== -->
-    <div class="tab-content" id="tab-hospitals">
-        <!-- Class Legend -->
-        <div class="class-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:#9b59b6;"></div> VIP - فئة مميزة</div>
-            <div class="legend-item"><div class="legend-dot" style="background:#e67e22;"></div> A - فئة أولى</div>
-            <div class="legend-item"><div class="legend-dot" style="background:#3498db;"></div> B - فئة ثانية</div>
-            <div class="legend-item"><div class="legend-dot" style="background:#95a5a6;"></div> C - فئة أساسية</div>
-        </div>
-
-        <!-- Hospital Search -->
-        <div class="hospital-search" style="margin-bottom: 20px;">
-            <input type="text" id="hospitalSearch" class="search-box" placeholder="🔍 ابحث عن مستشفى أو مدينة...">
-        </div>
-
-        <div class="insurance-guide">
-            <!-- Tawuniya Card -->
-            <div class="insurance-card tawuniya">
-                <div class="insurance-header tawuniya">
-                    <div class="insurance-logo tawuniya">ت</div>
-                    <div class="insurance-info">
-                        <h3>التعاونية للتأمين</h3>
-                        <p>Tawuniya Insurance - الشبكة الطبية</p>
-                    </div>
-                </div>
-                <div class="hospital-list" id="tawuniyaHospitals"></div>
+            <!-- فلتر المدينة -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-600 mb-1">المدينة:</label>
+                <select id="cityFilter" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="">الكل</option>
+                </select>
             </div>
 
-            <!-- Al Saqar Card -->
-            <div class="insurance-card saqar">
-                <div class="insurance-header saqar">
-                    <div class="insurance-logo saqar">ص</div>
-                    <div class="insurance-info">
-                        <h3>الصقر للتأمين</h3>
-                        <p>Al Saqar Insurance - الشبكة الطبية</p>
-                    </div>
-                </div>
-                <div class="hospital-list" id="saqarHospitals"></div>
+            <!-- فلتر الكلاس -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-600 mb-1">فئة التأمين (Class):</label>
+                <select id="classFilter" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="">الكل</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- جدول وعرض البيانات -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-right border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 border-b border-gray-200 text-gray-600 font-bold text-sm">
+                            <th class="p-4">المنشأة الطبية</th>
+                            <th class="p-4">النوع</th>
+                            <th class="p-4">المدينة</th>
+                            <th class="p-4 text-center">الفئة (Class)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="providersTable" class="divide-y divide-gray-100 text-sm">
+                        <tr>
+                            <td colspan="4" class="p-8 text-center text-gray-500">جاري تحميل المنشآت الطبية...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- أزرار التصفح (Pagination) لضمان سرعة الصفحة -->
+            <div class="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center text-sm">
+                <button id="prevBtn" class="bg-white border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 font-medium disabled:opacity-50" disabled>السابق</button>
+                <span id="pageInfo" class="text-gray-600">صفحة 1 من 1</span>
+                <button id="nextBtn" class="bg-white border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 font-medium disabled:opacity-50" disabled>التالي</button>
             </div>
         </div>
-    </div>
-</div>
+    </main>
 
-<script>
-    // ==================== DATABASE ====================
-    const companiesData = [
-        { nameAr: "إمداد مشاريع الطاقة", nameEn: "Energy Project Support", branches: 4, insurance: "Tawuniya", cr: "2051037996", national: "7001467708", policy: "52246743", tax: "300553598700003", inception: "2026-01-04" },
-        { nameAr: "إمداد مشاريع الطاقة", nameEn: "Energy Project Support", branches: 4, insurance: "Tawuniya", cr: "2050028776", national: "7012345620", policy: "52422610", tax: "300553598700003", inception: "2026-01-04" },
-        { nameAr: "إمداد مشاريع الطاقة", nameEn: "Energy Project Support", branches: 4, insurance: "Tawuniya", cr: "2051040900", national: "7014111996", policy: "52422609", tax: "300553598700003", inception: "2026-01-04" },
-        { nameAr: "إمداد مشاريع الطاقة", nameEn: "Energy Project Support", branches: 4, insurance: "Tawuniya", cr: "2051229585", national: "7016817996", policy: "52422623", tax: "300553598700003", inception: "2026-01-04" },
-        { nameAr: "شركة استثمار الطاقة", nameEn: "Energy Investment", branches: 3, insurance: "Tawuniya", cr: "2051060417", national: "7009394458", policy: "52422608", tax: "301385861700003", inception: "2026-01-04" },
-        { nameAr: "شركة استثمار الطاقة", nameEn: "Energy Investment", branches: 3, insurance: "Tawuniya", cr: "2050138604", national: "7008256229", policy: "52422627", tax: "301385861700003", inception: "2026-01-04" },
-        { nameAr: "شركة استثمار الطاقة", nameEn: "Energy Investment", branches: 3, insurance: "Tawuniya", cr: "2051061015", national: "7013911727", policy: "52422613", tax: "301385861700003", inception: "2026-01-04" },
-        { nameAr: "نفود", nameEn: "Nfood Company", branches: 1, insurance: "Tawuniya", cr: "2051060276", national: "7009227617", policy: "52422619", tax: "301280373700003", inception: "2026-01-04" },
-        { nameAr: "أبعاد", nameEn: "Dimension Factory", branches: 2, insurance: "Tawuniya", cr: "2051224270", national: "7005797290", policy: "52422621", tax: "310833806900003", inception: "2025-08-20" },
-        { nameAr: "أبعاد", nameEn: "Dimension Factory", branches: 2, insurance: "Tawuniya", cr: "2050123871", national: "7008234936", policy: "52422617", tax: "310833806900003", inception: "2026-01-04" },
-        { nameAr: "الوسائط الذهبية", nameEn: "Golden Media", branches: 2, insurance: "Tawuniya", cr: "2051047068", national: "7001705313", policy: "52422620", tax: "300958795600003", inception: "2026-01-04" },
-        { nameAr: "الوسائط الذهبية", nameEn: "Golden Media", branches: 2, insurance: "Tawuniya", cr: "2050107746", national: "7012643602", policy: "52422631", tax: "300958795600003", inception: "2026-01-04" },
-        { nameAr: "أقطار", nameEn: "Aktar Company", branches: 2, insurance: "Tawuniya", cr: "2051228026", national: "7016105426", policy: "52422641", tax: "310438863600003", inception: "2026-01-04" },
-        { nameAr: "أقطار", nameEn: "Aktar Company", branches: 2, insurance: "Tawuniya", cr: "2051234113", national: "7021471367", policy: "52422629", tax: "310438863600003", inception: "2026-01-04" },
-        { nameAr: "دروبنا", nameEn: "Dorobna Logistics", branches: 3, insurance: "Tawuniya", cr: "2051240774", national: "7028406457", policy: "52422632", tax: "311236502700003", inception: "2025-09-15" },
-        { nameAr: "دروبنا", nameEn: "Dorobna Logistics", branches: 3, insurance: "Tawuniya", cr: "2050156747", national: "7028568025", policy: "52422633", tax: "311236502700003", inception: "2025-09-15" },
-        { nameAr: "دروبنا", nameEn: "Dorobna Logistics", branches: 3, insurance: "Tawuniya", cr: "2258100150", national: "7029111478", policy: "52422624", tax: "311236502700003", inception: "2025-09-15" },
-        { nameAr: "الهندسة الدقيقة", nameEn: "Precision Engineering", branches: 2, insurance: "Tawuniya", cr: "2051228474", national: "7016296647", policy: "52422607", tax: "310460072700003", inception: "2025-10-09" },
-        { nameAr: "الهندسة الدقيقة", nameEn: "Precision Engineering", branches: 2, insurance: "Tawuniya", cr: "2051229466", national: "7016761012", policy: "52422616", tax: "310460072700003", inception: "2026-01-04" },
-        { nameAr: "المنتجات الفائقة", nameEn: "Premium Products", branches: 4, insurance: "Tawuniya", cr: "2055012133", national: "7013183145", policy: "52422630", tax: "311151775300003", inception: "2026-01-04" },
-        { nameAr: "المنتجات الفائقة", nameEn: "Premium Products", branches: 4, insurance: "Tawuniya", cr: "2050153350", national: "7027380232", policy: "52422646", tax: "311151775300003", inception: "2026-01-04" },
-        { nameAr: "المنتجات الفائقة", nameEn: "Premium Products", branches: 4, insurance: "Tawuniya", cr: "2055136036", national: "7033797932", policy: "52422649", tax: "311151775300003", inception: "2026-01-04" },
-        { nameAr: "المنتجات الفائقة", nameEn: "Premium Products", branches: 4, insurance: "Tawuniya", cr: "2051248330", national: "7035391502", policy: "52422636", tax: "311151775300003", inception: "2026-01-04" },
-        { nameAr: "آسيا", nameEn: "Asia International", branches: 2, insurance: "Tawuniya", cr: "2051044568", national: "7006218932", policy: "52422611", tax: "310850323600003", inception: "2026-01-04" },
-        { nameAr: "آسيا", nameEn: "Asia International", branches: 2, insurance: "Tawuniya", cr: "2051241528", national: "7028932551", policy: "52422625", tax: "310850323600003", inception: "2026-01-04" },
-        { nameAr: "سنية", nameEn: "Sanyah Contracting", branches: 1, insurance: "Tawuniya", cr: "2051060351", national: "7009224457", policy: "52422614", tax: "301280373700003", inception: "2026-01-04" },
-        { nameAr: "المعرفة الخاصة", nameEn: "Knowledge Intl.", branches: 1, insurance: "Tawuniya", cr: "2051232371", national: "7008268380", policy: "52422648", tax: "310834117300003", inception: "2026-01-04" },
-        { nameAr: "إبداع الفكرة", nameEn: "Abdao Al-Fakrah", branches: 1, insurance: "Tawuniya", cr: "2051038083", national: "7012182874", policy: "52422650", tax: "300384296600003", inception: "2026-01-04" },
-        { nameAr: "إيراد", nameEn: "Erad United", branches: 1, insurance: "Tawuniya", cr: "2051242288", national: "7029741589", policy: "52422638", tax: "311336637400003", inception: "2026-01-04" },
-        { nameAr: "التردد الثلاثي", nameEn: "Delta Waves", branches: 1, insurance: "Tawuniya", cr: "1010716513", national: "7023377877", policy: "52422622", tax: "310930324700003", inception: "2025-10-18" },
-        { nameAr: "نحلة الروشن", nameEn: "Alroshen Bee", branches: 1, insurance: "Tawuniya", cr: "2051232812", national: "7009141073", policy: "52422647", tax: "311969331700003", inception: "2026-01-04" },
-        { nameAr: "فنتوري", nameEn: "Fantory Jewelry", branches: 1, insurance: "Tawuniya", cr: "2051024977", national: "7014542026", policy: "52422606", tax: "311008577700003", inception: "2026-05-18" },
-        { nameAr: "صانعو الأحلام", nameEn: "Dream Makers", branches: 1, insurance: "Tawuniya", cr: "2050170705", national: "7034726187", policy: "52422626", tax: "312559405900003", inception: "2026-01-04" },
-        { nameAr: "وثاق", nameEn: "Wthaq Almtqdmh", branches: 1, insurance: "Tawuniya", cr: "1010731807", national: "7024178944", policy: "52422635", tax: "310991552200003", inception: "2025-11-01" },
-        { nameAr: "براعم الظهران", nameEn: "Dhahran Buds", branches: 1, insurance: "Al Saqar", cr: "-", national: "-", policy: "-", tax: "-", inception: "2025-10-05" },
-        { nameAr: "مدرسة النجوم المضيئة", nameEn: "Stars Light School", branches: 1, insurance: "Tawuniya", cr: "-", national: "-", policy: "-", tax: "-", inception: "2026-02-12" }
-    ];
+    <!-- الفوتر -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-4 text-xs mt-8">
+        جميع الحقوق محفوظة © دليلك الطبي المطور
+    </footer>
 
-    // ==================== HOSPITALS DATABASE ====================
-    const tawuniyaHospitals = [
-        { name: "مستشفى الملك فيصل التخصصي", city: "الرياض", class: "VIP", specialties: "جميع التخصصات" },
-        { name: "مستشفى الحبيب", city: "الرياض", class: "VIP", specialties: "جميع التخصصات" },
-        { name: "مستشفى السعودي الألماني", city: "الرياض", class: "A", specialties: "جراحة، باطنة، أطفال" },
-        { name: "مستشفى الدكتور سليمان الحبيب", city: "الخبر", class: "VIP", specialties: "جميع التخصصات" },
-        { name: "مستشفى المواساة", city: "الدمام", class: "A", specialties: "جراحة، نساء، عظام" },
-        { name: "مستشفى الملك فهد الجامعي", city: "الخبر", class: "A", specialties: "جميع التخصصات" },
-        { name: "مستشفى القطيف المركزي", city: "القطيف", class: "B", specialties: "طوارئ، باطنة، أطفال" },
-        { name: "مستشفى سعد التخصصي", city: "الخبر", class: "A", specialties: "جميع التخصصات" },
-        { name: "مستشفى عنك", city: "عنك", class: "C", specialties: "عام، طوارئ" },
-        { name: "مجمع الدمام الطبي", city: "الدمام", class: "B", specialties: "طوارئ، جراحة، باطنة" },
-        { name: "مستشفى الهيئة الملكية", city: "الجبيل", class: "A", specialties: "جميع التخصصات" },
-        { name: "مستشفى الظهران العام", city: "الظهران", class: "B", specialties: "عام، طوارئ، أطفال" },
-        { name: "مدينة الملك فهد الطبية", city: "الرياض", class: "VIP", specialties: "جميع التخصصات" },
-        { name: "مستشفى رعاية الوطني", city: "الرياض", class: "A", specialties: "جراحة، عظام، مخ وأعصاب" },
-        { name: "مستشفى المركز التخصصي الطبي", city: "الرياض", class: "B", specialties: "باطنة، قلب، أسنان" },
-        { name: "مستشفى الأهلي", city: "الدمام", class: "C", specialties: "عام، طوارئ" },
-        { name: "مستشفى الجبيل العام", city: "الجبيل", class: "C", specialties: "عام، طوارئ" },
-        { name: "مستشفى الولادة والأطفال", city: "الدمام", class: "A", specialties: "نساء، أطفال" },
-        { name: "مستشفى عين دار", city: "عين دار", class: "C", specialties: "عام، طوارئ" }
-    ];
+    <!-- استدعاء ملف البيانات والمنطق البرمجي -->
+    <script src="data.js"></script>
+    <script>
+        let currentPage = 1;
+        const rowsPerPage = 20;
+        let filteredData = [];
 
-    const saqarHospitals = [
-        { name: "مستشفى المانع العام", city: "الدمام", class: "A", specialties: "جميع التخصصات" },
-        { name: "مستشفى الخبر الجديد", city: "الخبر", class: "B", specialties: "طوارئ، باطنة" },
-        { name: "مستشفى الدوسري", city: "الدمام", class: "C", specialties: "عام، أسنان" },
-        { name: "مجمع عيادات الصقر الطبي", city: "الدمام", class: "B", specialties: "عام، جلدية، أسنان" },
-        { name: "مستشفى القطيف الأهلي", city: "القطيف", class: "B", specialties: "عام، طوارئ" },
-        { name: "مستشفى الهلال", city: "الخبر", class: "C", specialties: "عام" },
-        { name: "مستشفى الظهران الطبي", city: "الظهران", class: "A", specialties: "باطنة، جراحة، أطفال" },
-        { name: "مستشفى المانع - الجبيل", city: "الجبيل", class: "B", specialties: "عام، طوارئ" }
-    ];
-
-    // ==================== STATE ====================
-    const today = new Date();
-    document.getElementById('todayDate').textContent = 
-        `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
-
-    let currentStatusFilter = 'all';
-    let currentInsuranceFilter = 'all';
-    let currentSort = 'expiry';
-    let sortDirection = 'asc';
-
-    // ==================== FUNCTIONS ====================
-    function calculatePolicyStatus(inceptionDateStr) {
-        const inception = new Date(inceptionDateStr);
-        const expiry = new Date(inception);
-        expiry.setFullYear(expiry.getFullYear() + 1);
-        
-        const diffTime = expiry - today;
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        const totalDays = 365;
-        const elapsedDays = totalDays - Math.max(0, diffDays);
-        const progressPercent = Math.min(100, Math.max(0, (elapsedDays / totalDays) * 100));
-        
-        let status, statusClass, cardClass, progressClass;
-        if (diffDays < 0) { status = 'expired'; statusClass = 'status-expired'; cardClass = 'card-expired'; progressClass = 'progress-expired'; }
-        else if (diffDays <= 30) { status = 'warning'; statusClass = 'status-warning'; cardClass = 'card-warning'; progressClass = 'progress-warning'; }
-        else { status = 'active'; statusClass = 'status-active'; cardClass = 'card-active'; progressClass = 'progress-active'; }
-        
-        return {
-            expiry, diffDays, status, statusClass, cardClass, progressClass, progressPercent,
-            inceptionDate: inception,
-            formattedInception: `${inception.getDate().toString().padStart(2, '0')}/${(inception.getMonth() + 1).toString().padStart(2, '0')}/${inception.getFullYear()}`,
-            formattedExpiry: `${expiry.getDate().toString().padStart(2, '0')}/${(expiry.getMonth() + 1).toString().padStart(2, '0')}/${expiry.getFullYear()}`
-        };
-    }
-
-    function sortCompanies(companies, sortBy, direction) {
-        return [...companies].sort((a, b) => {
-            const statusA = calculatePolicyStatus(a.inception);
-            const statusB = calculatePolicyStatus(b.inception);
-            let compareResult = 0;
-            switch(sortBy) {
-                case 'name': compareResult = a.nameAr.localeCompare(b.nameAr, 'ar'); break;
-                case 'expiry': compareResult = statusA.expiry - statusB.expiry; break;
-                case 'inception': compareResult = statusA.inceptionDate - statusB.inceptionDate; break;
-                case 'daysRemaining': compareResult = statusA.diffDays - statusB.diffDays; break;
+        // تشغيل الصفحة عند اكتمال تحميل البيانات
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof medicalData === 'undefined') {
+                document.getElementById('providersTable').innerHTML = `<tr><td colspan="4" class="p-8 text-center text-red-500">خطأ: لم يتم العثور على ملف data.js أو أنه فارغ.</td></tr>`;
+                return;
             }
-            if (compareResult === 0 && sortBy !== 'name') compareResult = a.nameAr.localeCompare(b.nameAr, 'ar');
-            return direction === 'asc' ? compareResult : -compareResult;
+            
+            filteredData = [...medicalData];
+            initFilters();
+            renderTable();
+
+            // الاستماع لمدخلات البحث والفلاتر
+            document.getElementById('searchInput').addEventListener('input', filterData);
+            document.getElementById('cityFilter').addEventListener('change', filterData);
+            document.getElementById('classFilter').addEventListener('change', filterData);
+            
+            document.getElementById('prevBtn').addEventListener('click', () => { if(currentPage > 1) { currentPage--; renderTable(); } });
+            document.getElementById('nextBtn').addEventListener('click', () => { if(currentPage < Math.ceil(filteredData.length / rowsPerPage)) { currentPage++; renderTable(); } });
         });
-    }
 
-    function createCard(company) {
-        const status = calculatePolicyStatus(company.inception);
-        const insuranceClass = company.insurance === 'Tawuniya' ? 'insurance-tawuniya' : 'insurance-saqar';
-        const insuranceName = company.insurance === 'Tawuniya' ? 'التعاونية' : 'الصقر';
-        const insuranceId = company.insurance === 'Tawuniya' ? 'tawuniya' : 'saqar';
-        
-        const card = document.createElement('div');
-        card.className = `company-card ${status.cardClass}`;
-        card.setAttribute('data-status', status.status);
-        card.setAttribute('data-insurance', company.insurance);
-        
-        card.innerHTML = `
-            <span class="insurance-badge ${insuranceClass}">${insuranceName}</span>
-            <span class="branch-count">🏢 ${company.branches} فروع</span>
-            <h3 class="company-name">${company.nameAr}<span class="company-name-en">${company.nameEn}</span></h3>
-            <div class="data-row"><span class="data-label">📋 السجل:</span><span class="data-value">${company.cr}</span></div>
-            <div class="data-row"><span class="data-label">🆔 الوطني:</span><span class="data-value">${company.national}</span></div>
-            <div class="data-row"><span class="data-label">📄 الوثيقة:</span><span class="data-value">${company.policy}</span></div>
-            <div class="data-row"><span class="data-label">🧾 الضريبي:</span><span class="data-value">${company.tax}</span></div>
-            <div class="data-row"><span class="data-label">📅 الابتداء:</span><span class="data-value date-value">${status.formattedInception}</span></div>
-            <div class="data-row"><span class="data-label">⏳ الانتهاء:</span><span class="data-value date-value">${status.formattedExpiry}</span></div>
-            <div class="status-section">
-                <div style="text-align: center;">
-                    <span class="status-badge ${status.statusClass}">
-                        ${status.status === 'active' ? `✅ سارية - ${status.diffDays} يوم` : 
-                          status.status === 'warning' ? `⚠️ تنبيه - ${status.diffDays} يوم` : 
-                          `❌ منتهية - منذ ${Math.abs(status.diffDays)} يوم`}
-                    </span>
-                </div>
-                <div class="progress-container">
-                    <div class="progress-label"><span>الاستهلاك</span><span>${Math.round(status.progressPercent)}%</span></div>
-                    <div class="progress-bar"><div class="progress-fill ${status.progressClass}" style="width: ${status.progressPercent}%"></div></div>
-                </div>
-                <button class="hospital-link-btn" onclick="switchToHospitals('${insuranceId}')">
-                    🏥 عرض المستشفيات
-                </button>
-            </div>
-        `;
-        return card;
-    }
+        // تعبئة خيارات الفلاتر تلقائياً
+        function initFilters() {
+            const cities = [...new Set(medicalData.map(item => item.c))].sort();
+            const classes = [...new Set(medicalData.map(item => item.cl))].sort();
 
-    function renderCards() {
-        const cardsGrid = document.getElementById('cardsGrid');
-        cardsGrid.innerHTML = '';
-        const searchQuery = document.getElementById('searchInput').value;
-        
-        let filtered = companiesData.filter(company => {
-            const status = calculatePolicyStatus(company.inception);
-            if (currentStatusFilter !== 'all' && status.status !== currentStatusFilter) return false;
-            if (currentInsuranceFilter !== 'all' && company.insurance !== currentInsuranceFilter) return false;
-            if (searchQuery) {
-                const searchText = `${company.nameAr} ${company.nameEn} ${company.cr} ${company.policy} ${company.tax}`.toLowerCase();
-                if (!searchText.includes(searchQuery.toLowerCase())) return false;
+            const citySelect = document.getElementById('cityFilter');
+            cities.forEach(city => {
+                if(city) citySelect.options.add(new Option(city, city));
+            });
+
+            const classSelect = document.getElementById('classFilter');
+            classes.forEach(cls => {
+                if(cls) classSelect.options.add(new Option(cls, cls));
+            });
+        }
+
+        // فلترة البيانات بناءً على مدخلات المستخدم
+        function filterData() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cityVal = document.getElementById('cityFilter').value;
+            const classVal = document.getElementById('classFilter').value;
+
+            filteredData = medicalData.filter(item => {
+                const matchesSearch = !searchVal || 
+                                      item.p.toLowerCase().includes(searchVal) || 
+                                      item.t.toLowerCase().includes(searchVal);
+                const matchesCity = !cityVal || item.c === cityVal;
+                const matchesClass = !classVal || item.cl === classVal;
+                
+                return matchesSearch && matchesCity && matchesClass;
+            });
+
+            currentPage = 1;
+            renderTable();
+        }
+
+        // عرض الجدول بشكل منظم ومقسم لصفحات لتسريع المتصفح
+        function renderTable() {
+            const tbody = document.getElementById('providersTable');
+            const totalItems = filteredData.length;
+            
+            document.getElementById('stats').innerText = `إجمالي المنشآت: ${totalItems.toLocaleString()}`;
+
+            if (totalItems === 0) {
+                tbody.html = `<tr><td colspan="4" class="p-8 text-center text-gray-500">لا توجد نتائج مطابقة لبحثك.</td></tr>`;
+                document.getElementById('pageInfo').innerText = "صفحة 0 من 0";
+                document.getElementById('prevBtn').disabled = true;
+                document.getElementById('nextBtn').disabled = true;
+                return;
             }
-            return true;
-        });
-        
-        filtered = sortCompanies(filtered, currentSort, sortDirection);
-        
-        let total = 0, active = 0, warning = 0, expired = 0;
-        filtered.forEach(company => {
-            const status = calculatePolicyStatus(company.inception).status;
-            total++;
-            if (status === 'active') active++;
-            else if (status === 'warning') warning++;
-            else expired++;
-        });
-        
-        document.getElementById('totalCount').textContent = total;
-        document.getElementById('activeCount').textContent = active;
-        document.getElementById('warningCount').textContent = warning;
-        document.getElementById('expiredCount').textContent = expired;
-        
-        if (filtered.length === 0) {
-            cardsGrid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج</div>';
-        } else {
-            filtered.forEach(company => cardsGrid.appendChild(createCard(company)));
+
+            const totalPages = Math.ceil(totalItems / rowsPerPage);
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageItems = filteredData.slice(start, end);
+
+            let html = '';
+            pageItems.forEach(item => {
+                // تلوين الكلاسات لمنظر جمالي وأوضح
+                let classBadge = 'bg-gray-100 text-gray-800';
+                if(item.cl === 'VIP') classBadge = 'bg-amber-100 text-amber-800 font-bold border border-amber-300';
+                else if(['A', 'A+'].includes(item.cl)) classBadge = 'bg-green-100 text-green-800 font-semibold';
+                else if(item.cl.startsWith('B')) classBadge = 'bg-blue-100 text-blue-800';
+                else if(item.cl.startsWith('C')) classBadge = 'bg-orange-100 text-orange-800';
+
+                html += `
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-medium text-gray-900 max-w-xs md:max-w-md">${item.p}</td>
+                        <td class="p-4 text-gray-500">${item.t}</td>
+                        <td class="p-4 text-gray-600">${item.c}</td>
+                        <td class="p-4 text-center">
+                            <span class="px-3 py-1 rounded-full text-xs ${classBadge}">${item.cl}</span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+            document.getElementById('pageInfo').innerText = `صفحة ${currentPage} من ${totalPages}`;
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
         }
-    }
-
-    function renderHospitals(filterText = '') {
-        const tawuniyaList = document.getElementById('tawuniyaHospitals');
-        const saqarList = document.getElementById('saqarHospitals');
-        
-        tawuniyaList.innerHTML = '';
-        saqarList.innerHTML = '';
-        
-        const filteredTawuniya = tawuniyaHospitals.filter(h => 
-            !filterText || h.name.includes(filterText) || h.city.includes(filterText)
-        );
-        
-        const filteredSaqar = saqarHospitals.filter(h => 
-            !filterText || h.name.includes(filterText) || h.city.includes(filterText)
-        );
-        
-        filteredTawuniya.forEach(h => {
-            tawuniyaList.innerHTML += `
-                <div class="hospital-item">
-                    <div class="hospital-name">🏥 ${h.name}</div>
-                    <div class="hospital-meta">
-                        <span>📍 ${h.city}</span>
-                        <span class="hospital-class class-${h.class === 'VIP' ? 'vip' : h.class.toLowerCase()}">${h.class}</span>
-                        <span>🔬 ${h.specialties}</span>
-                    </div>
-                </div>`;
-        });
-        
-        filteredSaqar.forEach(h => {
-            saqarList.innerHTML += `
-                <div class="hospital-item">
-                    <div class="hospital-name">🏥 ${h.name}</div>
-                    <div class="hospital-meta">
-                        <span>📍 ${h.city}</span>
-                        <span class="hospital-class class-${h.class === 'VIP' ? 'vip' : h.class.toLowerCase()}">${h.class}</span>
-                        <span>🔬 ${h.specialties}</span>
-                    </div>
-                </div>`;
-        });
-        
-        if (filteredTawuniya.length === 0) tawuniyaList.innerHTML = '<p style="text-align:center;color:#718096;padding:20px;">لا توجد نتائج</p>';
-        if (filteredSaqar.length === 0) saqarList.innerHTML = '<p style="text-align:center;color:#718096;padding:20px;">لا توجد نتائج</p>';
-    }
-
-    function updateSortButtons() {
-        document.querySelectorAll('#sortButtons .sort-btn').forEach(btn => {
-            btn.classList.remove('active', 'asc', 'desc');
-            if (btn.getAttribute('data-sort') === currentSort) {
-                btn.classList.add('active', sortDirection);
-                btn.querySelector('.sort-icon').textContent = sortDirection === 'asc' ? '▲' : '▼';
-            } else {
-                btn.querySelector('.sort-icon').textContent = '▲';
-            }
-        });
-    }
-
-    function switchToHospitals(insuranceId) {
-        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-        
-        document.querySelector('[data-tab="hospitals"]').classList.add('active');
-        document.getElementById('tab-hospitals').classList.add('active');
-        
-        if (insuranceId === 'tawuniya') {
-            document.getElementById('tawuniyaHospitals').scrollIntoView({ behavior: 'smooth' });
-        } else {
-            document.getElementById('saqarHospitals').scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // ==================== EVENT LISTENERS ====================
-    
-    // Tab Switching
-    document.querySelectorAll('.nav-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('tab-' + this.getAttribute('data-tab')).classList.add('active');
-        });
-    });
-
-    // Status filter
-    document.getElementById('statusFilters').addEventListener('click', function(e) {
-        if (e.target.classList.contains('filter-btn')) {
-            this.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            currentStatusFilter = e.target.getAttribute('data-filter');
-            renderCards();
-        }
-    });
-
-    // Insurance filter
-    document.getElementById('insuranceFilters').addEventListener('click', function(e) {
-        if (e.target.classList.contains('filter-btn')) {
-            this.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            currentInsuranceFilter = e.target.getAttribute('data-insurance');
-            renderCards();
-        }
-    });
-
-    // Sort buttons
-    document.getElementById('sortButtons').addEventListener('click', function(e) {
-        const sortBtn = e.target.closest('.sort-btn');
-        if (!sortBtn) return;
-        const sortBy = sortBtn.getAttribute('data-sort');
-        if (currentSort === sortBy) { sortDirection = sortDirection === 'asc' ? 'desc' : 'asc'; }
-        else { currentSort = sortBy; sortDirection = 'asc'; }
-        updateSortButtons();
-        renderCards();
-    });
-
-    // Search
-    document.getElementById('searchInput').addEventListener('input', () => renderCards());
-    document.getElementById('hospitalSearch').addEventListener('input', function() {
-        renderHospitals(this.value);
-    });
-
-    // Initial render
-    updateSortButtons();
-    renderCards();
-    renderHospitals();
-</script>
-
+    </script>
 </body>
 </html>
