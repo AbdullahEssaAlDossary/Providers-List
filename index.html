@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -82,85 +83,6 @@
             opacity: 0.85;
             font-size: 0.9em;
             margin-top: 4px;
-        }
-
-        /* Stats */
-        .stats {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .stat {
-            background: white;
-            padding: 10px 14px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            min-width: 60px;
-            transition: transform 0.2s;
-            border-bottom: 3px solid transparent;
-        }
-        .stat:hover {
-            transform: translateY(-2px);
-        }
-        .stat .num {
-            font-size: 1.4em;
-            font-weight: 800;
-            display: block;
-        }
-        .stat .lbl {
-            font-size: 0.65em;
-            color: var(--text2);
-        }
-        .st-vip {
-            border-bottom-color: var(--vip);
-        }
-        .st-vip .num {
-            color: var(--vip);
-        }
-        .st-a {
-            border-bottom-color: var(--class-a);
-        }
-        .st-a .num {
-            color: var(--class-a);
-        }
-        .st-b {
-            border-bottom-color: var(--class-b);
-        }
-        .st-b .num {
-            color: var(--class-b);
-        }
-        .st-bplus {
-            border-bottom-color: var(--class-bplus);
-        }
-        .st-bplus .num {
-            color: var(--class-bplus);
-        }
-        .st-c {
-            border-bottom-color: var(--class-c);
-        }
-        .st-c .num {
-            color: var(--class-c);
-        }
-        .st-c1 {
-            border-bottom-color: var(--class-c1);
-        }
-        .st-c1 .num {
-            color: var(--class-c1);
-        }
-        .st-cr {
-            border-bottom-color: var(--class-cr);
-        }
-        .st-cr .num {
-            color: var(--class-cr);
-        }
-        .st-total {
-            border-bottom-color: #1e3a8a;
-        }
-        .st-total .num {
-            color: #1e3a8a;
         }
 
         /* Controls */
@@ -266,32 +188,15 @@
             box-shadow: 0 12px 28px rgba(0,0,0,0.08);
         }
 
-        .card-vip {
-            border-right-color: var(--vip);
-        }
-        .card-a {
-            border-right-color: var(--class-a);
-        }
-        .card-b {
-            border-right-color: var(--class-b);
-        }
-        .card-bplus {
-            border-right-color: var(--class-bplus);
-        }
-        .card-c {
-            border-right-color: var(--class-c);
-        }
-        .card-c1 {
-            border-right-color: var(--class-c1);
-        }
-        .card-cr {
-            border-right-color: var(--class-cr);
-        }
+        .card-vip { border-right-color: var(--vip); }
+        .card-a { border-right-color: var(--class-a); }
+        .card-b { border-right-color: var(--class-b); }
+        .card-bplus { border-right-color: var(--class-bplus); }
+        .card-c { border-right-color: var(--class-c); }
+        .card-c1 { border-right-color: var(--class-c1); }
+        .card-cr { border-right-color: var(--class-cr); }
 
-        .card-body {
-            padding: 16px 18px;
-            flex: 1;
-        }
+        .card-body { padding: 16px 18px; flex: 1; }
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -314,27 +219,13 @@
             color: white;
             white-space: nowrap;
         }
-        .bd-vip {
-            background: var(--vip);
-        }
-        .bd-a {
-            background: var(--class-a);
-        }
-        .bd-b {
-            background: var(--class-b);
-        }
-        .bd-bplus {
-            background: var(--class-bplus);
-        }
-        .bd-c {
-            background: var(--class-c);
-        }
-        .bd-c1 {
-            background: var(--class-c1);
-        }
-        .bd-cr {
-            background: var(--class-cr);
-        }
+        .bd-vip { background: var(--vip); }
+        .bd-a { background: var(--class-a); }
+        .bd-b { background: var(--class-b); }
+        .bd-bplus { background: var(--class-bplus); }
+        .bd-c { background: var(--class-c); }
+        .bd-c1 { background: var(--class-c1); }
+        .bd-cr { background: var(--class-cr); }
 
         .card-city {
             display: inline-flex;
@@ -385,64 +276,37 @@
             box-shadow: var(--shadow);
         }
 
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: var(--text2);
+            opacity: 0.8;
+        }
+
         /* RTL/LTR support */
         [dir="ltr"] .card {
             border-right: none;
             border-left: 5px solid #e2e8f0;
         }
-        [dir="ltr"] .card-vip {
-            border-left-color: var(--vip);
-            border-right: 1px solid #f1f5f9;
-        }
-        [dir="ltr"] .card-a {
-            border-left-color: var(--class-a);
-            border-right: 1px solid #f1f5f9;
-        }
-        [dir="ltr"] .card-b {
-            border-left-color: var(--class-b);
-            border-right: 1px solid #f1f5f9;
-        }
-        [dir="ltr"] .card-bplus {
-            border-left-color: var(--class-bplus);
-            border-right: 1px solid #f1f5f9;
-        }
-        [dir="ltr"] .card-c {
-            border-left-color: var(--class-c);
-            border-right: 1px solid #f1f5f9;
-        }
-        [dir="ltr"] .card-c1 {
-            border-left-color: var(--class-c1);
-            border-right: 1px solid #f1f5f9;
-        }
-        [dir="ltr"] .card-cr {
-            border-left-color: var(--class-cr);
-            border-right: 1px solid #f1f5f9;
-        }
-        [dir="ltr"] .search-wrap .sicon {
-            right: auto;
-            left: 14px;
-        }
-        [dir="ltr"] .search-wrap input {
-            padding: 10px 14px 10px 40px;
-        }
+        [dir="ltr"] .card-vip { border-left-color: var(--vip); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .card-a { border-left-color: var(--class-a); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .card-b { border-left-color: var(--class-b); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .card-bplus { border-left-color: var(--class-bplus); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .card-c { border-left-color: var(--class-c); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .card-c1 { border-left-color: var(--class-c1); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .card-cr { border-left-color: var(--class-cr); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .search-wrap .sicon { right: auto; left: 14px; }
+        [dir="ltr"] .search-wrap input { padding: 10px 14px 10px 40px; }
 
         @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .header h1 {
-                font-size: 1.3em;
-            }
-            .btn {
-                padding: 6px 10px;
-                font-size: 10px;
-            }
-            .divider {
-                display: none;
-            }
-            body {
-                padding: 10px;
-            }
+            .grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.3em; }
+            .btn { padding: 6px 10px; font-size: 10px; }
+            .divider { display: none; }
+            body { padding: 10px; }
         }
     </style>
 </head>
@@ -451,26 +315,14 @@
 <div class="container">
     <!-- Language Toggle -->
     <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="ar">🇸🇦 العربية</button>
-        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+        <button class="lang-btn active" data-lang="ar">AR</button>
+        <button class="lang-btn" data-lang="en">ENG</button>
     </div>
 
     <!-- Header -->
     <div class="header">
         <h1 data-ar="🏥 دليل شبكة مزودي التعاونية الطبي" data-en="🏥 Tawuniya Medical Network Guide">🏥 دليل شبكة مزودي التعاونية الطبي</h1>
         <p class="sub" data-ar="Tawuniya Insurance - جميع المدن والفئات" data-en="Tawuniya Insurance - All Cities & Classes">Tawuniya Insurance - جميع المدن والفئات</p>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats">
-        <div class="stat st-total"><span class="num" id="totalCount">0</span><span class="lbl" data-ar="الكل" data-en="Total">الكل</span></div>
-        <div class="stat st-vip"><span class="num" id="vipCount">0</span><span class="lbl">VIP</span></div>
-        <div class="stat st-a"><span class="num" id="aCount">0</span><span class="lbl">A</span></div>
-        <div class="stat st-b"><span class="num" id="bCount">0</span><span class="lbl">B</span></div>
-        <div class="stat st-bplus"><span class="num" id="bplusCount">0</span><span class="lbl">B+</span></div>
-        <div class="stat st-c"><span class="num" id="cCount">0</span><span class="lbl">C</span></div>
-        <div class="stat st-c1"><span class="num" id="c1Count">0</span><span class="lbl">C1</span></div>
-        <div class="stat st-cr"><span class="num" id="crCount">0</span><span class="lbl">C-R</span></div>
     </div>
 
     <!-- Controls -->
@@ -503,6 +355,11 @@
 
     <!-- Grid -->
     <div class="grid" id="cardsGrid"></div>
+
+    <!-- Footer -->
+    <div class="footer" data-ar="تم إنشاؤه بواسطة عبدالله الدوسري" data-en="Created by Abdullah AlDosari">
+        تم إنشاؤه بواسطة عبدالله الدوسري
+    </div>
 </div>
 
 <script>
@@ -624,33 +481,26 @@
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.lang = lang;
 
-        // Update lang buttons
         document.querySelectorAll('.lang-btn').forEach(b => {
             b.classList.toggle('active', b.getAttribute('data-lang') === lang);
         });
 
-        // Update header
         document.querySelector('.header h1').textContent = document.querySelector('.header h1').getAttribute(`data-${lang}`);
         document.querySelector('.header .sub').textContent = document.querySelector('.header .sub').getAttribute(`data-${lang}`);
 
-        // Update search placeholder
         const searchInput = document.getElementById('searchInput');
         searchInput.placeholder = searchInput.getAttribute(`data-${lang}-placeholder`);
 
-        // Update filter labels
         document.querySelectorAll('.filter-label').forEach(el => {
             el.textContent = el.getAttribute(`data-${lang}`);
         });
 
-        // Update buttons with data-ar/data-en
         document.querySelectorAll('.btn[data-ar]').forEach(el => {
             el.textContent = el.getAttribute(`data-${lang}`);
         });
 
-        // Update stats label
-        document.querySelector('.st-total .lbl').textContent = document.querySelector('.st-total .lbl').getAttribute(`data-${lang}`);
+        document.querySelector('.footer').textContent = document.querySelector('.footer').getAttribute(`data-${lang}`);
 
-        // Rerender cards
         render();
     }
 
@@ -673,15 +523,6 @@
             return true;
         });
 
-        document.getElementById('totalCount').textContent = f.length;
-        document.getElementById('vipCount').textContent = f.filter(h => h.class === 'VIP').length;
-        document.getElementById('aCount').textContent = f.filter(h => h.class === 'A').length;
-        document.getElementById('bCount').textContent = f.filter(h => h.class === 'B').length;
-        document.getElementById('bplusCount').textContent = f.filter(h => h.class === 'B+').length;
-        document.getElementById('cCount').textContent = f.filter(h => h.class === 'C').length;
-        document.getElementById('c1Count').textContent = f.filter(h => h.class === 'C1').length;
-        document.getElementById('crCount').textContent = f.filter(h => h.class === 'C-R').length;
-
         if (f.length === 0) {
             grid.innerHTML = `<div class="no-res">${currentLang === 'ar' ? '🔍 لا توجد نتائج مطابقة' : '🔍 No results found'}</div>`;
         } else {
@@ -689,17 +530,14 @@
         }
     }
 
-    // Language toggle
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             switchLanguage(this.getAttribute('data-lang'));
         });
     });
 
-    // Search
     document.getElementById('searchInput').addEventListener('input', render);
 
-    // Class filter
     document.getElementById('classFilters').addEventListener('click', e => {
         if (e.target.classList.contains('btn')) {
             document.querySelectorAll('#classFilters .btn').forEach(b => b.classList.remove('active'));
@@ -708,7 +546,6 @@
         }
     });
 
-    // City filter
     document.getElementById('cityFilters').addEventListener('click', e => {
         if (e.target.classList.contains('btn')) {
             document.querySelectorAll('#cityFilters .btn').forEach(b => b.classList.remove('active'));
@@ -717,8 +554,8 @@
         }
     });
 
-    // Initial render
     render();
 </script>
 </body>
 </html>
+```
