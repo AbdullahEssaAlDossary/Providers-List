@@ -10,8 +10,8 @@
         :root {
             --vip: #7c3aed;
             --class-a: #ea580c;
-            --class-b: #2563eb;
             --class-bplus: #0891b2;
+            --class-b: #2563eb;
             --class-c: #64748b;
             --class-c1: #475569;
             --class-cr: #78716c;
@@ -189,8 +189,8 @@
 
         .card-vip { border-right-color: var(--vip); }
         .card-a { border-right-color: var(--class-a); }
-        .card-b { border-right-color: var(--class-b); }
         .card-bplus { border-right-color: var(--class-bplus); }
+        .card-b { border-right-color: var(--class-b); }
         .card-c { border-right-color: var(--class-c); }
         .card-c1 { border-right-color: var(--class-c1); }
         .card-cr { border-right-color: var(--class-cr); }
@@ -220,8 +220,8 @@
         }
         .bd-vip { background: var(--vip); }
         .bd-a { background: var(--class-a); }
-        .bd-b { background: var(--class-b); }
         .bd-bplus { background: var(--class-bplus); }
+        .bd-b { background: var(--class-b); }
         .bd-c { background: var(--class-c); }
         .bd-c1 { background: var(--class-c1); }
         .bd-cr { background: var(--class-cr); }
@@ -292,8 +292,8 @@
         }
         [dir="ltr"] .card-vip { border-left-color: var(--vip); border-right: 1px solid #f1f5f9; }
         [dir="ltr"] .card-a { border-left-color: var(--class-a); border-right: 1px solid #f1f5f9; }
-        [dir="ltr"] .card-b { border-left-color: var(--class-b); border-right: 1px solid #f1f5f9; }
         [dir="ltr"] .card-bplus { border-left-color: var(--class-bplus); border-right: 1px solid #f1f5f9; }
+        [dir="ltr"] .card-b { border-left-color: var(--class-b); border-right: 1px solid #f1f5f9; }
         [dir="ltr"] .card-c { border-left-color: var(--class-c); border-right: 1px solid #f1f5f9; }
         [dir="ltr"] .card-c1 { border-left-color: var(--class-c1); border-right: 1px solid #f1f5f9; }
         [dir="ltr"] .card-cr { border-left-color: var(--class-cr); border-right: 1px solid #f1f5f9; }
@@ -333,8 +333,8 @@
             <button class="btn active" data-filter="all" data-ar="الكل" data-en="All">الكل</button>
             <button class="btn" data-filter="VIP">VIP</button>
             <button class="btn" data-filter="A">A</button>
-            <button class="btn" data-filter="B">B</button>
             <button class="btn" data-filter="B+">B+</button>
+            <button class="btn" data-filter="B">B</button>
             <button class="btn" data-filter="C">C</button>
             <button class="btn" data-filter="C1">C1</button>
             <button class="btn" data-filter="C-R">C-R</button>
@@ -398,6 +398,15 @@
         { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المواساة - الرياض", nameEn: "Al Mouwasat Hospital - Riyadh" },
         { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى رعاية الرياض - الرياض", nameEn: "Riyadh Care Hospital - Riyadh" },
         { class: "A", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المملكة - الرياض", nameEn: "Kingdom Hospital - Riyadh" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى السعودي الألماني - الدمام", nameEn: "Saudi German Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع - الدمام", nameEn: "Al Mane Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المواساة - الدمام", nameEn: "Al Mouwasat Hospital - Dammam" },
+        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الحمادي - الرياض (النزهة)", nameEn: "Al Hammadi Hospital - Riyadh (Nuzha)" },
+        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المركز التخصصي الطبي (2) - الرياض", nameEn: "Specialized Medical Center (2) - Riyadh" },
+        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى دلة - الرياض", nameEn: "Dallah Hospital - Riyadh" },
         { class: "B", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
         { class: "B", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
         { class: "B", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
@@ -409,15 +418,6 @@
         { class: "B", city: "الرياض", cityEn: "Riyadh", name: "مستشفى دار الشفا - الرياض", nameEn: "Dar Al Shifa Hospital - Riyadh" },
         { class: "B", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الفلاح الدولي - الرياض", nameEn: "Al Falah International Hospital - Riyadh" },
         { class: "B", city: "الرياض", cityEn: "Riyadh", name: "مستشفى عبيد التخصصي - الرياض", nameEn: "Obeid Specialized Hospital - Riyadh" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى السعودي الألماني - الدمام", nameEn: "Saudi German Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع - الدمام", nameEn: "Al Mane Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المواساة - الدمام", nameEn: "Al Mouwasat Hospital - Dammam" },
-        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى الحمادي - الرياض (النزهة)", nameEn: "Al Hammadi Hospital - Riyadh (Nuzha)" },
-        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى المركز التخصصي الطبي (2) - الرياض", nameEn: "Specialized Medical Center (2) - Riyadh" },
-        { class: "B+", city: "الرياض", cityEn: "Riyadh", name: "مستشفى دلة - الرياض", nameEn: "Dallah Hospital - Riyadh" },
         { class: "C", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير) - الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
         { class: "C", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
         { class: "C", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال - الدمام", nameEn: "Maternity & Children Hospital - Dammam" },
@@ -436,11 +436,11 @@
     let currentLang = 'ar';
 
     function getCardClass(c) {
-        const map = { 'VIP': 'card-vip', 'A': 'card-a', 'B': 'card-b', 'B+': 'card-bplus', 'C': 'card-c', 'C1': 'card-c1', 'C-R': 'card-cr' };
+        const map = { 'VIP': 'card-vip', 'A': 'card-a', 'B+': 'card-bplus', 'B': 'card-b', 'C': 'card-c', 'C1': 'card-c1', 'C-R': 'card-cr' };
         return map[c] || '';
     }
     function getBadgeClass(c) {
-        const map = { 'VIP': 'bd-vip', 'A': 'bd-a', 'B': 'bd-b', 'B+': 'bd-bplus', 'C': 'bd-c', 'C1': 'bd-c1', 'C-R': 'bd-cr' };
+        const map = { 'VIP': 'bd-vip', 'A': 'bd-a', 'B+': 'bd-bplus', 'B': 'bd-b', 'C': 'bd-c', 'C1': 'bd-c1', 'C-R': 'bd-cr' };
         return map[c] || '';
     }
 
