@@ -8,21 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --vip: #7c3aed;
-            --class-a: #ea580c;
-            --class-bplus: #0891b2;
-            --class-b: #2563eb;
-            --class-c: #64748b;
-            --class-c1: #475569;
-            --class-cr: #78716c;
+            --vip: #7c3aed; --class-a: #ea580c; --class-bplus: #0891b2;
+            --class-b: #2563eb; --class-c: #64748b; --class-c1: #475569; --class-cr: #78716c;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Cairo', sans-serif;
-            background: #f1f5f9;
-            min-height: 100vh;
-            padding: 20px;
-            color: #1e293b;
+            font-family: 'Cairo', sans-serif; background: #f1f5f9;
+            min-height: 100vh; padding: 20px; color: #1e293b;
         }
         .container { max-width: 1400px; margin: 0 auto; }
         .lang-toggle { display: flex; justify-content: flex-end; margin-bottom: 12px; gap: 6px; }
@@ -113,6 +105,33 @@
             text-align: center; padding: 20px; margin-top: 20px;
             font-size: 0.8em; color: #64748b; opacity: 0.8;
         }
+
+        /* select style */
+        .type-select {
+            padding: 7px 12px;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.25s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+            padding-left: 30px;
+        }
+        .type-select:focus {
+            border-color: #2563eb;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
         @media (max-width: 600px) {
             .grid { grid-template-columns: 1fr; }
             .header h1 { font-size: 1.3em; }
@@ -152,11 +171,24 @@
         <div class="divider"></div>
         <span class="filter-label" data-ar="المدينة:" data-en="City:">المدينة:</span>
         <div class="btn-group" id="cityFilters">
-            <button class="btn active" data-city="all" data-ar="الكل" data-en="All">الكل</button>
-            <button class="btn" data-city="الخبر" data-ar="الخبر" data-en="Khobar">الخبر</button>
-            <button class="btn" data-city="الدمام" data-ar="الدمام" data-en="Dammam">الدمام</button>
-            <button class="btn" data-city="الرياض" data-ar="الرياض" data-en="Riyadh">الرياض</button>
+            <button class="btn active" data-city="all" data-city-en="all" data-ar="الكل" data-en="All">الكل</button>
+            <button class="btn" data-city="الخبر" data-city-en="Khobar" data-ar="الخبر" data-en="Khobar">الخبر</button>
+            <button class="btn" data-city="الدمام" data-city-en="Dammam" data-ar="الدمام" data-en="Dammam">الدمام</button>
+            <button class="btn" data-city="الرياض" data-city-en="Riyadh" data-ar="الرياض" data-en="Riyadh">الرياض</button>
         </div>
+        <div class="divider"></div>
+        <span class="filter-label" data-ar="النوع:" data-en="Type:">النوع:</span>
+        <select id="typeFilter" class="type-select">
+            <option value="all" selected>الكل</option>
+            <option value="مستشفى">مستشفى</option>
+            <option value="مستوصف">مستوصف</option>
+            <option value="مجمع">مجمع طبي</option>
+            <option value="مركز">مركز طبي</option>
+            <option value="صيدلية">صيدلية</option>
+            <option value="بصريات">بصريات / نظارات</option>
+            <option value="عيادات">عيادات</option>
+            <option value="أخرى">أخرى</option>
+        </select>
     </div>
     <div class="grid" id="cardsGrid"></div>
     <div class="footer" data-ar="تم إنشاؤه بواسطة عبدالله الدوسري" data-en="Created by Abdullah AlDosari">تم إنشاؤه بواسطة عبدالله الدوسري</div>
@@ -210,9 +242,9 @@
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
-        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى شركة السلام للخدمات الطبية-الخبر", nameEn: "Al Salam Medical Services Hospital - Khobar" },
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى محمد الدوسري - الخبر", nameEn: "Mohammed Al Dossary Hospital - Khobar" },
         { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستوصف الخبر التعاوني - الخبر", nameEn: "Khobar Cooperative Clinic - Khobar" },
+        { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى دله - الراكة - الخبر", nameEn: "Dallah Hospital - Al Rakah - Khobar" },
         // VIP - الدمام
         { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي- بالدمام", nameEn: "Al Farabi Medical Complex - Dammam" },
         { class: "VIP", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة للتأهيل الطبي - الفيصلية - الدمام", nameEn: "Irada Medical Rehabilitation Center - Dammam" },
@@ -326,12 +358,9 @@
         { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
         { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
         { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
-        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى شركة السلام للخدمات الطبية-الخبر", nameEn: "Al Salam Medical Services Hospital - Khobar" },
-           { class: "VIP", city: "الخبر", cityEn: "Khobar", name: "مستشفى دله - الراكة - الخبر", nameEn: "Dallah Hospital - Al Rakah - Khobar" },
-{ class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى دله - الراكة - الخبر", nameEn: "Dallah Hospital - Al Rakah - Khobar" },
-{ class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى دله - الراكة - الخبر", nameEn: "Dallah Hospital - Al Rakah - Khobar" },
         { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى محمد الدوسري - الخبر", nameEn: "Mohammed Al Dossary Hospital - Khobar" },
         { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستوصف الخبر التعاوني - الخبر", nameEn: "Khobar Cooperative Clinic - Khobar" },
+        { class: "A", city: "الخبر", cityEn: "Khobar", name: "مستشفى دله - الراكة - الخبر", nameEn: "Dallah Hospital - Al Rakah - Khobar" },
         // A - الدمام
         { class: "A", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي- بالدمام", nameEn: "Al Farabi Medical Complex - Dammam" },
         { class: "A", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة للتأهيل الطبي - الفيصلية - الدمام", nameEn: "Irada Medical Rehabilitation Center - Dammam" },
@@ -399,6 +428,120 @@
         { class: "A", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
         { class: "A", city: "الدمام", cityEn: "Dammam", name: "مسشتفى الروضة العام - الدمام", nameEn: "Al Rawda General Hospital - Dammam" },
         { class: "A", city: "الدمام", cityEn: "Dammam", name: "نظارات الكحال - الدمام", nameEn: "Al Kahhal Opticals - Dammam" },
+        // B+ - الخبر
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "صيدليات الدواء حي العقربية شارع 25", nameEn: "Al Dawaa Pharmacy - Al Aqrabiyah" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "المانا للنظارات - الخبر", nameEn: "Al Mana Opticals - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر", nameEn: "Al Nitaq Specialized Rehabilitation (Maria) - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "با دغيش للبصريات - الخبر", nameEn: "Ba Dagheesh Optics - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "د سليمان الحبيب المركز الطبي - الخبر", nameEn: "Dr. Sulaiman Al Habib Medical Center - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة العدسات المبتكرة المحدودة ( ايوا )", nameEn: "Innovative Lenses Co. (Eyewa) - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة رؤى للخدمات الطبية المنزلية - الخبر", nameEn: "Roa Home Medical Services - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة عرب تون الطبية", nameEn: "Arab Tone Medical Co. - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة مستشفى دار السلامة الطبي - الخبر", nameEn: "Dar Al Salama Medical Hospital Co. - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع أوزون لطب الأسنان - الخبر", nameEn: "Ozone Dental Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع اطباء الخليج الطبي - الخبر", nameEn: "Gulf Doctors Medical Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الجزيرة الطبي - الثقبة - الخبر", nameEn: "Al Jazeera Medical Complex - Al Thuqbah - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الرعاية الحديثة الطبي - الخبر", nameEn: "Modern Care Medical Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الرونق لطب الأسنان - الخبر", nameEn: "Al Rwnq Dental Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع المانع الطبي - الخبر", nameEn: "Al Mane Medical Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الهلال الفضي - الثقبة", nameEn: "Silver Crescent Complex - Al Thuqbah - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع درة الخزامى الطبي العام - الخبر", nameEn: "Durat Al Khuzama General Medical Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع طب الاسنان الحديث - بالخبر", nameEn: "Modern Dental Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان", nameEn: "Artal Dental & Orthodontics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات المغربي بالخبر", nameEn: "Al Maghrabi Clinics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات النخبة التخصصية -الخبر", nameEn: "Elite Specialized Clinics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات بسمات لطب الأسنان - الخبر", nameEn: "Basmat Dental Clinics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات جبل رام لطب الأسنان - الخبر", nameEn: "Jabal Ram Dental Clinics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات د.أمجد الحقيل2- الخبر", nameEn: "Dr. Amjad Al Huqail Clinics 2 - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات دار رام اسنان - الخبر", nameEn: "Dar Ram Dental Clinics - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رام الطبية - العزيزية - الخبر", nameEn: "Ram Medical Clinics - Al Aziziyah - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رام الطبية في العليا (السعودي السويسري سابقا) - الخبر", nameEn: "Ram Medical Clinics - Al Olaya - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رام لطب الأسنان - الخبر", nameEn: "Ram Dental Clinics - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رفاء الطبي - الخبر", nameEn: "Refaa Medical Clinics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات شام لطب الأسنان - الخبر", nameEn: "Sham Dental Clinics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات شفاء الخبر - الخبر", nameEn: "Shifa Al Khobar Clinics Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع قمة الصحه الطبي - الخبر", nameEn: "Qimmat Al Siha Medical Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع مجال الأسنان الطبي - الخبر", nameEn: "Dental Field Medical Complex - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر", nameEn: "Child Will Medical Center - Physiotherapy - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز الاستشاريون للاشعه - الخبر", nameEn: "Consultants Radiology Center - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز العلاج المتقدم الطبي - الخبر", nameEn: "Advanced Therapy Medical Center - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز العناية بالجمال لطب الأسنان والجلدية - الخبر", nameEn: "Beauty Care Dental & Dermatology Center - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز الموسى الصحي - الخبر", nameEn: "Al Mousa Health Center - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير)- الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى محمد الدوسري - الخبر", nameEn: "Mohammed Al Dossary Hospital - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستوصف الخبر التعاوني - الخبر", nameEn: "Khobar Cooperative Clinic - Khobar" },
+        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى دله - الراكة - الخبر", nameEn: "Dallah Hospital - Al Rakah - Khobar" },
+        // B+ - الدمام
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي- بالدمام", nameEn: "Al Farabi Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة للتأهيل الطبي - الفيصلية - الدمام", nameEn: "Irada Medical Rehabilitation Center - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "البشاوري للنظارات- الدمام", nameEn: "Al Bashawri Opticals - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة الرعاية المستقبلية بالدمام", nameEn: "Future Care Company - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة دياليز الطبي - الدمام", nameEn: "Dialysis Medical Co. - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة عيادات رام الطبية - المزروعية - الدمام", nameEn: "Ram Medical Clinics - Al Mazroeyah - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة مركز طب الاسنان الحديث - الدمام", nameEn: "Modern Dental Center Co. - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "عيادات رام الطبية - الفاخرية - الدمام", nameEn: "Ram Medical Clinics - Al Fakhiriyah - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "فرع مجمع الامتياز الطبي - الدمام", nameEn: "Al Imtiyaz Medical Complex Branch - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع ابن سينا لطب الاسنان - الدمام", nameEn: "Ibn Sina Dental Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الأحمدي الطبي - الدمام", nameEn: "Al Ahmadi Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع التاسعة الجديد الطبي - الدمام", nameEn: "New Ninth Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الحصن المنيع الطبي - الدمام", nameEn: "Al Hisn Al Manie Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الروضة الأهلي - الدمام", nameEn: "Al Rawda Ahli Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع السيف الطبي - الدمام", nameEn: "Al Saif Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الصحة والحياة الطبي - الدمام", nameEn: "Health & Life Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الكحال الطبي - الدمام", nameEn: "Al Kahhal Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع المركز الكندي الطبي - الدمام", nameEn: "Canadian Medical Center Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع بدر الربيع الطبي - الدمام", nameEn: "Badr Al Rabie Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع رويال الطبي - الدمام", nameEn: "Royal Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع ريسبونس بلس الطبي - الدمام", nameEn: "Response Plus Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام", nameEn: "Sir Al Ibtisama Dental & Orthodontics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة اجياد للخدمات الطبية المحدودة", nameEn: "Ajyad Medical Services Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام", nameEn: "Al Farabi Medical Complex - 1st Industrial City - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع صحة الرعاية الطبي - الدمام", nameEn: "Sihhat Al Riaya Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عالم رام الطبي - الدمام", nameEn: "Alam Ram Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات أهالينا لطب الأسنان - الدمام", nameEn: "Ahalina Dental Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات التقوى الطبي العام - الدمام", nameEn: "Al Taqwa General Medical Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات الدمام الأهلي - الدمام", nameEn: "Dammam Ahli Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات الرأي الطبي - الدمام", nameEn: "Al Ra'i Medical Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات العلاج التخصصي لطب الأسنان - الدمام", nameEn: "Specialized Dental Treatment Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات د.أمجد الحقيل -الدمام", nameEn: "Dr. Amjad Al Huqail Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام الطبي وتقويم الآسنان 2 - الدمام", nameEn: "Ram Medical & Dental Orthodontics Clinics 2 - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام الطبيه - ابو بكر - الدمام", nameEn: "Ram Medical Clinics - Abu Bakr - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام لطب الأسنان - الدمام", nameEn: "Ram Dental Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام لطب الأسنان 3- الدمام", nameEn: "Ram Dental Clinics Complex 3 - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات زهرة العبير الطبي - الدمام", nameEn: "Zahrat Al Abeer Medical Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شام لطب الأسنان - الدمام (العزيزية)", nameEn: "Sham Dental Clinics Complex - Al Aziziyah - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شام لطب و تقويم الأسنان - بالدمام ( الريان)", nameEn: "Sham Dental & Orthodontics Clinics Complex - Al Rayyan - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام", nameEn: "Al Rayyan Distinguished Medical Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شفاء الدمام الطبي - الدمام", nameEn: "Shifa Dammam Medical Clinics Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع فجر الدمام الطبي (2) - الدمام", nameEn: "Fajr Dammam Medical Complex (2) - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع فجر الدمام الطبي - الدمام", nameEn: "Fajr Dammam Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع لاما الطبي - الدمام", nameEn: "Lama Medical Complex - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجموعة دار العافية الطبية - الدمام", nameEn: "Dar Al Afiya Medical Group - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مراكز ابن سينا لطب الأسنان - الدمام", nameEn: "Ibn Sina Dental Centers - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز أشعة الدمام - الدمام", nameEn: "Dammam Radiology Center - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام", nameEn: "Child Will Medical Center - Physiotherapy - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة للتأهيل الطبي - المنتزه - الدمام", nameEn: "Irada Medical Rehabilitation Center - Al Muntazah - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إصرار للعلاج الطبيعي والتأهيل – الدمام", nameEn: "Israr Physiotherapy & Rehabilitation Center - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز العلاج الطبيعي الأول الطبي - الدمام", nameEn: "First Physiotherapy Medical Center - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز دوالي الطبي - الدمام", nameEn: "Dawali Medical Center - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى السعودي الألماني – الدمام", nameEn: "Saudi German Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع - الدمام", nameEn: "Al Mane Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع الطبي - الدمام - العزيزية", nameEn: "Al Mane Medical Hospital - Al Aziziyah - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المواساة - الدمام", nameEn: "Al Mouwasat Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام", nameEn: "Maternity & Children Hospital (MOH) - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى تداوي العام - الدمام", nameEn: "Tadawi General Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى د. خالد محمد الرحيمي - الدمام", nameEn: "Dr. Khalid Al Ruhaimi Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى مغربي للعيون والأسنان - الدمام", nameEn: "Magrabi Eye & Dental Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف المانع - الدمام", nameEn: "Al Mane Clinic - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف دار الحكمة - الدمام", nameEn: "Dar Al Hikma Clinic - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف دارالصحة - الدمام", nameEn: "Dar Al Siha Clinic - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مسشتفى الروضة العام - الدمام", nameEn: "Al Rawda General Hospital - Dammam" },
+        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "نظارات الكحال - الدمام", nameEn: "Al Kahhal Opticals - Dammam" },
         // B - الخبر
         { class: "B", city: "الخبر", cityEn: "Khobar", name: "صيدليات الدواء حي العقربية شارع 25", nameEn: "Al Dawaa Pharmacy - Al Aqrabiyah" },
         { class: "B", city: "الخبر", cityEn: "Khobar", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر", nameEn: "Al Nitaq Specialized Rehabilitation (Maria) - Khobar" },
@@ -482,120 +625,6 @@
         { class: "B", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
         { class: "B", city: "الدمام", cityEn: "Dammam", name: "مسشتفى الروضة العام - الدمام", nameEn: "Al Rawda General Hospital - Dammam" },
         { class: "B", city: "الدمام", cityEn: "Dammam", name: "نظارات الكحال - الدمام", nameEn: "Al Kahhal Opticals - Dammam" },
-        // B+ - الخبر
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "صيدليات الدواء حي العقربية شارع 25", nameEn: "Al Dawaa Pharmacy - Al Aqrabiyah" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "المانا للنظارات - الخبر", nameEn: "Al Mana Opticals - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر", nameEn: "Al Nitaq Specialized Rehabilitation (Maria) - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "با دغيش للبصريات - الخبر", nameEn: "Ba Dagheesh Optics - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "د سليمان الحبيب المركز الطبي - الخبر", nameEn: "Dr. Sulaiman Al Habib Medical Center - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة العدسات المبتكرة المحدودة ( ايوا )", nameEn: "Innovative Lenses Co. (Eyewa) - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة رؤى للخدمات الطبية المنزلية - الخبر", nameEn: "Roa Home Medical Services - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة عرب تون الطبية", nameEn: "Arab Tone Medical Co. - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "شركة مستشفى دار السلامة الطبي - الخبر", nameEn: "Dar Al Salama Medical Hospital Co. - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع أوزون لطب الأسنان - الخبر", nameEn: "Ozone Dental Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع اطباء الخليج الطبي - الخبر", nameEn: "Gulf Doctors Medical Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الجزيرة الطبي - الثقبة - الخبر", nameEn: "Al Jazeera Medical Complex - Al Thuqbah - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الرعاية الحديثة الطبي - الخبر", nameEn: "Modern Care Medical Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الرونق لطب الأسنان - الخبر", nameEn: "Al Rwnq Dental Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع المانع الطبي - الخبر", nameEn: "Al Mane Medical Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع الهلال الفضي - الثقبة", nameEn: "Silver Crescent Complex - Al Thuqbah - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع درة الخزامى الطبي العام - الخبر", nameEn: "Durat Al Khuzama General Medical Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع طب الاسنان الحديث - بالخبر", nameEn: "Modern Dental Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات ارتال الخبر لطب وتقويم الأسنان", nameEn: "Artal Dental & Orthodontics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات المغربي بالخبر", nameEn: "Al Maghrabi Clinics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات النخبة التخصصية -الخبر", nameEn: "Elite Specialized Clinics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات بسمات لطب الأسنان - الخبر", nameEn: "Basmat Dental Clinics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات جبل رام لطب الأسنان - الخبر", nameEn: "Jabal Ram Dental Clinics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات د.أمجد الحقيل2- الخبر", nameEn: "Dr. Amjad Al Huqail Clinics 2 - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات دار رام اسنان - الخبر", nameEn: "Dar Ram Dental Clinics - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رام الطبية - العزيزية - الخبر", nameEn: "Ram Medical Clinics - Al Aziziyah - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رام الطبية في العليا (السعودي السويسري سابقا) - الخبر", nameEn: "Ram Medical Clinics - Al Olaya - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رام لطب الأسنان - الخبر", nameEn: "Ram Dental Clinics - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رفاء الطبي - الخبر", nameEn: "Refaa Medical Clinics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات شام لطب الأسنان - الخبر", nameEn: "Sham Dental Clinics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات شفاء الخبر - الخبر", nameEn: "Shifa Al Khobar Clinics Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع قمة الصحه الطبي - الخبر", nameEn: "Qimmat Al Siha Medical Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مجمع مجال الأسنان الطبي - الخبر", nameEn: "Dental Field Medical Complex - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الخبر", nameEn: "Child Will Medical Center - Physiotherapy - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز الاستشاريون للاشعه - الخبر", nameEn: "Consultants Radiology Center - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز العلاج المتقدم الطبي - الخبر", nameEn: "Advanced Therapy Medical Center - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز العناية بالجمال لطب الأسنان والجلدية - الخبر", nameEn: "Beauty Care Dental & Dermatology Center - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مركز الموسى الصحي - الخبر", nameEn: "Al Mousa Health Center - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى الرعاية التخصصية (بروكير)- الخبر", nameEn: "Pro Care Specialty Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المانع - الخبر", nameEn: "Al Mane Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى المواساة - الخبر", nameEn: "Al Mouwasat Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى اليوسف - الخبر", nameEn: "Al Yousif Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى جاما - الخبر", nameEn: "Gama Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى شركة السلام للخدمات الطبية-الخبر", nameEn: "Al Salam Medical Services Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستشفى محمد الدوسري - الخبر", nameEn: "Mohammed Al Dossary Hospital - Khobar" },
-        { class: "B+", city: "الخبر", cityEn: "Khobar", name: "مستوصف الخبر التعاوني - الخبر", nameEn: "Khobar Cooperative Clinic - Khobar" },
-        // B+ - الدمام
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي- بالدمام", nameEn: "Al Farabi Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة للتأهيل الطبي - الفيصلية - الدمام", nameEn: "Irada Medical Rehabilitation Center - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "البشاوري للنظارات- الدمام", nameEn: "Al Bashawri Opticals - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة الرعاية المستقبلية بالدمام", nameEn: "Future Care Company - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة دياليز الطبي - الدمام", nameEn: "Dialysis Medical Co. - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة عيادات رام الطبية - المزروعية - الدمام", nameEn: "Ram Medical Clinics - Al Mazroeyah - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "شركة مركز طب الاسنان الحديث - الدمام", nameEn: "Modern Dental Center Co. - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "عيادات رام الطبية - الفاخرية - الدمام", nameEn: "Ram Medical Clinics - Al Fakhiriyah - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "فرع مجمع الامتياز الطبي - الدمام", nameEn: "Al Imtiyaz Medical Complex Branch - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع ابن سينا لطب الاسنان - الدمام", nameEn: "Ibn Sina Dental Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الأحمدي الطبي - الدمام", nameEn: "Al Ahmadi Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع التاسعة الجديد الطبي - الدمام", nameEn: "New Ninth Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الحصن المنيع الطبي - الدمام", nameEn: "Al Hisn Al Manie Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الروضة الأهلي - الدمام", nameEn: "Al Rawda Ahli Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع السيف الطبي - الدمام", nameEn: "Al Saif Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الصحة والحياة الطبي - الدمام", nameEn: "Health & Life Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع الكحال الطبي - الدمام", nameEn: "Al Kahhal Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع المركز الكندي الطبي - الدمام", nameEn: "Canadian Medical Center Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع بدر الربيع الطبي - الدمام", nameEn: "Badr Al Rabie Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع رويال الطبي - الدمام", nameEn: "Royal Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع ريسبونس بلس الطبي - الدمام", nameEn: "Response Plus Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع سر الابتسامة لطب وتقويم الأسنان- الدمام", nameEn: "Sir Al Ibtisama Dental & Orthodontics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة اجياد للخدمات الطبية المحدودة", nameEn: "Ajyad Medical Services Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام", nameEn: "Al Farabi Medical Complex - 1st Industrial City - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع صحة الرعاية الطبي - الدمام", nameEn: "Sihhat Al Riaya Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عالم رام الطبي - الدمام", nameEn: "Alam Ram Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات أهالينا لطب الأسنان - الدمام", nameEn: "Ahalina Dental Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات التقوى الطبي العام - الدمام", nameEn: "Al Taqwa General Medical Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات الدمام الأهلي - الدمام", nameEn: "Dammam Ahli Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات الرأي الطبي - الدمام", nameEn: "Al Ra'i Medical Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات العلاج التخصصي لطب الأسنان - الدمام", nameEn: "Specialized Dental Treatment Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات د.أمجد الحقيل -الدمام", nameEn: "Dr. Amjad Al Huqail Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام الطبي وتقويم الآسنان 2 - الدمام", nameEn: "Ram Medical & Dental Orthodontics Clinics 2 - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام الطبيه - ابو بكر - الدمام", nameEn: "Ram Medical Clinics - Abu Bakr - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام لطب الأسنان - الدمام", nameEn: "Ram Dental Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات رام لطب الأسنان 3- الدمام", nameEn: "Ram Dental Clinics Complex 3 - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات زهرة العبير الطبي - الدمام", nameEn: "Zahrat Al Abeer Medical Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شام لطب الأسنان - الدمام (العزيزية)", nameEn: "Sham Dental Clinics Complex - Al Aziziyah - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شام لطب و تقويم الأسنان - بالدمام ( الريان)", nameEn: "Sham Dental & Orthodontics Clinics Complex - Al Rayyan - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام", nameEn: "Al Rayyan Distinguished Medical Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شفاء الدمام الطبي - الدمام", nameEn: "Shifa Dammam Medical Clinics Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع فجر الدمام الطبي (2) - الدمام", nameEn: "Fajr Dammam Medical Complex (2) - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع فجر الدمام الطبي - الدمام", nameEn: "Fajr Dammam Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجمع لاما الطبي - الدمام", nameEn: "Lama Medical Complex - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مجموعة دار العافية الطبية - الدمام", nameEn: "Dar Al Afiya Medical Group - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مراكز ابن سينا لطب الأسنان - الدمام", nameEn: "Ibn Sina Dental Centers - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز أشعة الدمام - الدمام", nameEn: "Dammam Radiology Center - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة الطفل الطبي للعلاج الطبيعي - الدمام", nameEn: "Child Will Medical Center - Physiotherapy - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إرادة للتأهيل الطبي - المنتزه - الدمام", nameEn: "Irada Medical Rehabilitation Center - Al Muntazah - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز إصرار للعلاج الطبيعي والتأهيل – الدمام", nameEn: "Israr Physiotherapy & Rehabilitation Center - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز العلاج الطبيعي الأول الطبي - الدمام", nameEn: "First Physiotherapy Medical Center - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مركز دوالي الطبي - الدمام", nameEn: "Dawali Medical Center - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى السعودي الألماني – الدمام", nameEn: "Saudi German Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع - الدمام", nameEn: "Al Mane Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المانع الطبي - الدمام - العزيزية", nameEn: "Al Mane Medical Hospital - Al Aziziyah - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى المواساة - الدمام", nameEn: "Al Mouwasat Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام", nameEn: "Maternity & Children Hospital (MOH) - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى تداوي العام - الدمام", nameEn: "Tadawi General Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى د. خالد محمد الرحيمي - الدمام", nameEn: "Dr. Khalid Al Ruhaimi Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستشفى مغربي للعيون والأسنان - الدمام", nameEn: "Magrabi Eye & Dental Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف المانع - الدمام", nameEn: "Al Mane Clinic - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف دار الحكمة - الدمام", nameEn: "Dar Al Hikma Clinic - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف دارالصحة - الدمام", nameEn: "Dar Al Siha Clinic - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "مسشتفى الروضة العام - الدمام", nameEn: "Al Rawda General Hospital - Dammam" },
-        { class: "B+", city: "الدمام", cityEn: "Dammam", name: "نظارات الكحال - الدمام", nameEn: "Al Kahhal Opticals - Dammam" },
         // C - الخبر
         { class: "C", city: "الخبر", cityEn: "Khobar", name: "صيدليات الدواء حي العقربية شارع 25", nameEn: "Al Dawaa Pharmacy - Al Aqrabiyah" },
         { class: "C", city: "الخبر", cityEn: "Khobar", name: "النطاق التخصصي للتأهيل (ماريا) - الخبر", nameEn: "Al Nitaq Specialized Rehabilitation (Maria) - Khobar" },
@@ -679,29 +708,6 @@
         { class: "C", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
         { class: "C", city: "الدمام", cityEn: "Dammam", name: "مسشتفى الروضة العام - الدمام", nameEn: "Al Rawda General Hospital - Dammam" },
         { class: "C", city: "الدمام", cityEn: "Dammam", name: "نظارات الكحال - الدمام", nameEn: "Al Kahhal Opticals - Dammam" },
-        // C-R - الخبر
-        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "صيدليات الدواء حي العقربية شارع 25", nameEn: "Al Dawaa Pharmacy - Al Aqrabiyah" },
-        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "با دغيش للبصريات - الخبر", nameEn: "Ba Dagheesh Optics - Khobar" },
-        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع الهلال الفضي - الثقبة", nameEn: "Silver Crescent Complex - Al Thuqbah - Khobar" },
-        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رفاء الطبي - الخبر", nameEn: "Refaa Medical Clinics Complex - Khobar" },
-        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات شفاء الخبر - الخبر", nameEn: "Shifa Al Khobar Clinics Complex - Khobar" },
-        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع قمة الصحه الطبي - الخبر", nameEn: "Qimmat Al Siha Medical Complex - Khobar" },
-        // C-R - الدمام
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "البشاوري للنظارات- الدمام", nameEn: "Al Bashawri Opticals - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع الصحة والحياة الطبي - الدمام", nameEn: "Health & Life Medical Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع المركز الكندي الطبي - الدمام", nameEn: "Canadian Medical Center Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع بدر الربيع الطبي - الدمام", nameEn: "Badr Al Rabie Medical Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة اجياد للخدمات الطبية المحدودة", nameEn: "Ajyad Medical Services Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام", nameEn: "Al Farabi Medical Complex - 1st Industrial City - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات التقوى الطبي العام - الدمام", nameEn: "Al Taqwa General Medical Clinics Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات الرأي الطبي - الدمام", nameEn: "Al Ra'i Medical Clinics Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات زهرة العبير الطبي - الدمام", nameEn: "Zahrat Al Abeer Medical Clinics Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام", nameEn: "Al Rayyan Distinguished Medical Clinics Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شفاء الدمام الطبي - الدمام", nameEn: "Shifa Dammam Medical Clinics Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع فجر الدمام الطبي - الدمام", nameEn: "Fajr Dammam Medical Complex - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام", nameEn: "Maternity & Children Hospital (MOH) - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مستوصف دارالصحة - الدمام", nameEn: "Dar Al Siha Clinic - Dammam" },
-        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
         // C1 - الخبر
         { class: "C1", city: "الخبر", cityEn: "Khobar", name: "صيدليات الدواء حي العقربية شارع 25", nameEn: "Al Dawaa Pharmacy - Al Aqrabiyah" },
         { class: "C1", city: "الخبر", cityEn: "Khobar", name: "با دغيش للبصريات - الخبر", nameEn: "Ba Dagheesh Optics - Khobar" },
@@ -750,6 +756,29 @@
         { class: "C1", city: "الدمام", cityEn: "Dammam", name: "مستوصف دارالصحة - الدمام", nameEn: "Dar Al Siha Clinic - Dammam" },
         { class: "C1", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
         { class: "C1", city: "الدمام", cityEn: "Dammam", name: "نظارات الكحال - الدمام", nameEn: "Al Kahhal Opticals - Dammam" },
+        // C-R - الخبر
+        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "صيدليات الدواء حي العقربية شارع 25", nameEn: "Al Dawaa Pharmacy - Al Aqrabiyah" },
+        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "با دغيش للبصريات - الخبر", nameEn: "Ba Dagheesh Optics - Khobar" },
+        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع الهلال الفضي - الثقبة", nameEn: "Silver Crescent Complex - Al Thuqbah - Khobar" },
+        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات رفاء الطبي - الخبر", nameEn: "Refaa Medical Clinics Complex - Khobar" },
+        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع عيادات شفاء الخبر - الخبر", nameEn: "Shifa Al Khobar Clinics Complex - Khobar" },
+        { class: "C-R", city: "الخبر", cityEn: "Khobar", name: "مجمع قمة الصحه الطبي - الخبر", nameEn: "Qimmat Al Siha Medical Complex - Khobar" },
+        // C-R - الدمام
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "البشاوري للنظارات- الدمام", nameEn: "Al Bashawri Opticals - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع الصحة والحياة الطبي - الدمام", nameEn: "Health & Life Medical Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع المركز الكندي الطبي - الدمام", nameEn: "Canadian Medical Center Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع بدر الربيع الطبي - الدمام", nameEn: "Badr Al Rabie Medical Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة اجياد للخدمات الطبية المحدودة", nameEn: "Ajyad Medical Services Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع شركة الفارابي الطبي بالصناعية الاولى -الدمام", nameEn: "Al Farabi Medical Complex - 1st Industrial City - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات التقوى الطبي العام - الدمام", nameEn: "Al Taqwa General Medical Clinics Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات الرأي الطبي - الدمام", nameEn: "Al Ra'i Medical Clinics Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات زهرة العبير الطبي - الدمام", nameEn: "Zahrat Al Abeer Medical Clinics Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شركة الريان المتميزة الطبي - الدمام", nameEn: "Al Rayyan Distinguished Medical Clinics Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع عيادات شفاء الدمام الطبي - الدمام", nameEn: "Shifa Dammam Medical Clinics Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مجمع فجر الدمام الطبي - الدمام", nameEn: "Fajr Dammam Medical Complex - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مستشفى الولادة والأطفال (وزارة الصحة) - الدمام", nameEn: "Maternity & Children Hospital (MOH) - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مستوصف دارالصحة - الدمام", nameEn: "Dar Al Siha Clinic - Dammam" },
+        { class: "C-R", city: "الدمام", cityEn: "Dammam", name: "مستوصف صفا الدمام الطبي - الدمام", nameEn: "Safa Dammam Medical Clinic - Dammam" },
         // VIP - الرياض
         { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "الاستشاريون لطب العيون - الرياض (الفلاح)", nameEn: "Eye Consultants - Riyadh (Al Falah)" },
         { class: "VIP", city: "الرياض", cityEn: "Riyadh", name: "د. سليمان الحبيب المركز الطبي - النرجس - الرياض", nameEn: "Dr. Sulaiman Al Habib Medical Center - Al Narjis - Riyadh" },
@@ -786,14 +815,38 @@
         { class: "C-R", city: "الرياض", cityEn: "Riyadh", name: "مستشفى مغربي للعيون والأسنان - الرياض", nameEn: "Magrabi Eye & Dental Hospital - Riyadh" }
     ];
 
+    // وظيفة لتحديد نوع المزود من الاسم العربي
+    function getProviderType(nameAr) {
+        if (nameAr.includes("مستشفى")) return "مستشفى";
+        if (nameAr.includes("مستوصف")) return "مستوصف";
+        if (nameAr.includes("مجمع")) return "مجمع";
+        if (nameAr.includes("مركز")) return "مركز";
+        if (nameAr.includes("صيدلية") || nameAr.includes("صيدليات")) return "صيدلية";
+        if (nameAr.includes("بصريات") || nameAr.includes("نظارات")) return "بصريات";
+        if (nameAr.includes("عيادات") || nameAr.includes("عيادة")) return "عيادات";
+        return "أخرى";
+    }
+
     const merged = {};
     raw.forEach(h => {
         const key = `${h.name}|||${h.city}`;
-        if (!merged[key]) merged[key] = { name: h.name, nameEn: h.nameEn, city: h.city, cityEn: h.cityEn, classes: [] };
+        if (!merged[key]) {
+            merged[key] = {
+                name: h.name,
+                nameEn: h.nameEn,
+                city: h.city,
+                cityEn: h.cityEn,
+                classes: [],
+                type: getProviderType(h.name)  // استخراج النوع
+            };
+        }
         if (!merged[key].classes.includes(h.class)) merged[key].classes.push(h.class);
     });
     const classOrder = ["VIP", "A", "B+", "B", "C", "C1", "C-R"];
-    const hospitals = Object.values(merged).map(h => ({ ...h, classes: h.classes.sort((a, b) => classOrder.indexOf(a) - classOrder.indexOf(b)) }));
+    const hospitals = Object.values(merged).map(h => ({
+        ...h,
+        classes: h.classes.sort((a, b) => classOrder.indexOf(a) - classOrder.indexOf(b))
+    }));
     let currentLang = 'ar';
     function getHighestClass(classes) { for (const c of classOrder) { if (classes.includes(c)) return c; } return classes[0]; }
     function getCardClass(classes) { const c = getHighestClass(classes); const map = { 'VIP': 'card-vip', 'A': 'card-a', 'B+': 'card-bplus', 'B': 'card-b', 'C': 'card-c', 'C1': 'card-c1', 'C-R': 'card-cr' }; return map[c] || ''; }
@@ -803,6 +856,7 @@
         div.className = `card ${getCardClass(h.classes)}`;
         div.setAttribute('data-classes', h.classes.join(','));
         div.setAttribute('data-city', h.city);
+        div.setAttribute('data-type', h.type);
         const displayName = currentLang === 'ar' ? h.name : h.nameEn;
         const displayCity = currentLang === 'ar' ? h.city : h.cityEn;
         const encoded = encodeURIComponent(`${displayName} ${displayCity}`);
@@ -842,18 +896,20 @@
         grid.innerHTML = '';
         const q = document.getElementById('searchInput').value.toLowerCase();
         const cf = document.querySelector('#classFilters .btn.active')?.getAttribute('data-filter') || 'all';
-       const activeCityBtn = document.querySelector('#cityFilters .btn.active');
-const ctf = currentLang === 'ar' 
-    ? (activeCityBtn?.getAttribute('data-city') || 'all')
-    : (activeCityBtn?.getAttribute('data-city-en') || 'all');
+        const activeCityBtn = document.querySelector('#cityFilters .btn.active');
+        const ctf = (currentLang === 'ar')
+            ? (activeCityBtn?.getAttribute('data-city') || 'all')
+            : (activeCityBtn?.getAttribute('data-city-en') || activeCityBtn?.getAttribute('data-city') || 'all');
+        const typeFilter = document.getElementById('typeFilter').value;
         let f = hospitals.filter(h => {
             if (cf !== 'all' && !h.classes.includes(cf)) return false;
             const cityMatch = currentLang === 'ar' ? h.city : h.cityEn;
             if (ctf !== 'all' && cityMatch !== ctf) return false;
+            if (typeFilter !== 'all' && h.type !== typeFilter) return false;
             if (q) {
                 const dn = currentLang === 'ar' ? h.name : h.nameEn;
                 const dc = currentLang === 'ar' ? h.city : h.cityEn;
-                if (!`${dn} ${dc} ${h.classes.join(' ')}`.toLowerCase().includes(q)) return false;
+                if (!`${dn} ${dc} ${h.classes.join(' ')} ${h.type}`.toLowerCase().includes(q)) return false;
             }
             return true;
         });
@@ -879,6 +935,7 @@ const ctf = currentLang === 'ar'
             render();
         }
     });
+    document.getElementById('typeFilter').addEventListener('change', render);
     render();
 </script>
 </body>
