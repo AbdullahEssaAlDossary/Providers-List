@@ -842,9 +842,10 @@
         grid.innerHTML = '';
         const q = document.getElementById('searchInput').value.toLowerCase();
         const cf = document.querySelector('#classFilters .btn.active')?.getAttribute('data-filter') || 'all';
-        <button class="btn" data-city="الخبر" data-city-en="Khobar" data-ar="الخبر" data-en="Khobar">الخبر</button>
-<button class="btn" data-city="الدمام" data-city-en="Dammam" data-ar="الدمام" data-en="Dammam">الدمام</button>
-<button class="btn" data-city="الرياض" data-city-en="Riyadh" data-ar="الرياض" data-en="Riyadh">الرياض</button>
+       const activeCityBtn = document.querySelector('#cityFilters .btn.active');
+const ctf = currentLang === 'ar' 
+    ? (activeCityBtn?.getAttribute('data-city') || 'all')
+    : (activeCityBtn?.getAttribute('data-city-en') || 'all');
         let f = hospitals.filter(h => {
             if (cf !== 'all' && !h.classes.includes(cf)) return false;
             const cityMatch = currentLang === 'ar' ? h.city : h.cityEn;
